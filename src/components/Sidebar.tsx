@@ -1,17 +1,11 @@
 import { useState, useMemo } from "react";
+import { Link, useLocation } from "@tanstack/react-router";
 import { getChaptersBySection } from "../data/curriculum";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
 import type { Chapter } from "../types";
 import { Check, Search, BarChart3, ChevronRight, Lightbulb, Clock, FileText, Copy, Lock, Folder, SearchX } from "lucide-react";
 
-interface SidebarProps {
-  selectedChapter: string | null;
-  onChapterSelect: (chapterId: string) => void;
-  viewMode?: "dashboard" | "chapters";
-  onViewModeChange?: (mode: "dashboard" | "chapters") => void;
-}
-
-export function Sidebar({ selectedChapter, onChapterSelect, viewMode, onViewModeChange }: SidebarProps) {
+export function Sidebar() {
   const { progress } = useStudyProgress();
   const [searchTerm, setSearchTerm] = useState("");
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(
@@ -49,9 +43,11 @@ export function Sidebar({ selectedChapter, onChapterSelect, viewMode, onViewMode
     }
   };
 
+  const location = useLocation();
+
   const renderChapter = (chapter: Chapter) => {
     const chapterProgress = progress[chapter.id];
-    const isSelected = selectedChapter === chapter.id;
+    const isSelected = location.pathname === `/chapters/${chapter.id}`;
 
     if (
       searchTerm &&
@@ -61,10 +57,11 @@ export function Sidebar({ selectedChapter, onChapterSelect, viewMode, onViewMode
     }
 
     return (
-      <button
+      <Link
         key={chapter.id}
-        onClick={() => onChapterSelect(chapter.id)}
-        className={`w-full text-left p-3 rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${isSelected
+        to="/chapters/$chapterId"
+        params={{ chapterId: chapter.id }}
+        className={`block w-full text-left p-3 rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${isSelected
           ? "bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border border-blue-200 dark:border-blue-700 shadow-sm"
           : "hover:bg-gray-50 dark:hover:bg-gray-700/50 border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
           }`}
@@ -80,7 +77,7 @@ export function Sidebar({ selectedChapter, onChapterSelect, viewMode, onViewMode
             {chapter.title}
           </p>
         </div>
-      </button>
+      </Link>
     );
   };
 
@@ -159,36 +156,34 @@ export function Sidebar({ selectedChapter, onChapterSelect, viewMode, onViewMode
         </div>
 
         {/* Dashboard Button */}
-        {onViewModeChange && (
-          <div className="card animate-slide-in hover-lift">
-            <button
-              onClick={() => onViewModeChange("dashboard")}
-              className={`w-full p-4 text-left transition-colors rounded-xl focus-ring ${viewMode === "dashboard"
-                  ? "bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border border-blue-200 dark:border-blue-700 shadow-sm"
-                  : "hover:bg-gray-50 dark:hover:bg-gray-700/50"
-                }`}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="p-1.5 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-600 dark:text-blue-400">
-                    <BarChart3 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h3 className={`font-semibold ${viewMode === "dashboard"
-                        ? "text-blue-900 dark:text-blue-100"
-                        : "text-gray-900 dark:text-white"
-                      }`}>
-                      Dashboard
-                    </h3>
-                    <p className="text-xs text-muted">
-                      Overall progress overview
-                    </p>
-                  </div>
+        <div className="card animate-slide-in hover-lift">
+          <Link
+            to="/"
+            className={`block w-full p-4 text-left transition-colors rounded-xl focus-ring ${location.pathname === "/"
+                ? "bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border border-blue-200 dark:border-blue-700 shadow-sm"
+                : "hover:bg-gray-50 dark:hover:bg-gray-700/50"
+              }`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="p-1.5 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-600 dark:text-blue-400">
+                  <BarChart3 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className={`font-semibold ${location.pathname === "/"
+                      ? "text-blue-900 dark:text-blue-100"
+                      : "text-gray-900 dark:text-white"
+                    }`}>
+                    Dashboard
+                  </h3>
+                  <p className="text-xs text-muted">
+                    Overall progress overview
+                  </p>
                 </div>
               </div>
-            </button>
-          </div>
-        )}
+            </div>
+          </Link>
+        </div>
 
         <div className="space-y-3">
           {sections.map((section) => {

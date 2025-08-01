@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1.130.12",
     "i18next": "^25.3.2",
     "i18next-browser-languagedetector": "^8.2.0",
     "lucide-react": "^0.536.0",
@@ -23,6 +24,8 @@
     "@locator/babel-jsx": "^0.4.4",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
+    "@tanstack/router-devtools": "^1.130.12",
+    "@tanstack/router-vite-plugin": "^1.130.12",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",
