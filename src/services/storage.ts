@@ -1,4 +1,5 @@
 import type { StudyData, ChapterProgress, ProgressStatus } from "../types";
+import { chapters } from "../data/curriculum";
 
 const STORAGE_KEY = "ostep-study-data";
 
@@ -120,7 +121,7 @@ export class StorageService {
     const progressEntries = Object.values(data.progress);
 
     const stats = {
-      total: progressEntries.length, // Total number of chapters
+      total: chapters.length, // Total number of chapters from curriculum
       completed: progressEntries.filter((p) => p.status === "completed").length,
       inProgress: progressEntries.filter((p) => p.status === "in-progress")
         .length,
