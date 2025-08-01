@@ -4,6 +4,9 @@ import { ExportImport } from "./ExportImport";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import { Menu, BookOpen, Moon, Sun } from "lucide-react";
+import { IconButton } from "./ui/IconButton";
+import { ProgressBar } from "./ui/ProgressBar";
+import { GradientCard } from "./ui/GradientCard";
 
 interface HeaderProps {
   onToggleSidebar?: () => void;
@@ -19,17 +22,23 @@ export function Header({ onToggleSidebar }: HeaderProps) {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-18 py-3">
           <div className="flex items-center space-x-4">
-            <button
-              onClick={onToggleSidebar}
-              className="lg:hidden p-2 rounded-lg bg-gray-100/80 dark:bg-gray-700/80 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-              aria-label="Toggle sidebar"
-            >
-              <Menu className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-            </button>
+            <div className="lg:hidden">
+              <IconButton
+                icon={<Menu className="w-5 h-5" />}
+                onClick={onToggleSidebar}
+                ariaLabel="Toggle sidebar"
+                variant="secondary"
+              />
+            </div>
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <GradientCard
+                from="blue-500"
+                to="blue-600"
+                className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg"
+                padding="sm"
+              >
                 <BookOpen className="w-6 h-6 text-white" />
-              </div>
+              </GradientCard>
               <div className="hidden sm:block">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
                   OSTEP Study Helper
@@ -50,19 +59,12 @@ export function Header({ onToggleSidebar }: HeaderProps) {
                   {t("header.overallProgress")}
                 </div>
                 <div className="flex items-center space-x-3 mt-1">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-20 bg-gray-200 dark:bg-gray-700 rounded-full h-2 relative overflow-hidden">
-                      <div
-                        className="bg-gradient-to-r from-blue-500 to-blue-600 h-full rounded-full transition-all duration-500 ease-out relative"
-                        style={{ width: `${stats.percentage}%` }}
-                      >
-                        <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                      </div>
-                    </div>
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white min-w-[3rem]">
-                      {stats.percentage}%
-                    </span>
-                  </div>
+                  <ProgressBar
+                    percentage={stats.percentage}
+                    size="sm"
+                    animated={true}
+                    className="min-w-[6rem]"
+                  />
                 </div>
               </div>
 
@@ -84,17 +86,19 @@ export function Header({ onToggleSidebar }: HeaderProps) {
 
             <LanguageSwitcher />
 
-            <button
+            <IconButton
+              icon={
+                theme === "light" ? (
+                  <Moon className="w-5 h-5" />
+                ) : (
+                  <Sun className="w-5 h-5" />
+                )
+              }
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-100/80 dark:bg-gray-700/80 hover:bg-gray-200 dark:hover:bg-gray-600 border border-gray-200/50 dark:border-gray-600/50 transition-all duration-200 hover:scale-105 active:scale-95"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? (
-                <Moon className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-              ) : (
-                <Sun className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-              )}
-            </button>
+              ariaLabel="Toggle theme"
+              variant="secondary"
+              className="border border-gray-200/50 dark:border-gray-600/50"
+            />
           </div>
         </div>
       </div>

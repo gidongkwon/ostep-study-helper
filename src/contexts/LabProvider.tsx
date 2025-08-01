@@ -71,7 +71,13 @@ const LABS: Lab[] = [
     id: "lab5",
     name: "Lab 5: Concurrency and Storage",
     description: "Synchronization primitives and storage devices",
-    chapters: ["locks", "semaphores", "condition-variables", "storage-devices", "ssds"],
+    chapters: [
+      "locks",
+      "semaphores",
+      "condition-variables",
+      "storage-devices",
+      "ssds",
+    ],
     order: 5,
   },
 ];

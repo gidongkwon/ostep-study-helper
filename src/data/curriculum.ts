@@ -392,38 +392,52 @@ export function getChapterById(id: string): Chapter | undefined {
 }
 
 export function getChaptersBySection(section: Chapter["section"]): Chapter[] {
-  const sectionChapters = chapters.filter((chapter) => chapter.section === section);
-  
+  const sectionChapters = chapters.filter(
+    (chapter) => chapter.section === section,
+  );
+
   // Define the desired order of chapters for each section
   const chapterOrder: Record<string, string[]> = {
     lab1: ["intro-os", "arch-support", "processes", "lab1-exercises"],
     lab2: ["cpu-scheduling", "virtual-memory", "lab2-exercises"],
     lab3: ["paging", "page-tables", "tlb", "memory-mapping", "lab3-exercises"],
     lab4: ["swapping", "vm-implementations", "threads", "lab4-exercises"],
-    lab5: ["locks", "semaphores", "condition-variables", "storage-devices", "ssds", "lab5-exercises"],
-    filesystem: ["file-systems", "file-system-implementation", "fast-file-system", "file-system-consistency"],
+    lab5: [
+      "locks",
+      "semaphores",
+      "condition-variables",
+      "storage-devices",
+      "ssds",
+      "lab5-exercises",
+    ],
+    filesystem: [
+      "file-systems",
+      "file-system-implementation",
+      "fast-file-system",
+      "file-system-consistency",
+    ],
   };
 
   const order = chapterOrder[section] || [];
-  
+
   // Sort chapters according to the defined order, with labs at the end
   return sectionChapters.sort((a, b) => {
     const aIndex = order.indexOf(a.id);
     const bIndex = order.indexOf(b.id);
-    
+
     // If both chapters are in the order array, use their positions
     if (aIndex !== -1 && bIndex !== -1) {
       return aIndex - bIndex;
     }
-    
+
     // If only one is in the order array, prioritize it
     if (aIndex !== -1) return -1;
     if (bIndex !== -1) return 1;
-    
+
     // For chapters not in the order array, sort labs to the end
     if (a.isLab && !b.isLab) return 1;
     if (!a.isLab && b.isLab) return -1;
-    
+
     // Fallback to alphabetical order
     return a.title.localeCompare(b.title);
   });

@@ -21,7 +21,7 @@ export function NotFound() {
         <p className="text-gray-400 dark:text-gray-500 mb-8">
           {t(
             "notFound.description",
-            "The page you're looking for doesn't exist or has been moved."
+            "The page you're looking for doesn't exist or has been moved.",
           )}
         </p>
         <Link to="/" className="btn-primary inline-flex items-center space-x-2">
