@@ -12,7 +12,7 @@
     "progress": "Progress"
   },
   "dashboard": {
-    "title": "Study Progress Overview", 
+    "title": "Study Progress Overview",
     "subtitle": "Track your learning journey across all OSTEP sections",
     "progressBySection": "Progress by Section",
     "keepUpTheWork": "Keep up the great work!",
@@ -47,7 +47,7 @@
   },
   "sections": {
     "lab1": "Introduction & Processes",
-    "lab2": "Scheduling & Memory", 
+    "lab2": "Scheduling & Memory",
     "lab3": "Paging & Memory Management",
     "lab4": "Swapping & Threads",
     "lab5": "Concurrency & Storage",
@@ -59,7 +59,7 @@
     "studyProgress": "Study Progress",
     "status": {
       "notStarted": "Not Started",
-      "inProgress": "In Progress", 
+      "inProgress": "In Progress",
       "completed": "Completed",
       "notStartedDesc": "Ready to begin this chapter",
       "inProgressDesc": "Currently studying this chapter",

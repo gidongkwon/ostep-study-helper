@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { useStudyProgress } from '../contexts/StudyProgressContext';
+import { useRef } from "react";
+import { useStudyProgress } from "../contexts/StudyProgressContext";
 
 export function ExportImport() {
   const { exportProgress, importProgress } = useStudyProgress();
@@ -7,11 +7,11 @@ export function ExportImport() {
 
   const handleExport = () => {
     const data = exportProgress();
-    const blob = new Blob([data], { type: 'application/json' });
+    const blob = new Blob([data], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `ostep-progress-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `ostep-progress-${new Date().toISOString().split("T")[0]}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -28,20 +28,20 @@ export function ExportImport() {
         const content = e.target?.result as string;
         const success = importProgress(content);
         if (success) {
-          alert('Progress imported successfully!');
+          alert("Progress imported successfully!");
           window.location.reload(); // Reload to update UI
         } else {
-          alert('Failed to import progress. Please check the file format.');
+          alert("Failed to import progress. Please check the file format.");
         }
       } catch {
-        alert('Error importing file. Please check the file format.');
+        alert("Error importing file. Please check the file format.");
       }
     };
     reader.readAsText(file);
-    
+
     // Reset input
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 

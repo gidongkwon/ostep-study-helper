@@ -9,12 +9,11 @@ export interface Chapter {
   title: string;
   lectureSlide: string;
   pdfs: PdfResource[];
-  section: 'lab1' | 'lab2' | 'lab3' | 'lab4' | 'lab5' | 'filesystem';
+  section: "lab1" | "lab2" | "lab3" | "lab4" | "lab5" | "filesystem";
   order: number;
 }
 
-
-export type ProgressStatus = 'not-started' | 'in-progress' | 'completed';
+export type ProgressStatus = "not-started" | "in-progress" | "completed";
 
 export interface ChapterProgress {
   chapterId: string;
@@ -25,5 +24,5 @@ export interface ChapterProgress {
 
 export interface StudyData {
   progress: Record<string, ChapterProgress>;
-  theme: 'light' | 'dark';
+  theme: "light" | "dark";
 }
