@@ -7,10 +7,10 @@ export interface PdfResource {
 export interface Chapter {
   id: string;
   title: string;
-  lectureSlide: string;
+  lectureSlide?: string;
   pdfs: PdfResource[];
   section: "lab1" | "lab2" | "lab3" | "lab4" | "lab5" | "filesystem";
-  order: number;
+  isLab?: boolean;
 }
 
 export type ProgressStatus = "not-started" | "in-progress" | "completed";

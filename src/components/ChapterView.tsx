@@ -68,7 +68,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
             <div className="flex-1">
               <div className="flex items-center space-x-3 mb-2">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200">
-                  {t("chapterView.chapter")} {chapter.order}
+                  {chapter.section.toUpperCase()}
                 </span>
               </div>
               <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">

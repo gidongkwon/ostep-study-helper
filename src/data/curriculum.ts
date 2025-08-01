@@ -14,7 +14,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab1",
-    order: 1,
   },
   {
     id: "arch-support",
@@ -29,7 +28,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab1",
-    order: 2,
   },
   {
     id: "processes",
@@ -50,7 +48,13 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab1",
-    order: 3,
+  },
+  {
+    id: "lab1-exercises",
+    title: "Lab #1 Exercises",
+    pdfs: [],
+    section: "lab1",
+    isLab: true,
   },
 
   // Lab #2: CPU scheduling, Virtual memory
@@ -73,7 +77,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab2",
-    order: 4,
   },
   {
     id: "virtual-memory",
@@ -107,7 +110,13 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab2",
-    order: 5,
+  },
+  {
+    id: "lab2-exercises",
+    title: "Lab #2 Exercises",
+    pdfs: [],
+    section: "lab2",
+    isLab: true,
   },
 
   // Lab #3: Paging, Page tables, TLB, Memory mapping
@@ -124,7 +133,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab3",
-    order: 6,
   },
   {
     id: "page-tables",
@@ -139,7 +147,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab3",
-    order: 7,
   },
   {
     id: "tlb",
@@ -154,7 +161,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab3",
-    order: 8,
   },
   {
     id: "memory-mapping",
@@ -162,7 +168,13 @@ export const chapters: Chapter[] = [
     lectureSlide: "http://csl.snu.ac.kr/courses/4190.307/2020-1/9-mmap.pdf",
     pdfs: [],
     section: "lab3",
-    order: 9,
+  },
+  {
+    id: "lab3-exercises",
+    title: "Lab #3 Exercises",
+    pdfs: [],
+    section: "lab3",
+    isLab: true,
   },
 
   // Lab #4: Swapping, Virtual Memory Implementations, Threads
@@ -186,7 +198,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab4",
-    order: 10,
   },
   {
     id: "vm-implementations",
@@ -201,7 +212,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab4",
-    order: 11,
   },
   {
     id: "threads",
@@ -222,7 +232,13 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab4",
-    order: 12,
+  },
+  {
+    id: "lab4-exercises",
+    title: "Lab #4 Exercises",
+    pdfs: [],
+    section: "lab4",
+    isLab: true,
   },
 
   // Lab #5: Locks, Semaphores, Condition variables, HDDs, SSDs
@@ -239,7 +255,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab5",
-    order: 13,
   },
   {
     id: "semaphores",
@@ -254,7 +269,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab5",
-    order: 14,
   },
   {
     id: "condition-variables",
@@ -269,7 +283,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab5",
-    order: 15,
   },
   {
     id: "storage-devices",
@@ -290,7 +303,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab5",
-    order: 16,
   },
   {
     id: "ssds",
@@ -305,7 +317,13 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "lab5",
-    order: 17,
+  },
+  {
+    id: "lab5-exercises",
+    title: "Lab #5 Exercises",
+    pdfs: [],
+    section: "lab5",
+    isLab: true,
   },
 
   // File System (no lab)
@@ -322,7 +340,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "filesystem",
-    order: 18,
   },
   {
     id: "file-system-implementation",
@@ -338,7 +355,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "filesystem",
-    order: 19,
   },
   {
     id: "fast-file-system",
@@ -353,7 +369,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "filesystem",
-    order: 20,
   },
   {
     id: "file-system-consistency",
@@ -369,7 +384,6 @@ export const chapters: Chapter[] = [
       },
     ],
     section: "filesystem",
-    order: 21,
   },
 ];
 
@@ -378,5 +392,39 @@ export function getChapterById(id: string): Chapter | undefined {
 }
 
 export function getChaptersBySection(section: Chapter["section"]): Chapter[] {
-  return chapters.filter((chapter) => chapter.section === section);
+  const sectionChapters = chapters.filter((chapter) => chapter.section === section);
+  
+  // Define the desired order of chapters for each section
+  const chapterOrder: Record<string, string[]> = {
+    lab1: ["intro-os", "arch-support", "processes", "lab1-exercises"],
+    lab2: ["cpu-scheduling", "virtual-memory", "lab2-exercises"],
+    lab3: ["paging", "page-tables", "tlb", "memory-mapping", "lab3-exercises"],
+    lab4: ["swapping", "vm-implementations", "threads", "lab4-exercises"],
+    lab5: ["locks", "semaphores", "condition-variables", "storage-devices", "ssds", "lab5-exercises"],
+    filesystem: ["file-systems", "file-system-implementation", "fast-file-system", "file-system-consistency"],
+  };
+
+  const order = chapterOrder[section] || [];
+  
+  // Sort chapters according to the defined order, with labs at the end
+  return sectionChapters.sort((a, b) => {
+    const aIndex = order.indexOf(a.id);
+    const bIndex = order.indexOf(b.id);
+    
+    // If both chapters are in the order array, use their positions
+    if (aIndex !== -1 && bIndex !== -1) {
+      return aIndex - bIndex;
+    }
+    
+    // If only one is in the order array, prioritize it
+    if (aIndex !== -1) return -1;
+    if (bIndex !== -1) return 1;
+    
+    // For chapters not in the order array, sort labs to the end
+    if (a.isLab && !b.isLab) return 1;
+    if (!a.isLab && b.isLab) return -1;
+    
+    // Fallback to alphabetical order
+    return a.title.localeCompare(b.title);
+  });
 }
