@@ -15,6 +15,7 @@ import {
   Folder,
   SearchX,
   Beaker,
+  Check,
 } from "lucide-react";
 import { StatusIndicator } from "./ui/StatusIndicator";
 import { EmptyState } from "./ui/EmptyState";
@@ -60,7 +61,9 @@ export function Sidebar() {
         params={{ chapterId: chapter.id }}
         className={`block w-full text-left p-3 rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
           chapter.isLab
-            ? "border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
+            ? chapterProgress?.status === "completed"
+              ? "bg-green-50/30 dark:bg-green-900/10"
+              : "border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
             : "border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
         } ${
           isSelected
@@ -79,7 +82,9 @@ export function Sidebar() {
                 }`}
               />
               {chapterProgress?.status === "completed" && (
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-800" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center">
+                  <Check className="w-2 h-2 text-white" strokeWidth={3} />
+                </div>
               )}
               {chapterProgress?.status === "in-progress" && (
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white dark:border-gray-800" />

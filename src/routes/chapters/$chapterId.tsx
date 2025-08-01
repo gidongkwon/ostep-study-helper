@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import { useStudyProgress } from "../../contexts/StudyProgressContext";
 import type { Chapter, ProgressStatus } from "../../types";
 import { StatusButton } from "../../components/ui/StatusButton";
-import { GradientCard } from "../../components/ui/GradientCard";
 import { EmptyState } from "../../components/ui/EmptyState";
 import { PageContainer } from "../../components/ui/PageContainer";
 import { LabPlaceholder } from "../../components/ui/LabPlaceholder";
@@ -36,7 +35,7 @@ function LabView({ chapter }: { chapter: Chapter }) {
   return (
     <PageContainer className="space-y-8">
       {/* Header */}
-      <div className="card p-8">
+      <div className="">
         <div className="flex items-start justify-between mb-6">
           <SectionHeader
             title={chapter.title}
@@ -48,23 +47,14 @@ function LabView({ chapter }: { chapter: Chapter }) {
         </div>
 
         {/* Progress Tracking */}
-        <GradientCard
-          from="purple-50"
-          to="blue-50"
-          className="card border border-purple-200 dark:border-purple-800"
-        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {t("chapterView.progressTracking", "Progress Tracking")}
-            </h3>
             <StatusDisplay
               status={currentStatus}
               label={`${t("chapterView.currentStatus", "Current Status")}: ${currentStatus.replace("-", " ")}`}
               icon={
                 statusButtons.find((btn) => btn.status === currentStatus)
                   ?.icon || <></>
-              }
-            />
+              }/>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {statusButtons.map(({ status, label, color, icon }) => {
@@ -82,7 +72,6 @@ function LabView({ chapter }: { chapter: Chapter }) {
               );
             })}
           </div>
-        </GradientCard>
       </div>
 
       {/* Lab Content */}

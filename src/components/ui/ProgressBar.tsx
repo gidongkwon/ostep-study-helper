@@ -29,7 +29,7 @@ export function ProgressBar({
         className={`${barWidth} bg-gray-200 dark:bg-gray-700 rounded-full ${sizeClasses[size]} relative overflow-hidden`}
       >
         <div
-          className={`bg-gradient-to-r from-${color}-500 to-${color}-600 ${sizeClasses[size]} rounded-full transition-all duration-700 ease-out ${
+          className={`bg-gradient-to-r from-${color}-400 to-${color}-500 ${sizeClasses[size]} rounded-full transition-all duration-700 ease-out ${
             animated ? "relative" : ""
           }`}
           style={{ width: `${percentage}%` }}

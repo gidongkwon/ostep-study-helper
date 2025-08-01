@@ -32,8 +32,8 @@ export function Header({ onToggleSidebar }: HeaderProps) {
             </div>
             <div className="flex items-center space-x-3">
               <GradientCard
-                from="blue-500"
-                to="blue-600"
+                from="blue-600"
+                to="blue-500"
                 className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg"
                 padding="sm"
               >
