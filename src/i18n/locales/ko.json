@@ -1,0 +1,90 @@
+{
+  "common": {
+    "completed": "완료됨",
+    "inProgress": "진행 중",
+    "notStarted": "시작 안 함",
+    "overall": "전체",
+    "complete": "완료",
+    "notes": "노트",
+    "status": "상태",
+    "lastUpdated": "마지막 업데이트",
+    "chapters": "챕터",
+    "progress": "진행률"
+  },
+  "dashboard": {
+    "title": "학습 진행 현황",
+    "subtitle": "모든 OSTEP 섹션의 학습 여정을 추적하세요",
+    "progressBySection": "섹션별 진행률",
+    "keepUpTheWork": "계속해서 잘하고 있어요!",
+    "completedDescription": "총 {{total}}개 챕터 중 {{completed}}개를 완료했습니다.",
+    "percentageDescription": "운영체제 학습 여정의 {{percentage}}%를 달성했어요!"
+  },
+  "sidebar": {
+    "dashboard": "대시보드",
+    "weeklyView": "주간 보기",
+    "allChapters": "모든 챕터"
+  },
+  "chapter": {
+    "readPdf": "PDF 읽기",
+    "korean": "한국어",
+    "english": "English",
+    "markAsCompleted": "완료로 표시",
+    "markAsInProgress": "진행 중으로 표시",
+    "markAsNotStarted": "시작 안 함으로 표시",
+    "addNotes": "여기에 노트를 추가하세요...",
+    "notesPlaceholder": "이 챕터의 주요 개념, 질문, 또는 통찰을 기록해보세요.",
+    "readyToStart": "공부를 시작할 준비가 되셨나요?",
+    "selectChapter": "사이드바에서 챕터를 선택하여 운영체제 학습 여정을 시작하세요"
+  },
+  "weeklyView": {
+    "title": "주간 학습 계획",
+    "subtitle": "OSTEP의 체계적인 16주 커리큘럼을 따라하세요",
+    "week": "주차"
+  },
+  "theme": {
+    "light": "라이트",
+    "dark": "다크"
+  },
+  "sections": {
+    "lab1": "소개 및 프로세스",
+    "lab2": "스케줄링 및 메모리",
+    "lab3": "페이징 및 메모리 관리",
+    "lab4": "스와핑 및 스레드",
+    "lab5": "동시성 및 저장소",
+    "filesystem": "파일 시스템"
+  },
+  "chapterView": {
+    "chapter": "챕터",
+    "ostepCurriculum": "OSTEP 커리큘럼",
+    "studyProgress": "학습 진행",
+    "status": {
+      "notStarted": "시작 안 함",
+      "inProgress": "진행 중",
+      "completed": "완료됨",
+      "notStartedDesc": "이 챕터를 시작할 준비가 되었습니다",
+      "inProgressDesc": "현재 이 챕터를 공부하고 있습니다",
+      "completedDesc": "챕터를 성공적으로 완료했습니다"
+    },
+    "lectureMaterials": "강의 자료",
+    "lectureSlides": "강의 슬라이드",
+    "lectureSlidesDesc": "교수님의 강의 슬라이드와 프레젠테이션",
+    "textbookResources": "교재 자료",
+    "englishPdf": "English PDF",
+    "koreanPdf": "한국어 PDF",
+    "originalContent": "원본 OSTEP 내용",
+    "translatedContent": "한국어 번역본",
+    "noReadingMaterials": "이 챕터에 대한 추가 읽기 자료가 없습니다.",
+    "noOstepChapters": "이 섹션에 대한 OSTEP 챕터를 찾을 수 없습니다.",
+    "personalNotes": "개인 노트",
+    "editNotes": "노트 편집",
+    "notesPlaceholder": "이 챕터에서 얻은 생각, 질문, 주요 통찰을 추가하세요...",
+    "saveNotes": "노트 저장",
+    "cancel": "취소",
+    "noNotesYet": "아직 노트가 없습니다",
+    "clickEditNotes": "'노트 편집'을 클릭하여 이 챕터의 노트 작성을 시작하세요."
+  },
+  "header": {
+    "subtitle": "운영체제 학습 가이드",
+    "overallProgress": "전체 진행률"
+  }
+}

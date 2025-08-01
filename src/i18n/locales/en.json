@@ -1,0 +1,90 @@
+{
+  "common": {
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "notStarted": "Not Started",
+    "overall": "Overall",
+    "complete": "Complete",
+    "notes": "Notes",
+    "status": "Status",
+    "lastUpdated": "Last Updated",
+    "chapters": "Chapters",
+    "progress": "Progress"
+  },
+  "dashboard": {
+    "title": "Study Progress Overview", 
+    "subtitle": "Track your learning journey across all OSTEP sections",
+    "progressBySection": "Progress by Section",
+    "keepUpTheWork": "Keep up the great work!",
+    "completedDescription": "You've completed {{completed}} out of {{total}} chapters.",
+    "percentageDescription": "That's {{percentage}}% of your OS learning journey!"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "weeklyView": "Weekly View",
+    "allChapters": "All Chapters"
+  },
+  "chapter": {
+    "readPdf": "Read PDF",
+    "korean": "Korean",
+    "english": "English",
+    "markAsCompleted": "Mark as Completed",
+    "markAsInProgress": "Mark as In Progress",
+    "markAsNotStarted": "Mark as Not Started",
+    "addNotes": "Add your notes here...",
+    "notesPlaceholder": "Take notes about key concepts, questions, or insights from this chapter.",
+    "readyToStart": "Ready to start studying?",
+    "selectChapter": "Select a chapter from the sidebar to begin your OS learning journey"
+  },
+  "weeklyView": {
+    "title": "Weekly Study Plan",
+    "subtitle": "Follow the structured 16-week curriculum for OSTEP",
+    "week": "Week"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "sections": {
+    "lab1": "Introduction & Processes",
+    "lab2": "Scheduling & Memory", 
+    "lab3": "Paging & Memory Management",
+    "lab4": "Swapping & Threads",
+    "lab5": "Concurrency & Storage",
+    "filesystem": "File System"
+  },
+  "chapterView": {
+    "chapter": "Chapter",
+    "ostepCurriculum": "OSTEP Curriculum",
+    "studyProgress": "Study Progress",
+    "status": {
+      "notStarted": "Not Started",
+      "inProgress": "In Progress", 
+      "completed": "Completed",
+      "notStartedDesc": "Ready to begin this chapter",
+      "inProgressDesc": "Currently studying this chapter",
+      "completedDesc": "Chapter completed successfully"
+    },
+    "lectureMaterials": "Lecture Materials",
+    "lectureSlides": "Lecture Slides",
+    "lectureSlidesDesc": "Professor's lecture slides and presentations",
+    "textbookResources": "Textbook Resources",
+    "englishPdf": "English PDF",
+    "koreanPdf": "Korean PDF",
+    "originalContent": "Original OSTEP content",
+    "translatedContent": "Korean translated version",
+    "noReadingMaterials": "No additional reading materials available for this chapter.",
+    "noOstepChapters": "No OSTEP chapters found for this section.",
+    "personalNotes": "Personal Notes",
+    "editNotes": "Edit Notes",
+    "notesPlaceholder": "Add your thoughts, questions, and key insights from this chapter...",
+    "saveNotes": "Save Notes",
+    "cancel": "Cancel",
+    "noNotesYet": "No notes yet",
+    "clickEditNotes": "Click 'Edit Notes' to start taking notes for this chapter."
+  },
+  "header": {
+    "subtitle": "Operating Systems Study Guide",
+    "overallProgress": "Overall Progress"
+  }
+}
