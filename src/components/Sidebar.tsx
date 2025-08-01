@@ -2,13 +2,11 @@ import { useState, useMemo } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { getChaptersBySection } from "../data/curriculum";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
-import { useLabs } from "../contexts/LabProvider";
 import type { Chapter } from "../types";
 import { Check, Search, BarChart3, ChevronRight, Lightbulb, Clock, FileText, Copy, Lock, Folder, SearchX, Beaker } from "lucide-react";
 
 export function Sidebar() {
   const { progress } = useStudyProgress();
-  const { labs } = useLabs();
   const [searchTerm, setSearchTerm] = useState("");
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(
     new Set(),
@@ -88,6 +86,7 @@ export function Sidebar() {
       id: "lab1",
       title: "Lab #1",
       chapters: getChaptersBySection("lab1"),
+      labId: "lab1",
       icon: <Lightbulb className="w-4 h-4" />,
       color: "blue",
     },
@@ -95,6 +94,7 @@ export function Sidebar() {
       id: "lab2",
       title: "Lab #2",
       chapters: getChaptersBySection("lab2"),
+      labId: "lab2",
       icon: <Clock className="w-4 h-4" />,
       color: "purple",
     },
@@ -102,6 +102,7 @@ export function Sidebar() {
       id: "lab3",
       title: "Lab #3",
       chapters: getChaptersBySection("lab3"),
+      labId: "lab3",
       icon: <FileText className="w-4 h-4" />,
       color: "green",
     },
@@ -109,6 +110,7 @@ export function Sidebar() {
       id: "lab4",
       title: "Lab #4",
       chapters: getChaptersBySection("lab4"),
+      labId: "lab4",
       icon: <Copy className="w-4 h-4" />,
       color: "orange",
     },
@@ -116,6 +118,7 @@ export function Sidebar() {
       id: "lab5",
       title: "Lab #5",
       chapters: getChaptersBySection("lab5"),
+      labId: "lab5",
       icon: <Lock className="w-4 h-4" />,
       color: "red",
     },
@@ -123,6 +126,7 @@ export function Sidebar() {
       id: "filesystem",
       title: "File System",
       chapters: getChaptersBySection("filesystem"),
+      labId: null,
       icon: <Folder className="w-4 h-4" />,
       color: "indigo",
     },
@@ -268,47 +272,64 @@ export function Sidebar() {
                     {(searchTerm ? filteredChapters : section.chapters).map(
                       renderChapter,
                     )}
+                    {/* Lab link at the end of section */}
+                    {section.labId && (
+                      <Link
+                        to="/labs/$labId"
+                        params={{ labId: section.labId }}
+                        className={`block w-full text-left p-3 rounded-xl transition-all duration-200 group focus-ring animate-scale-in border-2 border-dashed ${
+                          location.pathname === `/labs/${section.labId}`
+                            ? `bg-gradient-to-r ${
+                                section.color === "blue"
+                                  ? "from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border-blue-300 dark:border-blue-600"
+                                  : section.color === "purple"
+                                  ? "from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 border-purple-300 dark:border-purple-600"
+                                  : section.color === "green"
+                                  ? "from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 border-green-300 dark:border-green-600"
+                                  : section.color === "orange"
+                                  ? "from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/30 border-orange-300 dark:border-orange-600"
+                                  : "from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30 border-red-300 dark:border-red-600"
+                              } shadow-sm`
+                            : "hover:bg-gray-50 dark:hover:bg-gray-700/50 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
+                        }`}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <Beaker className={`w-5 h-5 ${
+                            location.pathname === `/labs/${section.labId}`
+                              ? section.color === "blue"
+                                ? "text-blue-600 dark:text-blue-400"
+                                : section.color === "purple"
+                                ? "text-purple-600 dark:text-purple-400"
+                                : section.color === "green"
+                                ? "text-green-600 dark:text-green-400"
+                                : section.color === "orange"
+                                ? "text-orange-600 dark:text-orange-400"
+                                : "text-red-600 dark:text-red-400"
+                              : "text-gray-500 dark:text-gray-400"
+                          }`} />
+                          <p className={`text-sm font-medium truncate ${
+                            location.pathname === `/labs/${section.labId}`
+                              ? section.color === "blue"
+                                ? "text-blue-900 dark:text-blue-100"
+                                : section.color === "purple"
+                                ? "text-purple-900 dark:text-purple-100"
+                                : section.color === "green"
+                                ? "text-green-900 dark:text-green-100"
+                                : section.color === "orange"
+                                ? "text-orange-900 dark:text-orange-100"
+                                : "text-red-900 dark:text-red-100"
+                              : "text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white"
+                          }`}>
+                            {section.title} Lab Exercises
+                          </p>
+                        </div>
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
             );
           })}
-        </div>
-
-        {/* Labs Section */}
-        <div className="card animate-slide-in hover-lift mt-4">
-          <div className="p-4">
-            <div className="flex items-center space-x-3 mb-3">
-              <div className="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
-                <Beaker className="w-4 h-4" />
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white">
-                Labs
-              </h3>
-            </div>
-            <div className="space-y-2">
-              {labs.map((lab) => (
-                <Link
-                  key={lab.id}
-                  to="/labs/$labId"
-                  params={{ labId: lab.id }}
-                  className={`block w-full text-left p-3 rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
-                    location.pathname === `/labs/${lab.id}`
-                      ? "bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 border border-purple-200 dark:border-purple-700 shadow-sm"
-                      : "hover:bg-gray-50 dark:hover:bg-gray-700/50 border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
-                  }`}
-                >
-                  <p className={`text-sm font-medium truncate ${
-                    location.pathname === `/labs/${lab.id}`
-                      ? "text-purple-900 dark:text-purple-100"
-                      : "text-gray-900 dark:text-gray-100 group-hover:text-gray-900 dark:group-hover:text-white"
-                  }`}>
-                    {lab.name}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
 
         {searchTerm &&
