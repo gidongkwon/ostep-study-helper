@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ChapterView } from "../../components/ChapterView";
 import { getChapterById } from "../../data/curriculum";
+import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { BookOpen } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export const Route = createFileRoute("/chapters/$chapterId")({
   component: ChapterRoute,
+  pendingComponent: LoadingSpinner,
 });
 
 function ChapterRoute() {

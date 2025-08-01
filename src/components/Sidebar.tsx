@@ -2,11 +2,13 @@ import { useState, useMemo } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { getChaptersBySection } from "../data/curriculum";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
+import { useLabs } from "../contexts/LabProvider";
 import type { Chapter } from "../types";
-import { Check, Search, BarChart3, ChevronRight, Lightbulb, Clock, FileText, Copy, Lock, Folder, SearchX } from "lucide-react";
+import { Check, Search, BarChart3, ChevronRight, Lightbulb, Clock, FileText, Copy, Lock, Folder, SearchX, Beaker } from "lucide-react";
 
 export function Sidebar() {
   const { progress } = useStudyProgress();
+  const { labs } = useLabs();
   const [searchTerm, setSearchTerm] = useState("");
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(
     new Set(),
@@ -271,6 +273,42 @@ export function Sidebar() {
               </div>
             );
           })}
+        </div>
+
+        {/* Labs Section */}
+        <div className="card animate-slide-in hover-lift mt-4">
+          <div className="p-4">
+            <div className="flex items-center space-x-3 mb-3">
+              <div className="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
+                <Beaker className="w-4 h-4" />
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white">
+                Labs
+              </h3>
+            </div>
+            <div className="space-y-2">
+              {labs.map((lab) => (
+                <Link
+                  key={lab.id}
+                  to="/labs/$labId"
+                  params={{ labId: lab.id }}
+                  className={`block w-full text-left p-3 rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
+                    location.pathname === `/labs/${lab.id}`
+                      ? "bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 border border-purple-200 dark:border-purple-700 shadow-sm"
+                      : "hover:bg-gray-50 dark:hover:bg-gray-700/50 border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
+                  }`}
+                >
+                  <p className={`text-sm font-medium truncate ${
+                    location.pathname === `/labs/${lab.id}`
+                      ? "text-purple-900 dark:text-purple-100"
+                      : "text-gray-900 dark:text-gray-100 group-hover:text-gray-900 dark:group-hover:text-white"
+                  }`}>
+                    {lab.name}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
         {searchTerm &&
