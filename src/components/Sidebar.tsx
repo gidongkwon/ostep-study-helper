@@ -72,10 +72,18 @@ export function Sidebar() {
       >
         <div className="flex items-center space-x-3">
           {chapter.isLab ? (
-            <Beaker className={`w-5 h-5 ${isSelected
-              ? "text-blue-600 dark:text-blue-400"
-              : "text-gray-500 dark:text-gray-400"
-            }`} />
+            <div className="relative">
+              <Beaker className={`w-5 h-5 ${isSelected
+                ? "text-blue-600 dark:text-blue-400"
+                : "text-gray-500 dark:text-gray-400"
+              }`} />
+              {chapterProgress?.status === "completed" && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-800" />
+              )}
+              {chapterProgress?.status === "in-progress" && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white dark:border-gray-800" />
+              )}
+            </div>
           ) : (
             getStatusIcon(chapterProgress?.status)
           )}

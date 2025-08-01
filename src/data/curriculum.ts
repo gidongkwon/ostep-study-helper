@@ -51,7 +51,7 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab1-exercises",
-    title: "Lab #1 Exercises",
+    title: "Lab #1",
     pdfs: [],
     section: "lab1",
     isLab: true,
@@ -113,7 +113,7 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab2-exercises",
-    title: "Lab #2 Exercises",
+    title: "Lab #2",
     pdfs: [],
     section: "lab2",
     isLab: true,
@@ -171,7 +171,7 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab3-exercises",
-    title: "Lab #3 Exercises",
+    title: "Lab #3",
     pdfs: [],
     section: "lab3",
     isLab: true,
@@ -235,7 +235,7 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab4-exercises",
-    title: "Lab #4 Exercises",
+    title: "Lab #4",
     pdfs: [],
     section: "lab4",
     isLab: true,
@@ -320,7 +320,7 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab5-exercises",
-    title: "Lab #5 Exercises",
+    title: "Lab #5",
     pdfs: [],
     section: "lab5",
     isLab: true,
