@@ -1,6 +1,7 @@
 import { useStudyProgress } from "../contexts/StudyProgressContext";
 import { getChaptersBySection } from "../data/curriculum";
 import { useTranslation } from "react-i18next";
+import { Zap } from "lucide-react";
 
 export function ProgressChart() {
   const { stats, progress } = useStudyProgress();
@@ -201,19 +202,7 @@ export function ProgressChart() {
         <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-xl p-6 border border-blue-200/50 dark:border-blue-700/50">
           <div className="flex items-center space-x-4">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center shadow-lg">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
+              <Zap className="w-8 h-8 text-white" />
             </div>
             <div className="flex-1">
               <h4 className="font-semibold text-gray-900 dark:text-white mb-1">

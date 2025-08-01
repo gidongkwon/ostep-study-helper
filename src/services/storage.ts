@@ -120,7 +120,7 @@ export class StorageService {
     const progressEntries = Object.values(data.progress);
 
     const stats = {
-      total: 39, // Total number of chapters
+      total: progressEntries.length, // Total number of chapters
       completed: progressEntries.filter((p) => p.status === "completed").length,
       inProgress: progressEntries.filter((p) => p.status === "in-progress")
         .length,
