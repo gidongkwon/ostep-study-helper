@@ -1,11 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
+import { tanstackRouter } from "@tanstack/router-vite-plugin";
+import { cloudflare } from "@cloudflare/vite-plugin";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    TanStackRouterVite(),
+    tanstackRouter({ target: "react" }),
     react({
       babel: {
         plugins: [
@@ -19,5 +20,6 @@ export default defineConfig({
         ],
       },
     }),
+    cloudflare(),
   ],
 });
