@@ -4,14 +4,38 @@ export interface PdfResource {
   koreanPdf?: string;
 }
 
-export interface Chapter {
+export interface LinkResource {
+  title: string;
+  link: string;
+}
+
+interface BaseChapter {
   id: string;
   title: string;
   lectureSlide?: string;
-  pdfs: PdfResource[];
   section: "lab1" | "lab2" | "lab3" | "lab4" | "lab5" | "filesystem";
-  isLab?: boolean;
+}
+
+export interface RegularChapter extends BaseChapter {
+  isLab?: false;
+  pdfs: PdfResource[];
+}
+
+export interface Lab extends BaseChapter {
+  isLab: true;
   description?: string;
+  resources?: LinkResource[];
+}
+
+export type Chapter = RegularChapter | Lab;
+
+// Type guard helpers
+export function isLab(chapter: Chapter): chapter is Lab {
+  return chapter.isLab ?? false;
+}
+
+export function isRegularChapter(chapter: Chapter): chapter is RegularChapter {
+  return !chapter.isLab;
 }
 
 export type ProgressStatus = "not-started" | "in-progress" | "completed";
