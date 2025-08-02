@@ -24,7 +24,9 @@
     "dashboard": "Dashboard",
     "weeklyView": "Weekly View",
     "allChapters": "All Chapters",
-    "searchPlaceholder": "Search chapters..."
+    "searchPlaceholder": "Search chapters...",
+    "overallProgressOverview": "Overall progress overview",
+    "sectionProgress": "{{completed}}/{{total}} completed"
   },
   "chapter": {
     "readPdf": "Read PDF",
@@ -36,7 +38,8 @@
     "addNotes": "Add your notes here...",
     "notesPlaceholder": "Take notes about key concepts, questions, or insights from this chapter.",
     "readyToStart": "Ready to start studying?",
-    "selectChapter": "Select a chapter from the sidebar to begin your OS learning journey"
+    "selectChapter": "Select a chapter from the sidebar to begin your OS learning journey",
+    "viewResource": "View →"
   },
   "weeklyView": {
     "title": "Weekly Study Plan",
@@ -113,5 +116,14 @@
     "title": "Page not found",
     "description": "The page you're looking for doesn't exist or has been moved.",
     "goHome": "Go to Dashboard"
+  },
+  "labs": {
+    "overview": "Overview",
+    "resources": "Resources",
+    "objectives": "Learning Objectives",
+    "exercises": "Exercises",
+    "objectivesPlaceholder": "Lab objectives will be displayed here when content is added.",
+    "exercisesPlaceholder": "Lab exercises will be displayed here when content is added.",
+    "comingSoon": "Full lab content with interactive exercises, code examples, and resources will be available in a future update."
   }
 }

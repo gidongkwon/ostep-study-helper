@@ -24,7 +24,9 @@
     "dashboard": "대시보드",
     "weeklyView": "주간 보기",
     "allChapters": "모든 챕터",
-    "searchPlaceholder": "챕터 검색..."
+    "searchPlaceholder": "챕터 검색...",
+    "overallProgressOverview": "전체 진행 현황",
+    "sectionProgress": "{{completed}}/{{total}} 완료"
   },
   "chapter": {
     "readPdf": "PDF 읽기",
@@ -36,7 +38,8 @@
     "addNotes": "여기에 노트를 추가하세요...",
     "notesPlaceholder": "이 챕터의 주요 개념, 질문, 또는 통찰을 기록해보세요.",
     "readyToStart": "공부를 시작할 준비가 되셨나요?",
-    "selectChapter": "사이드바에서 챕터를 선택하여 운영체제 학습 여정을 시작하세요"
+    "selectChapter": "사이드바에서 챕터를 선택하여 운영체제 학습 여정을 시작하세요",
+    "viewResource": "보기 →"
   },
   "weeklyView": {
     "title": "주간 학습 계획",
@@ -113,5 +116,14 @@
     "title": "페이지를 찾을 수 없습니다",
     "description": "찾고 있는 페이지가 존재하지 않거나 이동되었습니다.",
     "goHome": "대시보드로 이동"
+  },
+  "labs": {
+    "overview": "개요",
+    "resources": "자료",
+    "objectives": "학습 목표",
+    "exercises": "실습",
+    "objectivesPlaceholder": "콘텐츠가 추가되면 랩 목표가 여기에 표시됩니다.",
+    "exercisesPlaceholder": "콘텐츠가 추가되면 랩 실습이 여기에 표시됩니다.",
+    "comingSoon": "인터랙티브 실습, 코드 예제, 리소스를 포함한 전체 랩 콘텐츠는 향후 업데이트에서 제공될 예정입니다."
   }
 }

@@ -79,8 +79,57 @@ function LabView({ chapter }: { chapter: Chapter }) {
       </div>
 
       {/* Lab Content */}
-      <div className="card p-8">
-        <LabPlaceholder />
+      <div className="space-y-6">
+        {/* Description */}
+        {chapter.description && (
+          <div className="card p-6">
+            <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+              {t("labs.overview", "Overview")}
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300">
+              {chapter.description}
+            </p>
+          </div>
+        )}
+
+        {/* Resources */}
+        {chapter.pdfs.length > 0 && (
+          <div className="card p-6">
+            <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+              {t("labs.resources", "Resources")}
+            </h2>
+            <div className="space-y-3">
+              {chapter.pdfs.map((pdf, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                >
+                  <div className="flex items-center space-x-3">
+                    <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      {pdf.title}
+                    </span>
+                  </div>
+                  <a
+                    href={pdf.englishPdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
+                  >
+                    {t("chapter.viewResource", "View →")}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* If no content available, show placeholder */}
+        {!chapter.description && chapter.pdfs.length === 0 && (
+          <div className="card p-8">
+            <LabPlaceholder />
+          </div>
+        )}
       </div>
     </PageContainer>
   );

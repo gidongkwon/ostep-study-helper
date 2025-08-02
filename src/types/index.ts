@@ -11,6 +11,7 @@ export interface Chapter {
   pdfs: PdfResource[];
   section: "lab1" | "lab2" | "lab3" | "lab4" | "lab5" | "filesystem";
   isLab?: boolean;
+  description?: string;
 }
 
 export type ProgressStatus = "not-started" | "in-progress" | "completed";

@@ -52,9 +52,31 @@ export const chapters: Chapter[] = [
   {
     id: "lab1-exercises",
     title: "H.1",
-    pdfs: [],
+    pdfs: [
+      {
+        title: "Initial xv6 - System Call Implementation (x86 version)",
+        englishPdf:
+          "https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-xv6",
+      },
+      {
+        title: "Background: How System Calls Work",
+        englishPdf:
+          "https://github.com/remzi-arpacidusseau/ostep-projects/blob/master/initial-xv6/background.md",
+      },
+      {
+        title: "Video Tutorial: Adding a System Call to xv6",
+        englishPdf: "https://www.youtube.com/watch?v=vR6z2QGcoo8",
+      },
+      {
+        title:
+          "Note: OSTEP projects target x86 xv6-public, adapt for xv6-riscv",
+        englishPdf: "https://github.com/mit-pdos/xv6-riscv",
+      },
+    ],
     section: "lab1",
     isLab: true,
+    description:
+      "Implement getreadcount() system call. Note: OSTEP examples use x86 xv6-public, but course uses xv6-riscv.",
   },
 
   // H.2: CPU scheduling, Virtual memory
@@ -324,8 +346,7 @@ export const chapters: Chapter[] = [
       {
         title: "Files and Directories",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf",
-        koreanPdf:
-          "39_interlude-file-directory",
+        koreanPdf: "39_interlude-file-directory",
       },
     ],
     section: "lab5",
@@ -360,8 +381,7 @@ export const chapters: Chapter[] = [
       {
         title: "Fast File System",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-ffs.pdf",
-        koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/41_FFS.pdf",
+        koreanPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/41_FFS.pdf",
       },
     ],
     section: "filesystem",
