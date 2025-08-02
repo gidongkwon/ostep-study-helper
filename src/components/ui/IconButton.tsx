@@ -20,9 +20,9 @@ export function IconButton({
   disabled = false,
 }: IconButtonProps) {
   const sizeClasses = {
-    sm: "p-1.5 w-7 h-7",
-    md: "p-2.5 w-10 h-10",
-    lg: "p-3 w-12 h-12",
+    sm: "p-2 min-w-[44px] min-h-[44px]",
+    md: "p-2.5 min-w-[44px] min-h-[44px]",
+    lg: "p-3 min-w-[48px] min-h-[48px]",
   };
 
   const variantClasses = {

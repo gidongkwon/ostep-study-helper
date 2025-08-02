@@ -23,7 +23,7 @@ function RootComponent() {
         {/* Mobile overlay */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden backdrop-blur-sm"
             onClick={() => setSidebarOpen(false)}
           />
         )}
@@ -32,7 +32,7 @@ function RootComponent() {
         <div
           className={`${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } fixed inset-y-0 left-0 z-50 lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out lg:transition-none`}
+          } fixed inset-y-0 left-0 z-50 lg:relative lg:translate-x-0 transition-transform duration-200 ease-out lg:transition-none`}
         >
           <Sidebar />
         </div>

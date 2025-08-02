@@ -52,7 +52,22 @@ export function Header({ onToggleSidebar }: HeaderProps) {
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 sm:space-x-6">
+          <div className="flex items-center space-x-2 sm:space-x-6">
+            {/* Mobile progress indicator */}
+            <div className="sm:hidden flex items-center space-x-2">
+              <div className="text-xs font-semibold text-gray-900 dark:text-white">
+                {stats.completed}/{stats.total}
+              </div>
+              <ProgressBar
+                percentage={stats.percentage}
+                size="sm"
+                animated={true}
+                showLabel={false}
+                className="min-w-[3rem]"
+              />
+            </div>
+
+            {/* Desktop progress section */}
             <div className="hidden md:flex items-center space-x-4">
               <div className="text-right">
                 <div className="text-xs text-muted font-medium uppercase tracking-wide">
@@ -84,7 +99,22 @@ export function Header({ onToggleSidebar }: HeaderProps) {
               <ExportImport />
             </div>
 
-            <LanguageSwitcher />
+            {/* Mobile action menu */}
+            <div className="sm:hidden">
+              <IconButton
+                icon={<Menu className="w-5 h-5" />}
+                onClick={() => {
+                  /* TODO: Add mobile menu */
+                }}
+                ariaLabel="More options"
+                variant="secondary"
+                className="border border-gray-200/50 dark:border-gray-600/50 min-h-[44px] min-w-[44px]"
+              />
+            </div>
+
+            <div className="hidden sm:block">
+              <LanguageSwitcher />
+            </div>
 
             <IconButton
               icon={
@@ -97,7 +127,7 @@ export function Header({ onToggleSidebar }: HeaderProps) {
               onClick={toggleTheme}
               ariaLabel="Toggle theme"
               variant="secondary"
-              className="border border-gray-200/50 dark:border-gray-600/50"
+              className="border border-gray-200/50 dark:border-gray-600/50 min-h-[44px] min-w-[44px]"
             />
           </div>
         </div>

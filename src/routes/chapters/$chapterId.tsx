@@ -47,31 +47,32 @@ function LabView({ chapter }: { chapter: Chapter }) {
         </div>
 
         {/* Progress Tracking */}
-          <div className="flex items-center justify-between mb-4">
-            <StatusDisplay
-              status={currentStatus}
-              label={`${t("chapterView.currentStatus", "Current Status")}: ${currentStatus.replace("-", " ")}`}
-              icon={
-                statusButtons.find((btn) => btn.status === currentStatus)
-                  ?.icon || <></>
-              }/>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {statusButtons.map(({ status, label, color, icon }) => {
-              const isActive = currentStatus === status;
-              return (
-                <StatusButton
-                  key={status}
-                  status={status}
-                  label={label}
-                  color={color}
-                  icon={icon}
-                  isActive={isActive}
-                  onClick={() => handleStatusChange(status)}
-                />
-              );
-            })}
-          </div>
+        <div className="flex items-center justify-between mb-4">
+          <StatusDisplay
+            status={currentStatus}
+            label={`${t("chapterView.currentStatus", "Current Status")}: ${currentStatus.replace("-", " ")}`}
+            icon={
+              statusButtons.find((btn) => btn.status === currentStatus)
+                ?.icon || <></>
+            }
+          />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {statusButtons.map(({ status, label, color, icon }) => {
+            const isActive = currentStatus === status;
+            return (
+              <StatusButton
+                key={status}
+                status={status}
+                label={label}
+                color={color}
+                icon={icon}
+                isActive={isActive}
+                onClick={() => handleStatusChange(status)}
+              />
+            );
+          })}
+        </div>
       </div>
 
       {/* Lab Content */}

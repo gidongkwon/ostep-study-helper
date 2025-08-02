@@ -5,6 +5,7 @@ import { Zap } from "lucide-react";
 import { StatCard } from "./ui/StatCard";
 import { GradientCard } from "./ui/GradientCard";
 import { ProgressLegend } from "./ui/ProgressLegend";
+import { CircularProgress } from "./ui/CircularProgress";
 import { useColorMapper, type SectionColor } from "../hooks/useColorMapper";
 import { useSectionProgress } from "../hooks/useSectionProgress";
 
@@ -102,9 +103,12 @@ export function ProgressChart() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
-                    <div
-                      className={`w-3 h-3 rounded-full ${getColorClasses(section.color)}`}
-                    ></div>
+                    <CircularProgress
+                      percentage={completionRate}
+                      size="sm"
+                      color={section.color}
+                      showLabel={false}
+                    />
                     <h4 className="font-medium text-gray-900 dark:text-white">
                       {section.title}
                     </h4>
@@ -173,11 +177,16 @@ export function ProgressChart() {
                   ` ${t("dashboard.percentageDescription", { percentage: stats.percentage })}`}
               </p>
             </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text">
-                {stats.percentage}%
+            <div className="flex items-center space-x-4">
+              <CircularProgress
+                percentage={stats.percentage}
+                size="lg"
+                color="blue"
+                showLabel={true}
+              />
+              <div className="text-right">
+                <div className="text-xs text-muted">{t("common.complete")}</div>
               </div>
-              <div className="text-xs text-muted">{t("common.complete")}</div>
             </div>
           </div>
         </GradientCard>

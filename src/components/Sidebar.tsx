@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { getChaptersBySection } from "../data/curriculum";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
@@ -30,6 +30,7 @@ export function Sidebar() {
   );
   const { getIconBgClasses, getColorClasses } = useColorMapper();
   const getSectionProgress = useSectionProgress(progress);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const toggleSection = (sectionId: string) => {
     const newCollapsed = new Set(collapsedSections);
@@ -42,6 +43,18 @@ export function Sidebar() {
   };
 
   const location = useLocation();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const renderChapter = (chapter: Chapter) => {
     const chapterProgress = progress[chapter.id];
@@ -59,11 +72,11 @@ export function Sidebar() {
         key={chapter.id}
         to="/chapters/$chapterId"
         params={{ chapterId: chapter.id }}
-        className={`block w-full text-left p-3 rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
+        className={`block w-full text-left p-4 min-h-[44px] rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
           chapter.isLab
             ? chapterProgress?.status === "completed"
-              ? "bg-green-50/30 dark:bg-green-900/10"
-              : "border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
+              ? "bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700"
+              : "border-2 border-dashed border-amber-300 dark:border-amber-600 hover:border-amber-400 dark:hover:border-amber-500"
             : "border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
         } ${
           isSelected
@@ -76,9 +89,13 @@ export function Sidebar() {
             <div className="relative">
               <Beaker
                 className={`w-5 h-5 ${
-                  isSelected
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-gray-500 dark:text-gray-400"
+                  chapterProgress?.status === "completed"
+                    ? "text-green-600 dark:text-green-400"
+                    : chapterProgress?.status === "in-progress"
+                      ? "text-yellow-600 dark:text-yellow-400"
+                      : isSelected
+                        ? "text-blue-600 dark:text-blue-400"
+                        : "text-gray-500 dark:text-gray-400"
                 }`}
               />
               {chapterProgress?.status === "completed" && (
@@ -99,6 +116,8 @@ export function Sidebar() {
                   | "not-started"
                   | undefined
               }
+              variant="badge"
+              size="sm"
             />
           )}
           <p
@@ -168,19 +187,25 @@ export function Sidebar() {
             <Search className="h-4 w-4 text-gray-400" />
           </div>
           <input
+            ref={searchInputRef}
             type="text"
             placeholder="Search chapters..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+            className="w-full pl-10 pr-16 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
           />
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded">
+              ⌘K
+            </kbd>
+          </div>
         </div>
 
         {/* Dashboard Button */}
         <div className="card animate-slide-in hover-lift">
           <Link
             to="/"
-            className={`block w-full p-4 text-left transition-colors rounded-xl focus-ring ${
+            className={`block w-full p-4 min-h-[44px] text-left transition-colors rounded-xl focus-ring ${
               location.pathname === "/"
                 ? "bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border border-blue-200 dark:border-blue-700 shadow-sm"
                 : "hover:bg-gray-50 dark:hover:bg-gray-700/50"
@@ -229,7 +254,7 @@ export function Sidebar() {
               >
                 <button
                   onClick={() => toggleSection(section.id)}
-                  className="w-full p-4 text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl focus-ring"
+                  className="w-full p-4 min-h-[44px] text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl focus-ring"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
