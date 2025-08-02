@@ -2,10 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ChapterView } from "../../components/ChapterView";
 import { getChapterById } from "../../data/curriculum";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
-import { BookOpen, Beaker } from "lucide-react";
+import { BookOpen, Beaker, Play } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useStudyProgress } from "../../contexts/StudyProgressContext";
-import type { Chapter, ProgressStatus } from "../../types";
+import type {
+  Lab,
+  RegularChapter,
+  ProgressStatus,
+  LinkResource,
+} from "../../types";
+import { isLab } from "../../types";
 import { StatusButton } from "../../components/ui/StatusButton";
 import { EmptyState } from "../../components/ui/EmptyState";
 import { PageContainer } from "../../components/ui/PageContainer";
@@ -19,10 +25,20 @@ export const Route = createFileRoute("/chapters/$chapterId")({
   pendingComponent: LoadingSpinner,
 });
 
-function LabView({ chapter }: { chapter: Chapter }) {
+function LabView({ chapter }: { chapter: Lab }) {
   const { t } = useTranslation();
   const { getChapterProgress, updateChapterStatus } = useStudyProgress();
   const progress = getChapterProgress(chapter.id);
+
+  // Helper function to detect if a resource is a video
+  const isVideoResource = (resource: LinkResource) => {
+    return (
+      resource.link.includes("youtube.com") ||
+      resource.link.includes("youtu.be") ||
+      resource.title.toLowerCase().includes("video") ||
+      resource.title.toLowerCase().includes("tutorial")
+    );
+  };
 
   const handleStatusChange = (status: ProgressStatus) => {
     updateChapterStatus(chapter.id, status);
@@ -86,32 +102,36 @@ function LabView({ chapter }: { chapter: Chapter }) {
             <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
               {t("labs.overview", "Overview")}
             </h2>
-            <p className="text-gray-600 dark:text-gray-300">
+            <pre className="text-gray-600 dark:text-gray-300">
               {chapter.description}
-            </p>
+            </pre>
           </div>
         )}
 
         {/* Resources */}
-        {chapter.pdfs.length > 0 && (
+        {chapter.resources && chapter.resources.length > 0 && (
           <div className="card p-6">
             <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
               {t("labs.resources", "Resources")}
             </h2>
             <div className="space-y-3">
-              {chapter.pdfs.map((pdf, index) => (
+              {chapter.resources.map((resource, index) => (
                 <div
                   key={index}
                   className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
                   <div className="flex items-center space-x-3">
-                    <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    {isVideoResource(resource) ? (
+                      <Play className="w-5 h-5 text-red-600 dark:text-red-400" />
+                    ) : (
+                      <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    )}
                     <span className="text-gray-700 dark:text-gray-300">
-                      {pdf.title}
+                      {resource.title}
                     </span>
                   </div>
                   <a
-                    href={pdf.englishPdf}
+                    href={resource.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
@@ -125,11 +145,12 @@ function LabView({ chapter }: { chapter: Chapter }) {
         )}
 
         {/* If no content available, show placeholder */}
-        {!chapter.description && chapter.pdfs.length === 0 && (
-          <div className="card p-8">
-            <LabPlaceholder />
-          </div>
-        )}
+        {!chapter.description &&
+          (!chapter.resources || chapter.resources.length === 0) && (
+            <div className="card p-8">
+              <LabPlaceholder />
+            </div>
+          )}
       </div>
     </PageContainer>
   );
@@ -158,9 +179,9 @@ function ChapterRoute() {
   }
 
   // If it's a lab chapter, show lab view instead
-  if (chapter.isLab) {
+  if (isLab(chapter)) {
     return <LabView chapter={chapter} />;
   }
 
-  return <ChapterView chapter={chapter} />;
+  return <ChapterView chapter={chapter as RegularChapter} />;
 }
