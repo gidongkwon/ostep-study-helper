@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
-import type { Chapter, ProgressStatus } from "../types";
+import type { Chapter, RegularChapter, ProgressStatus } from "../types";
+import { isRegularChapter } from "../types";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
 import { Presentation, Download, FileText } from "lucide-react";
 import { StatusButton } from "./ui/StatusButton";
@@ -11,7 +12,7 @@ import { StatusDisplay } from "./ui/StatusDisplay";
 import { getStatusButtonConfig } from "../utils/statusButtonConfig";
 
 interface ChapterViewProps {
-  chapter: Chapter;
+  chapter: RegularChapter;
 }
 
 export function ChapterView({ chapter }: ChapterViewProps) {
