@@ -60,7 +60,7 @@ export function ProgressChart() {
         <p className="text-muted">{t("dashboard.subtitle")}</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-3 gap-4 mb-8">
         <StatCard
           value={stats.completed}
           label={t("common.completed")}
@@ -76,58 +76,12 @@ export function ProgressChart() {
           label={t("common.notStarted")}
           color="gray"
         />
-        <StatCard
-          value={`${stats.percentage}%`}
-          label={t("common.overall")}
-          color="green"
-        />
       </div>
 
       <div className="space-y-6">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
           {t("dashboard.progressBySection")}
         </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sections.map((section) => {
-            const sectionStats = getSectionStats(section.chapters);
-            const completionRate = Math.round(
-              (sectionStats.completed / sectionStats.total) * 100,
-            );
-
-            return (
-              <div
-                key={section.id}
-                className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 flex flex-col items-center text-center"
-              >
-                <div className="mb-4">
-                  <CircularProgress
-                    percentage={completionRate}
-                    size="lg"
-                    color={section.color}
-                    showLabel={true}
-                  />
-                </div>
-
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  {section.title}
-                </h4>
-
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  {sectionStats.completed}/{sectionStats.total} chapters
-                </div>
-
-                <ProgressLegend
-                  completed={sectionStats.completed}
-                  inProgress={sectionStats.inProgress}
-                  notStarted={sectionStats.notStarted}
-                  sectionColor={section.color}
-                  size="sm"
-                />
-              </div>
-            );
-          })}
-        </div>
 
         <GradientCard
           from="blue-50"
@@ -171,6 +125,47 @@ export function ProgressChart() {
             </div>
           </div>
         </GradientCard>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sections.map((section) => {
+            const sectionStats = getSectionStats(section.chapters);
+            const completionRate = Math.round(
+              (sectionStats.completed / sectionStats.total) * 100,
+            );
+
+            return (
+              <div
+                key={section.id}
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 flex flex-col items-center text-center shadow-sm"
+              >
+                <div className="mb-4">
+                  <CircularProgress
+                    percentage={completionRate}
+                    size="lg"
+                    color={section.color}
+                    showLabel={true}
+                  />
+                </div>
+
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                  {section.title}
+                </h4>
+
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  {sectionStats.completed}/{sectionStats.total} chapters
+                </div>
+
+                <ProgressLegend
+                  completed={sectionStats.completed}
+                  inProgress={sectionStats.inProgress}
+                  notStarted={sectionStats.notStarted}
+                  sectionColor={section.color}
+                  size="sm"
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
