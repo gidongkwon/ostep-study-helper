@@ -1,6 +1,6 @@
 interface CircularProgressProps {
   percentage: number;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
   color?: string;
   showLabel?: boolean;
   className?: string;
@@ -15,26 +15,32 @@ export function CircularProgress({
 }: CircularProgressProps) {
   const sizeConfig = {
     sm: {
-      radius: 14,
-      strokeWidth: 2,
-      containerSize: "w-8 h-8",
+      radius: 16,
+      strokeWidth: 3,
+      containerSize: "w-10 h-10",
       fontSize: "text-xs",
     },
     md: {
-      radius: 18,
-      strokeWidth: 3,
-      containerSize: "w-10 h-10",
+      radius: 24,
+      strokeWidth: 4,
+      containerSize: "w-16 h-16",
       fontSize: "text-sm",
     },
     lg: {
-      radius: 24,
-      strokeWidth: 4,
-      containerSize: "w-12 h-12",
-      fontSize: "text-base",
+      radius: 32,
+      strokeWidth: 5,
+      containerSize: "w-20 h-20",
+      fontSize: "text-lg",
+    },
+    xl: {
+      radius: 40,
+      strokeWidth: 6,
+      containerSize: "w-24 h-24",
+      fontSize: "text-xl",
     },
   };
 
-  const config = sizeConfig[size];
+  const config = sizeConfig[size as keyof typeof sizeConfig];
   const circumference = 2 * Math.PI * config.radius;
   const offset = circumference - (percentage / 100) * circumference;
 

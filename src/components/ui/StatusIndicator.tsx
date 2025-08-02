@@ -1,4 +1,4 @@
-import { Check, Clock, Circle } from "lucide-react";
+import { Check, Clock, Circle, type LucideIcon } from "lucide-react";
 
 interface StatusIndicatorProps {
   status: "completed" | "in-progress" | "not-started" | undefined;
@@ -6,6 +6,14 @@ interface StatusIndicatorProps {
   variant?: "dot" | "badge";
   className?: string;
 }
+
+type StatusConfig = {
+  icon: LucideIcon;
+  bgColor: string;
+  borderColor: string;
+  iconColor: string;
+  strokeWidth: number;
+};
 
 export function StatusIndicator({
   status,
@@ -25,41 +33,42 @@ export function StatusIndicator({
     lg: "w-5 h-5",
   };
 
+  const statusConfigs: Record<string, StatusConfig> = {
+    completed: {
+      icon: Check,
+      bgColor: "bg-green-100 dark:bg-green-900/30",
+      borderColor: "border-green-300 dark:border-green-700",
+      iconColor: "text-green-600 dark:text-green-400",
+      strokeWidth: 3,
+    },
+    "in-progress": {
+      icon: Clock,
+      bgColor: "bg-yellow-100 dark:bg-yellow-900/30",
+      borderColor: "border-yellow-300 dark:border-yellow-700",
+      iconColor: "text-yellow-600 dark:text-yellow-400",
+      strokeWidth: 2.5,
+    },
+    "not-started": {
+      icon: Circle,
+      bgColor: "bg-gray-100 dark:bg-gray-800",
+      borderColor: "border-gray-300 dark:border-gray-600",
+      iconColor: "text-gray-400 dark:text-gray-500",
+      strokeWidth: 2,
+    },
+  };
+
+  const config = statusConfigs[status || "not-started"];
+  const Icon = config.icon;
   const badgeClasses = variant === "badge" ? "shadow-lg border-2" : "";
 
-  switch (status) {
-    case "completed":
-      return (
-        <div
-          className={`${sizeClasses[size]} rounded-full bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-700 flex items-center justify-center ${badgeClasses} ${className}`}
-        >
-          <Check
-            className={`${iconSizeClasses[size]} text-green-600 dark:text-green-400`}
-            strokeWidth={3}
-          />
-        </div>
-      );
-    case "in-progress":
-      return (
-        <div
-          className={`${sizeClasses[size]} rounded-full bg-yellow-100 dark:bg-yellow-900/30 border-yellow-300 dark:border-yellow-700 flex items-center justify-center ${badgeClasses} ${className}`}
-        >
-          <Clock
-            className={`${iconSizeClasses[size]} text-yellow-600 dark:text-yellow-400`}
-            strokeWidth={2.5}
-          />
-        </div>
-      );
-    default:
-      return (
-        <div
-          className={`${sizeClasses[size]} rounded-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 flex items-center justify-center ${badgeClasses} ${className}`}
-        >
-          <Circle
-            className={`${iconSizeClasses[size]} text-gray-400 dark:text-gray-500`}
-            strokeWidth={2}
-          />
-        </div>
-      );
-  }
+  return (
+    <div
+      className={`${sizeClasses[size]} shrink-0 rounded-full ${config.bgColor} ${config.borderColor} flex items-center justify-center ${badgeClasses} ${className}`}
+    >
+      <Icon
+        className={`${iconSizeClasses[size]} ${config.iconColor}`}
+        strokeWidth={config.strokeWidth}
+      />
+    </div>
+  );
 }

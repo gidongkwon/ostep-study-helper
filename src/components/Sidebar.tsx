@@ -72,7 +72,7 @@ export function Sidebar() {
         key={chapter.id}
         to="/chapters/$chapterId"
         params={{ chapterId: chapter.id }}
-        className={`block w-full text-left p-4 min-h-[44px] rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
+        className={`block w-full text-left p-2 min-h-[44px] rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
           chapter.isLab
             ? chapterProgress?.status === "completed"
               ? "bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700"
@@ -292,7 +292,7 @@ export function Sidebar() {
                 </button>
 
                 {!isCollapsed && (
-                  <div className="px-4 pb-4 space-y-2">
+                  <div className="px-2 pb-2 space-y-2">
                     {(searchTerm ? filteredChapters : section.chapters).map(
                       renderChapter,
                     )}

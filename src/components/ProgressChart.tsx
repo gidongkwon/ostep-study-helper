@@ -6,13 +6,12 @@ import { StatCard } from "./ui/StatCard";
 import { GradientCard } from "./ui/GradientCard";
 import { ProgressLegend } from "./ui/ProgressLegend";
 import { CircularProgress } from "./ui/CircularProgress";
-import { useColorMapper, type SectionColor } from "../hooks/useColorMapper";
+import { type SectionColor } from "../hooks/useColorMapper";
 import { useSectionProgress } from "../hooks/useSectionProgress";
 
 export function ProgressChart() {
   const { stats, progress } = useStudyProgress();
   const { t } = useTranslation();
-  const { getColorClasses } = useColorMapper();
   const getSectionStats = useSectionProgress(progress);
 
   const sections = [
@@ -89,7 +88,7 @@ export function ProgressChart() {
           {t("dashboard.progressBySection")}
         </h3>
 
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sections.map((section) => {
             const sectionStats = getSectionStats(section.chapters);
             const completionRate = Math.round(
@@ -99,43 +98,23 @@ export function ProgressChart() {
             return (
               <div
                 key={section.id}
-                className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4"
+                className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 flex flex-col items-center text-center"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center space-x-3">
-                    <CircularProgress
-                      percentage={completionRate}
-                      size="sm"
-                      color={section.color}
-                      showLabel={false}
-                    />
-                    <h4 className="font-medium text-gray-900 dark:text-white">
-                      {section.title}
-                    </h4>
-                  </div>
-                  <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    {sectionStats.completed}/{sectionStats.total} (
-                    {completionRate}%)
-                  </div>
+                <div className="mb-4">
+                  <CircularProgress
+                    percentage={completionRate}
+                    size="lg"
+                    color={section.color}
+                    showLabel={true}
+                  />
                 </div>
 
-                <div className="mb-3">
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div className="flex h-2 rounded-full overflow-hidden">
-                      <div
-                        className={`${getColorClasses(section.color)} transition-all duration-500`}
-                        style={{
-                          width: `${(sectionStats.completed / sectionStats.total) * 100}%`,
-                        }}
-                      ></div>
-                      <div
-                        className="bg-yellow-400 transition-all duration-500"
-                        style={{
-                          width: `${(sectionStats.inProgress / sectionStats.total) * 100}%`,
-                        }}
-                      ></div>
-                    </div>
-                  </div>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                  {section.title}
+                </h4>
+
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  {sectionStats.completed}/{sectionStats.total} chapters
                 </div>
 
                 <ProgressLegend
@@ -177,15 +156,17 @@ export function ProgressChart() {
                   ` ${t("dashboard.percentageDescription", { percentage: stats.percentage })}`}
               </p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
               <CircularProgress
                 percentage={stats.percentage}
-                size="lg"
+                size="xl"
                 color="blue"
                 showLabel={true}
               />
               <div className="text-right">
-                <div className="text-xs text-muted">{t("common.complete")}</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {t("common.complete")}
+                </div>
               </div>
             </div>
           </div>
