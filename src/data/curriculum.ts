@@ -1,4 +1,5 @@
 import type { Chapter } from "../types";
+import { isLab } from "../types";
 
 export const chapters: Chapter[] = [
   // H.1: Course overview, Introduction to OS, Architectural support, Processes
@@ -52,31 +53,50 @@ export const chapters: Chapter[] = [
   {
     id: "lab1-exercises",
     title: "H.1",
-    pdfs: [
+    resources: [
       {
-        title: "Initial xv6 - System Call Implementation (x86 version)",
-        englishPdf:
-          "https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-xv6",
+        title: "Goal & Description",
+        link: "https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-xv6",
+      },
+      {
+        title: "How to Install & Run xv6-riscv",
+        link: "https://github.com/snu-csl/os-pa1",
       },
       {
         title: "Background: How System Calls Work",
-        englishPdf:
-          "https://github.com/remzi-arpacidusseau/ostep-projects/blob/master/initial-xv6/background.md",
+        link: "https://github.com/remzi-arpacidusseau/ostep-projects/blob/master/initial-xv6/background.md",
       },
       {
         title: "Video Tutorial: Adding a System Call to xv6",
-        englishPdf: "https://www.youtube.com/watch?v=vR6z2QGcoo8",
+        link: "https://www.youtube.com/watch?v=vR6z2QGcoo8",
       },
       {
-        title:
-          "Note: OSTEP projects target x86 xv6-public, adapt for xv6-riscv",
-        englishPdf: "https://github.com/mit-pdos/xv6-riscv",
+        title: "How to Adapt ostep-projects' Test Cases to xv6-riscv",
+        link: "https://github.com/remzi-arpacidusseau/ostep-projects/commit/7d9e53fedcc97038809f27b98e7e5298fb99d563?w=1",
       },
     ],
     section: "lab1",
     isLab: true,
-    description:
-      "Implement getreadcount() system call. Note: OSTEP examples use x86 xv6-public, but course uses xv6-riscv.",
+    description: `Implement a new system call getreadcount() in xv6 that tracks and returns the total number of read() system calls made since kernel boot.
+
+Key Implementation Requirements
+
+- Function signature: int getreadcount(void); (uint64 if you want)
+- Functionality: Return a counter that increments every time any process calls read()
+- Approach: Find similar existing system calls (like getpid()) and use them as templates
+
+Development Strategy
+
+- Most time spent understanding existing code rather than writing new code
+- Copy/modify similar existing implementations rather than starting from scratch
+
+Testing
+
+- Test script: ./test-getreadcounts.sh
+- Every test code assumes your project is based on xv6-public(x86).
+  If you want to run provided script, you should patch your test code. See last resource."
+- Tests assume xv6 source code is in src/ directory
+- Optional -s flag to skip repeated builds`,
   },
 
   // H.2: CPU scheduling, Virtual memory
@@ -136,9 +156,36 @@ export const chapters: Chapter[] = [
   {
     id: "lab2-exercises",
     title: "H.2",
-    pdfs: [],
     section: "lab2",
     isLab: true,
+    resources: [
+      {
+        title: "Goal & Description",
+        link: "https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/scheduling-xv6-lottery",
+      },
+    ],
+    description: `Main Objectives:
+
+- Modify xv6 kernel to use lottery scheduling instead of round-robin
+- Implement proportional CPU allocation based on process tickets
+- Create system calls for ticket management and process monitoring
+
+Key Implementation Requirements:
+
+1. System Calls:
+  - settickets(int number) - Sets process ticket count (default: 1 ticket)
+  - getpinfo(struct pstat *) - Returns scheduling statistics
+2. Scheduler Logic:
+  - Randomly select processes to run based on ticket probability
+  - Processes with more tickets get proportionally more CPU time
+  - Child processes inherit parent's ticket count
+  - Implement pseudo-random number generation in kernel
+3. Process Tracking:
+  - Track process IDs, ticket counts, and accumulated CPU ticks
+  - Use pstat structure for statistics collection
+4. Performance Demonstration:
+  - Create graph showing 3:2:1 ticket ratio results in proportional CPU allocation
+`
   },
 
   // H.3: Paging, Page tables, TLB, Memory mapping
@@ -194,9 +241,34 @@ export const chapters: Chapter[] = [
   {
     id: "lab3-exercises",
     title: "H.3",
-    pdfs: [],
     section: "lab3",
     isLab: true,
+    resources: [
+      {
+        title: "Goal & Description",
+        link: "https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/vm-xv6-intro",
+      },
+    ],
+    description: `Main Objectives:
+
+- Enhance xv6's virtual memory system with basic protection features
+- Implement null-pointer dereference detection
+- Add read-only code protection capabilities
+
+Key Implementation Requirements:
+
+1. Null-Pointer Protection:
+  - Make the first page of memory (page 0) invalid
+  - Cause exceptions when programs dereference null pointers
+  - Modify address space creation and initialization
+2. Memory Protection System Calls:
+  - mprotect(void *addr, int len) - Mark memory region as read-only
+  - munprotect(void *addr, int len) - Restore read-write permissions
+  - Handle error cases (unaligned addresses, invalid regions, bad lengths)
+3. Process Management:
+  - Inherit page protections during fork()
+  - Ensure illegal memory accesses trap and terminate processes
+  - Update hardware page tables using lcr3()`
   },
 
   // H.4: Swapping, Virtual Memory Implementations, Threads
@@ -258,7 +330,6 @@ export const chapters: Chapter[] = [
   {
     id: "lab4-exercises",
     title: "H.4",
-    pdfs: [],
     section: "lab4",
     isLab: true,
   },
@@ -354,7 +425,6 @@ export const chapters: Chapter[] = [
   {
     id: "lab5-exercises",
     title: "H.5",
-    pdfs: [],
     section: "lab5",
     isLab: true,
   },
@@ -451,8 +521,8 @@ export function getChaptersBySection(section: Chapter["section"]): Chapter[] {
     if (bIndex !== -1) return 1;
 
     // For chapters not in the order array, sort labs to the end
-    if (a.isLab && !b.isLab) return 1;
-    if (!a.isLab && b.isLab) return -1;
+    if (isLab(a) && !isLab(b)) return 1;
+    if (!isLab(a) && isLab(b)) return -1;
 
     // Fallback to alphabetical order
     return a.title.localeCompare(b.title);
