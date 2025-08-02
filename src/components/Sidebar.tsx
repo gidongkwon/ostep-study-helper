@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { getChaptersBySection } from "../data/curriculum";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
 import { useTranslation } from "react-i18next";
 import type { Chapter } from "../types";
+import { isLab } from "../types";
 import {
-  Search,
   BarChart3,
   ChevronRight,
   Lightbulb,
@@ -14,31 +14,21 @@ import {
   Copy,
   Lock,
   Folder,
-  SearchX,
   Beaker,
   Check,
 } from "lucide-react";
 import { StatusIndicator } from "./ui/StatusIndicator";
-import { EmptyState } from "./ui/EmptyState";
 import { useColorMapper, type SectionColor } from "../hooks/useColorMapper";
 import { useSectionProgress } from "../hooks/useSectionProgress";
 
 export function Sidebar() {
   const { progress } = useStudyProgress();
   const { t } = useTranslation();
-  const [searchTerm, setSearchTerm] = useState("");
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(
     new Set(),
   );
   const { getIconBgClasses, getColorClasses } = useColorMapper();
   const getSectionProgress = useSectionProgress(progress);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  // Detect platform for keyboard shortcut display
-  const isMac =
-    typeof navigator !== "undefined" &&
-    navigator.platform.toUpperCase().indexOf("MAC") >= 0;
-  const shortcutText = isMac ? "⌘K" : "Ctrl+K";
 
   const toggleSection = (sectionId: string) => {
     const newCollapsed = new Set(collapsedSections);
@@ -52,28 +42,10 @@ export function Sidebar() {
 
   const location = useLocation();
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
-        event.preventDefault();
-        searchInputRef.current?.focus();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   const renderChapter = (chapter: Chapter) => {
     const chapterProgress = progress[chapter.id];
     const isSelected = location.pathname === `/chapters/${chapter.id}`;
-
-    if (
-      searchTerm &&
-      !chapter.title.toLowerCase().includes(searchTerm.toLowerCase())
-    ) {
-      return null;
-    }
 
     return (
       <Link
@@ -81,7 +53,7 @@ export function Sidebar() {
         to="/chapters/$chapterId"
         params={{ chapterId: chapter.id }}
         className={`block w-full text-left p-2 min-h-[44px] rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
-          chapter.isLab
+          isLab(chapter)
             ? chapterProgress?.status === "completed"
               ? "bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700"
               : "border-2 border-dashed border-amber-300 dark:border-amber-600 hover:border-amber-400 dark:hover:border-amber-500"
@@ -93,7 +65,7 @@ export function Sidebar() {
         }`}
       >
         <div className="flex items-center space-x-3">
-          {chapter.isLab ? (
+          {isLab(chapter) ? (
             <div className="relative">
               <Beaker
                 className={`w-5 h-5 ${
@@ -190,24 +162,6 @@ export function Sidebar() {
   return (
     <aside className="w-full sm:w-80 h-full lg:border-r lg:border-gray-200/50 lg:dark:border-gray-700/50 flex flex-col backdrop-blur-sm mt-9 lg:mt-0">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-4 w-4 text-gray-400" />
-          </div>
-          <input
-            ref={searchInputRef}
-            type="text"
-            placeholder={t("sidebar.searchPlaceholder")}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-16 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-          />
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded">
-              {shortcutText}
-            </kbd>
-          </div>
-        </div>
 
         {/* Dashboard Button */}
         <div className="card animate-slide-in hover-lift">
@@ -248,15 +202,6 @@ export function Sidebar() {
             const isCollapsed = collapsedSections.has(section.id);
             const progress = getSectionProgress(section.chapters);
             console.log(section);
-            const filteredChapters = searchTerm
-              ? section.chapters.filter((ch) =>
-                  ch.title.toLowerCase().includes(searchTerm.toLowerCase()),
-                )
-              : section.chapters;
-
-            if (searchTerm && filteredChapters.length === 0) return null;
-
-            console.log(filteredChapters);
 
             return (
               <div
@@ -307,9 +252,7 @@ export function Sidebar() {
 
                 {!isCollapsed && (
                   <div className="px-2 pb-2 space-y-2">
-                    {(searchTerm ? filteredChapters : section.chapters).map(
-                      renderChapter,
-                    )}
+                    {section.chapters.map(renderChapter)}
                   </div>
                 )}
               </div>
@@ -317,18 +260,6 @@ export function Sidebar() {
           })}
         </div>
 
-        {searchTerm &&
-          sections.every(
-            (section) =>
-              !section.chapters.some((ch) =>
-                ch.title.toLowerCase().includes(searchTerm.toLowerCase()),
-              ),
-          ) && (
-            <EmptyState
-              icon={<SearchX className="h-12 w-12" />}
-              title="No chapters found"
-            />
-          )}
       </div>
     </aside>
   );
