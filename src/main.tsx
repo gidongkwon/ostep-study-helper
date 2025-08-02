@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import "./index.css";
 import "./i18n";
-import { StudyProgressProvider } from "./contexts/StudyProgressContext";
+import { StudyProgressProvider } from "./contexts/StudyProgressProvider";
 import { LabProvider } from "./contexts/LabProvider";
 
 // Import the generated route tree

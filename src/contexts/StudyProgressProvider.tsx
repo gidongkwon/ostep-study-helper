@@ -1,33 +1,8 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { ReactNode } from "react";
 import { StorageService } from "../services/storage";
 import type { ChapterProgress, ProgressStatus } from "../types";
-
-interface StudyProgressContextType {
-  progress: Record<string, ChapterProgress>;
-  stats: {
-    completed: number;
-    inProgress: number;
-    notStarted: number;
-    total: number;
-    percentage: number;
-  };
-  updateChapterStatus: (chapterId: string, status: ProgressStatus) => void;
-  updateChapterNotes: (chapterId: string, notes: string) => void;
-  getChapterProgress: (chapterId: string) => ChapterProgress | null;
-  exportProgress: () => string;
-  importProgress: (jsonString: string) => boolean;
-}
-
-const StudyProgressContext = createContext<
-  StudyProgressContextType | undefined
->(undefined);
+import { StudyProgressContext } from "./StudyProgressContext";
 
 interface StudyProgressProviderProps {
   children: ReactNode;
@@ -105,12 +80,3 @@ export function StudyProgressProvider({
   );
 }
 
-export function useStudyProgress() {
-  const context = useContext(StudyProgressContext);
-  if (context === undefined) {
-    throw new Error(
-      "useStudyProgress must be used within a StudyProgressProvider",
-    );
-  }
-  return context;
-}
