@@ -22,7 +22,7 @@ export function PageContainer({
   };
 
   return (
-    <div className="flex-1 p-6 overflow-y-auto bg-gray-50/30 dark:bg-gray-900/30">
+    <div className="flex-1 p-3 sm:p-6 overflow-y-auto bg-gray-50/30 dark:bg-gray-900/30">
       <div className={`${maxWidthClasses[maxWidth]} mx-auto ${className}`}>
         {children}
       </div>

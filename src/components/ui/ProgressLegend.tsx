@@ -38,7 +38,7 @@ export function ProgressLegend({
 
   return (
     <div
-      className={`flex items-center ${spacingClasses[size]} ${sizeClasses[size]} text-muted ${className}`}
+      className={`flex items-center ${spacingClasses[size]} ${sizeClasses[size]} text-muted-foreground lg:flex-col ${className}`}
     >
       <div className="flex items-center space-x-1">
         <div

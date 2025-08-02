@@ -1,8 +1,10 @@
 import { useRef } from "react";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
+import { useTranslation } from "react-i18next";
 
 export function ExportImport() {
   const { exportProgress, importProgress } = useStudyProgress();
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleExport = () => {
@@ -28,13 +30,13 @@ export function ExportImport() {
         const content = e.target?.result as string;
         const success = importProgress(content);
         if (success) {
-          alert("Progress imported successfully!");
+          alert(t("exportImport.importSuccess"));
           window.location.reload(); // Reload to update UI
         } else {
-          alert("Failed to import progress. Please check the file format.");
+          alert(t("exportImport.importError"));
         }
       } catch {
-        alert("Error importing file. Please check the file format.");
+        alert(t("exportImport.fileError"));
       }
     };
     reader.readAsText(file);
@@ -50,16 +52,16 @@ export function ExportImport() {
       <button
         onClick={handleExport}
         className="px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-        title="Export progress"
+        title={t("exportImport.exportTitle")}
       >
-        Export
+        {t("exportImport.export")}
       </button>
       <button
         onClick={() => fileInputRef.current?.click()}
         className="px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-        title="Import progress"
+        title={t("exportImport.importTitle")}
       >
-        Import
+        {t("exportImport.import")}
       </button>
       <input
         ref={fileInputRef}

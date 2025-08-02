@@ -9,7 +9,8 @@
     "status": "Status",
     "lastUpdated": "Last Updated",
     "chapters": "Chapters",
-    "progress": "Progress"
+    "progress": "Progress",
+    "options": "Options"
   },
   "dashboard": {
     "title": "Study Progress Overview",
@@ -22,7 +23,8 @@
   "sidebar": {
     "dashboard": "Dashboard",
     "weeklyView": "Weekly View",
-    "allChapters": "All Chapters"
+    "allChapters": "All Chapters",
+    "searchPlaceholder": "Search chapters..."
   },
   "chapter": {
     "readPdf": "Read PDF",
@@ -43,14 +45,18 @@
   },
   "theme": {
     "light": "Light",
-    "dark": "Dark"
+    "dark": "Dark",
+    "toggle": "Theme"
+  },
+  "language": {
+    "label": "Language"
   },
   "sections": {
-    "lab1": "Introduction & Processes",
-    "lab2": "Scheduling & Memory",
-    "lab3": "Paging & Memory Management",
-    "lab4": "Swapping & Threads",
-    "lab5": "Concurrency & Storage",
+    "lab1": "First System Call: getreadcount",
+    "lab2": "Lottery Scheduler",
+    "lab3": "Null Pointer Exception, Memory Protection",
+    "lab4": "Copy-on-write Mappings",
+    "lab5": "Memory Mappings",
     "filesystem": "File System"
   },
   "chapterView": {
@@ -86,5 +92,24 @@
   "header": {
     "subtitle": "Operating Systems Study Guide",
     "overallProgress": "Overall Progress"
+  },
+  "exportImport": {
+    "export": "Export",
+    "import": "Import",
+    "exportTitle": "Export progress",
+    "importTitle": "Import progress",
+    "exportProgress": "Export Progress",
+    "importProgress": "Import Progress",
+    "importSuccess": "Progress imported successfully!",
+    "importError": "Failed to import progress. Please check the file format.",
+    "fileError": "Error importing file. Please check the file format."
+  },
+  "accessibility": {
+    "close": "Close"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go to Dashboard"
   }
 }

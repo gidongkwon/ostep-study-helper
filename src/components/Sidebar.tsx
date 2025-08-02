@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { getChaptersBySection } from "../data/curriculum";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
+import { useTranslation } from "react-i18next";
 import type { Chapter } from "../types";
 import {
   Search,
@@ -24,6 +25,7 @@ import { useSectionProgress } from "../hooks/useSectionProgress";
 
 export function Sidebar() {
   const { progress } = useStudyProgress();
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(
     new Set(),
@@ -143,35 +145,35 @@ export function Sidebar() {
   const sections = [
     {
       id: "lab1",
-      title: "Lab #1",
+      title: "H.1",
       chapters: getChaptersBySection("lab1"),
       icon: <Lightbulb className="w-4 h-4" />,
       color: "blue" as SectionColor,
     },
     {
       id: "lab2",
-      title: "Lab #2",
+      title: "H.2",
       chapters: getChaptersBySection("lab2"),
       icon: <Clock className="w-4 h-4" />,
       color: "purple" as SectionColor,
     },
     {
       id: "lab3",
-      title: "Lab #3",
+      title: "H.3",
       chapters: getChaptersBySection("lab3"),
       icon: <FileText className="w-4 h-4" />,
       color: "green" as SectionColor,
     },
     {
       id: "lab4",
-      title: "Lab #4",
+      title: "H.4",
       chapters: getChaptersBySection("lab4"),
       icon: <Copy className="w-4 h-4" />,
       color: "orange" as SectionColor,
     },
     {
       id: "lab5",
-      title: "Lab #5",
+      title: "H.5",
       chapters: getChaptersBySection("lab5"),
       icon: <Lock className="w-4 h-4" />,
       color: "red" as SectionColor,
@@ -186,7 +188,7 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="w-72 sm:w-80 h-full bg-gray-50/50 dark:bg-gray-900/50 border-r border-gray-200/50 dark:border-gray-700/50 flex flex-col backdrop-blur-sm">
+    <aside className="w-full sm:w-80 h-full lg:border-r lg:border-gray-200/50 lg:dark:border-gray-700/50 flex flex-col backdrop-blur-sm mt-9 lg:mt-0">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -195,7 +197,7 @@ export function Sidebar() {
           <input
             ref={searchInputRef}
             type="text"
-            placeholder="Search chapters..."
+            placeholder={t("sidebar.searchPlaceholder")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-16 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
@@ -230,9 +232,9 @@ export function Sidebar() {
                         : "text-gray-900 dark:text-white"
                     }`}
                   >
-                    Dashboard
+                    {t("sidebar.dashboard")}
                   </h3>
-                  <p className="text-xs text-muted">
+                  <p className="text-xs text-muted-foreground">
                     Overall progress overview
                   </p>
                 </div>
@@ -245,6 +247,7 @@ export function Sidebar() {
           {sections.map((section) => {
             const isCollapsed = collapsedSections.has(section.id);
             const progress = getSectionProgress(section.chapters);
+            console.log(section);
             const filteredChapters = searchTerm
               ? section.chapters.filter((ch) =>
                   ch.title.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -252,6 +255,8 @@ export function Sidebar() {
               : section.chapters;
 
             if (searchTerm && filteredChapters.length === 0) return null;
+
+            console.log(filteredChapters)
 
             return (
               <div
@@ -273,7 +278,7 @@ export function Sidebar() {
                         <h3 className="font-semibold text-gray-900 dark:text-white">
                           {section.title}
                         </h3>
-                        <p className="text-xs text-muted">
+                        <p className="text-xs text-muted-foreground">
                           {progress.completed}/{progress.total} completed
                         </p>
                       </div>

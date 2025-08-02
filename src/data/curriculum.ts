@@ -1,7 +1,7 @@
 import type { Chapter } from "../types";
 
 export const chapters: Chapter[] = [
-  // Lab #1: Course overview, Introduction to OS, Architectural support, Processes
+  // H.1: Course overview, Introduction to OS, Architectural support, Processes
   {
     id: "intro-os",
     title: "Introduction to Operating Systems",
@@ -51,13 +51,13 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab1-exercises",
-    title: "Lab #1",
+    title: "H.1",
     pdfs: [],
     section: "lab1",
     isLab: true,
   },
 
-  // Lab #2: CPU scheduling, Virtual memory
+  // H.2: CPU scheduling, Virtual memory
   {
     id: "cpu-scheduling",
     title: "CPU Scheduling",
@@ -113,13 +113,13 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab2-exercises",
-    title: "Lab #2",
+    title: "H.2",
     pdfs: [],
     section: "lab2",
     isLab: true,
   },
 
-  // Lab #3: Paging, Page tables, TLB, Memory mapping
+  // H.3: Paging, Page tables, TLB, Memory mapping
   {
     id: "paging",
     title: "Paging",
@@ -171,13 +171,13 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab3-exercises",
-    title: "Lab #3",
+    title: "H.3",
     pdfs: [],
     section: "lab3",
     isLab: true,
   },
 
-  // Lab #4: Swapping, Virtual Memory Implementations, Threads
+  // H.4: Swapping, Virtual Memory Implementations, Threads
   {
     id: "swapping",
     title: "Swapping",
@@ -235,13 +235,13 @@ export const chapters: Chapter[] = [
   },
   {
     id: "lab4-exercises",
-    title: "Lab #4",
+    title: "H.4",
     pdfs: [],
     section: "lab4",
     isLab: true,
   },
 
-  // Lab #5: Locks, Semaphores, Condition variables, HDDs, SSDs
+  // H.5: Locks, Semaphores, Condition variables, HDDs, SSDs
   {
     id: "locks",
     title: "Locks",
@@ -319,15 +319,6 @@ export const chapters: Chapter[] = [
     section: "lab5",
   },
   {
-    id: "lab5-exercises",
-    title: "Lab #5",
-    pdfs: [],
-    section: "lab5",
-    isLab: true,
-  },
-
-  // File System (no lab)
-  {
     id: "file-systems",
     title: "File Systems",
     lectureSlide: "http://csl.snu.ac.kr/courses/4190.307/2020-1/18-fs.pdf",
@@ -339,7 +330,14 @@ export const chapters: Chapter[] = [
           "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/39-file-intro.pdf",
       },
     ],
-    section: "filesystem",
+    section: "lab5",
+  },
+  {
+    id: "lab5-exercises",
+    title: "H.5",
+    pdfs: [],
+    section: "lab5",
+    isLab: true,
   },
   {
     id: "file-system-implementation",
@@ -408,10 +406,10 @@ export function getChaptersBySection(section: Chapter["section"]): Chapter[] {
       "condition-variables",
       "storage-devices",
       "ssds",
+      "file-systems",
       "lab5-exercises",
     ],
     filesystem: [
-      "file-systems",
       "file-system-implementation",
       "fast-file-system",
       "file-system-consistency",
