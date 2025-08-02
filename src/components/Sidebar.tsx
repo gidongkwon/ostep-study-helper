@@ -32,6 +32,10 @@ export function Sidebar() {
   const getSectionProgress = useSectionProgress(progress);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // Detect platform for keyboard shortcut display
+  const isMac = typeof navigator !== 'undefined' && navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const shortcutText = isMac ? '⌘K' : 'Ctrl+K';
+
   const toggleSection = (sectionId: string) => {
     const newCollapsed = new Set(collapsedSections);
     if (newCollapsed.has(sectionId)) {
@@ -196,7 +200,7 @@ export function Sidebar() {
           />
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded">
-              ⌘K
+              {shortcutText}
             </kbd>
           </div>
         </div>
