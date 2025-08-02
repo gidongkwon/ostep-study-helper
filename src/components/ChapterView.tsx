@@ -3,7 +3,6 @@ import type { Chapter, ProgressStatus } from "../types";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
 import { Presentation, Download, FileText } from "lucide-react";
 import { StatusButton } from "./ui/StatusButton";
-import { ProgressBar } from "./ui/ProgressBar";
 import { IconCard } from "./ui/IconCard";
 import { EmptyState } from "./ui/EmptyState";
 import { PageContainer } from "./ui/PageContainer";
@@ -25,18 +24,6 @@ export function ChapterView({ chapter }: ChapterViewProps) {
   };
 
   const statusButtons = getStatusButtonConfig(t);
-
-  const getProgressPercentage = () => {
-    switch (progress?.status) {
-      case "completed":
-        return 100;
-      case "in-progress":
-        return 50;
-      default:
-        return 0;
-    }
-  };
-
   const currentStatus = progress?.status || "not-started";
 
   return (
@@ -49,7 +36,6 @@ export function ChapterView({ chapter }: ChapterViewProps) {
             className="flex-1"
           >
             <div className="flex items-center space-x-4 mb-6">
-              <ProgressBar percentage={getProgressPercentage()} size="lg" />
               <StatusDisplay
                 status={currentStatus}
                 label={

@@ -34,14 +34,14 @@ export function Header({ onToggleSidebar }: HeaderProps) {
               <GradientCard
                 from="blue-600"
                 to="blue-500"
-                className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg"
+                className="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg"
                 padding="sm"
               >
-                <BookOpen className="w-6 h-6 text-white" />
+                <BookOpen className="w-4 h-4 text-white grow-[1] shrink-0" />
               </GradientCard>
               <div className="hidden sm:block">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                  OSTEP Study Helper
+                  OSTEP Tracker
                 </h1>
               </div>
               <div className="sm:hidden">

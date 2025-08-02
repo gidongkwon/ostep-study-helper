@@ -50,7 +50,10 @@ function LabView({ chapter }: { chapter: Chapter }) {
         <div className="flex items-center justify-between mb-4">
           <StatusDisplay
             status={currentStatus}
-            label={`${t("chapterView.currentStatus", "Current Status")}: ${currentStatus.replace("-", " ")}`}
+            label={
+              statusButtons.find((btn) => btn.status === currentStatus)
+                ?.label || ""
+            }
             icon={
               statusButtons.find((btn) => btn.status === currentStatus)
                 ?.icon || <></>

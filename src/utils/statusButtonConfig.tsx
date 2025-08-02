@@ -19,7 +19,7 @@ export function getStatusButtonConfig(t: TFunction): StatusButtonConfig[] {
       color: "gray",
       description:
         t("chapterView.status.notStartedDesc") || "Haven't started this yet",
-      icon: <Clock className="w-5 h-5" />,
+      icon: <Zap className="w-5 h-5" />,
     },
     {
       status: "in-progress",
@@ -27,7 +27,7 @@ export function getStatusButtonConfig(t: TFunction): StatusButtonConfig[] {
       color: "yellow",
       description:
         t("chapterView.status.inProgressDesc") || "Currently working on this",
-      icon: <Zap className="w-5 h-5" />,
+      icon: <Clock className="w-5 h-5" />,
     },
     {
       status: "completed",

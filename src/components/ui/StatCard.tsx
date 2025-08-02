@@ -1,7 +1,15 @@
 interface StatCardProps {
   value: string | number;
   label: string;
-  color?: "blue" | "yellow" | "gray" | "green" | "purple" | "red" | "orange" | "indigo";
+  color?:
+    | "blue"
+    | "yellow"
+    | "gray"
+    | "green"
+    | "purple"
+    | "red"
+    | "orange"
+    | "indigo";
   size?: "sm" | "md" | "lg";
   className?: string;
 }
@@ -80,14 +88,10 @@ export function StatCard({
     <div
       className={`text-center ${sizeClasses[size]} ${colors.bg} rounded-xl ${className}`}
     >
-      <div
-        className={`${textSizeClasses[size]} font-bold ${colors.valueText}`}
-      >
+      <div className={`${textSizeClasses[size]} font-bold ${colors.valueText}`}>
         {value}
       </div>
-      <div
-        className={`${labelSizeClasses[size]} ${colors.labelText}`}
-      >
+      <div className={`${labelSizeClasses[size]} ${colors.labelText}`}>
         {label}
       </div>
     </div>

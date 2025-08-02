@@ -48,8 +48,8 @@ The built files will be in the `dist` directory.
 
 1. **Select a Chapter**: Click on any chapter from the sidebar
 2. **Track Progress**: Use the status buttons to mark your progress
-5. **Export Progress**: Click Export to save your progress as a JSON file
-6. **Import Progress**: Click Import to restore previously saved progress
+3. **Export Progress**: Click Export to save your progress as a JSON file
+4. **Import Progress**: Click Import to restore previously saved progress
 
 ## Technology Stack
 

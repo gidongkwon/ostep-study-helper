@@ -33,8 +33,10 @@ export function Sidebar() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Detect platform for keyboard shortcut display
-  const isMac = typeof navigator !== 'undefined' && navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-  const shortcutText = isMac ? '⌘K' : 'Ctrl+K';
+  const isMac =
+    typeof navigator !== "undefined" &&
+    navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+  const shortcutText = isMac ? "⌘K" : "Ctrl+K";
 
   const toggleSection = (sectionId: string) => {
     const newCollapsed = new Set(collapsedSections);
