@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-OSTEP Study Helper is a React/TypeScript web application for tracking progress through the "Operating Systems:
+OSTEP Tracker is a React/TypeScript web application for tracking progress through the "Operating Systems:
 Three Easy Pieces" (OSTEP) textbook. The app is built with Vite, uses Tailwind CSS for styling, and localStorage
 for data persistence.
 

@@ -1,13 +1,12 @@
-# OSTEP Study Helper
+# OSTEP Tracker
 
-A web application to help track your progress through Operating Systems: Three Easy Pieces (OSTEP).
+A vibe-coded web application to help track your progress through Operating Systems: Three Easy Pieces (OSTEP).
+Based on http://csl.snu.ac.kr/courses/4190.307/2020-1/
 
 ## Features
 
 - **Progress Tracking**: Mark chapters as Not Started, In Progress, or Completed
 - **Bilingual Support**: Direct links to both English and Korean PDF versions
-- **Personal Notes**: Add and save notes for each chapter
-- **Weekly Curriculum View**: See chapters organized by weekly schedule
 - **Dark/Light Theme**: Toggle between themes for comfortable reading
 - **Data Persistence**: All progress saved to localStorage
 - **Export/Import**: Backup and restore your study progress
@@ -49,8 +48,6 @@ The built files will be in the `dist` directory.
 
 1. **Select a Chapter**: Click on any chapter from the sidebar
 2. **Track Progress**: Use the status buttons to mark your progress
-3. **Add Notes**: Click "Edit Notes" to add personal study notes
-4. **View by Week**: Switch to Weekly View to see the curriculum schedule
 5. **Export Progress**: Click Export to save your progress as a JSON file
 6. **Import Progress**: Click Import to restore previously saved progress
 

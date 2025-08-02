@@ -6,7 +6,7 @@ import type { TFunction } from "i18next";
 export interface StatusButtonConfig {
   status: ProgressStatus;
   label: string;
-  color: string;
+  color: "green" | "yellow" | "gray";
   description: string;
   icon: JSX.Element;
 }
