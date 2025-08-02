@@ -1,7 +1,7 @@
 export interface PdfResource {
   title: string;
   englishPdf: string;
-  koreanPdf: string;
+  koreanPdf?: string;
 }
 
 export interface Chapter {

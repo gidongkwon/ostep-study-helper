@@ -103,14 +103,25 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                     className="p-4"
                   />
 
-                  <IconCard
-                    href={pdf.koreanPdf}
-                    icon={<Download className="w-5 h-5 text-white" />}
-                    title={t("chapterView.koreanPdf")}
-                    description={t("chapterView.translatedContent")}
-                    color="green"
-                    className="p-4"
-                  />
+                  {pdf.koreanPdf ? (
+                    <IconCard
+                      href={pdf.koreanPdf}
+                      icon={<Download className="w-5 h-5 text-white" />}
+                      title={t("chapterView.koreanPdf")}
+                      description={t("chapterView.translatedContent")}
+                      color="green"
+                      className="p-4"
+                    />
+                  ) : (
+                    <div className="p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800/50 flex flex-col items-center justify-center text-center h-24">
+                      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        {t("chapterView.noKoreanPdf")}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                        {t("chapterView.koreanNotAvailable")}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

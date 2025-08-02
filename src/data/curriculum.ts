@@ -143,7 +143,7 @@ export const chapters: Chapter[] = [
         title: "Advanced Page Tables",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/20-vm-smalltables.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/20_vm-smalltables.pdf",
       },
     ],
     section: "lab3",
@@ -157,7 +157,7 @@ export const chapters: Chapter[] = [
         title: "Translation Lookaside Buffers",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/19-vm-tlbs.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/19_vm-tlbs.pdf",
       },
     ],
     section: "lab3",
@@ -187,14 +187,14 @@ export const chapters: Chapter[] = [
         title: "Swapping: Mechanisms",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/21-vm-beyondphys.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/21_vm-beyondphys.pdf",
       },
       {
         title: "Swapping: Policies",
         englishPdf:
           "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/22-vm-beyondphys-policy.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/22_vm-beyondphys-policy.pdf",
       },
     ],
     section: "lab4",
@@ -208,7 +208,7 @@ export const chapters: Chapter[] = [
         title: "Complete Virtual Memory Systems",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-complete.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/23-vm-complete.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/23_vm-vax.pdf",
       },
     ],
     section: "lab4",
@@ -222,13 +222,13 @@ export const chapters: Chapter[] = [
         title: "Concurrency and Threads",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/26-threads-intro.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/26_threads-intro.pdf",
       },
       {
         title: "Thread API",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-api.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/27-threads-api.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/27_threads-api.pdf",
       },
     ],
     section: "lab4",
@@ -251,7 +251,7 @@ export const chapters: Chapter[] = [
         title: "Locks",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/28-threads-locks.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/28_threads-locks.pdf",
       },
     ],
     section: "lab5",
@@ -265,7 +265,7 @@ export const chapters: Chapter[] = [
         title: "Semaphores",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/31-threads-sema.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/31_threads-sema.pdf",
       },
     ],
     section: "lab5",
@@ -279,7 +279,7 @@ export const chapters: Chapter[] = [
         title: "Condition Variables",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-cv.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/30-threads-cv.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/30_threads-cv.pdf",
       },
     ],
     section: "lab5",
@@ -293,13 +293,13 @@ export const chapters: Chapter[] = [
         title: "I/O Devices",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/36-file-devices.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/36_file-devices.pdf",
       },
       {
         title: "Hard Disk Drives",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-disks.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/37-file-disks.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/37_file_disks.pdf",
       },
     ],
     section: "lab5",
@@ -312,8 +312,6 @@ export const chapters: Chapter[] = [
       {
         title: "Flash-based SSDs",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-ssd.pdf",
-        koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/44-file-ssd.pdf",
       },
     ],
     section: "lab5",
@@ -327,7 +325,7 @@ export const chapters: Chapter[] = [
         title: "Files and Directories",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/39-file-intro.pdf",
+          "39_interlude-file-directory",
       },
     ],
     section: "lab5",
@@ -349,7 +347,7 @@ export const chapters: Chapter[] = [
         englishPdf:
           "https://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/40-file-implementation.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/40_FS-implementation.pdf",
       },
     ],
     section: "filesystem",
@@ -363,7 +361,7 @@ export const chapters: Chapter[] = [
         title: "Fast File System",
         englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-ffs.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/41-file-ffs.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/41_FFS.pdf",
       },
     ],
     section: "filesystem",
@@ -378,7 +376,7 @@ export const chapters: Chapter[] = [
         englishPdf:
           "https://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf",
         koreanPdf:
-          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/42-file-journaling.pdf",
+          "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/42_crash-consistency.pdf",
       },
     ],
     section: "filesystem",
