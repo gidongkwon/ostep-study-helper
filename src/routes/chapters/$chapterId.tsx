@@ -19,11 +19,14 @@ import { LabPlaceholder } from "../../components/ui/LabPlaceholder";
 import { SectionHeader } from "../../components/ui/SectionHeader";
 import { StatusDisplay } from "../../components/ui/StatusDisplay";
 import { getStatusButtonConfig } from "../../utils/statusButtonConfig";
+import markdownit from "markdown-it";
 
 export const Route = createFileRoute("/chapters/$chapterId")({
   component: ChapterRoute,
   pendingComponent: LoadingSpinner,
 });
+
+const md = markdownit();
 
 function LabView({ chapter }: { chapter: Lab }) {
   const { t, i18n } = useTranslation();
@@ -103,9 +106,12 @@ function LabView({ chapter }: { chapter: Lab }) {
             <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
               {t("labs.overview", "Overview")}
             </h2>
-            <pre className="text-gray-600 dark:text-gray-300">
-              {isKorean && chapter.descriptionKo ? chapter.descriptionKo : chapter.description}
-            </pre>
+            <div 
+              className="prose prose-gray dark:prose-invert max-w-none"
+              dangerouslySetInnerHTML={{ 
+                __html: md.render(isKorean && chapter.descriptionKo ? chapter.descriptionKo : chapter.description || '') 
+              }}
+            />
           </div>
         )}
 
