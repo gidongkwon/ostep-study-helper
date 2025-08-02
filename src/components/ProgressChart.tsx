@@ -55,7 +55,7 @@ export function ProgressChart() {
 
   return (
     <div className="card p-4 sm:p-6">
-        <h2 className="section-title mb-6">{t("dashboard.title")}</h2>
+      <h2 className="section-title mb-6">{t("dashboard.title")}</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <StatCard

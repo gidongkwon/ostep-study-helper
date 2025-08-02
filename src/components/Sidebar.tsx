@@ -235,7 +235,7 @@ export function Sidebar() {
                     {t("sidebar.dashboard")}
                   </h3>
                   <p className="text-xs text-muted-foreground">
-                    Overall progress overview
+                    {t("sidebar.overallProgressOverview")}
                   </p>
                 </div>
               </div>
@@ -256,7 +256,7 @@ export function Sidebar() {
 
             if (searchTerm && filteredChapters.length === 0) return null;
 
-            console.log(filteredChapters)
+            console.log(filteredChapters);
 
             return (
               <div
@@ -279,7 +279,10 @@ export function Sidebar() {
                           {section.title}
                         </h3>
                         <p className="text-xs text-muted-foreground">
-                          {progress.completed}/{progress.total} completed
+                          {t("sidebar.sectionProgress", {
+                            completed: progress.completed,
+                            total: progress.total,
+                          })}
                         </p>
                       </div>
                     </div>

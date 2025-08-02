@@ -174,16 +174,16 @@ export function Header({ onToggleSidebar }: HeaderProps) {
                     >
                       <div className="flex items-center gap-3">
                         {theme === "light" ? (
-                          <Moon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                        ) : (
                           <Sun className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                        ) : (
+                          <Moon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                         )}
                         <span className="text-gray-900 dark:text-white">
                           {t("theme.toggle")}
                         </span>
                       </div>
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {theme === "light" ? t("theme.dark") : t("theme.light")}
+                        {theme === "light" ? t("theme.light") : t("theme.dark")}
                       </span>
                     </button>
 
@@ -252,9 +252,9 @@ export function Header({ onToggleSidebar }: HeaderProps) {
             <IconButton
               icon={
                 theme === "light" ? (
-                  <Moon className="w-5 h-5" />
-                ) : (
                   <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
                 )
               }
               onClick={toggleTheme}
