@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { Chapter, RegularChapter, ProgressStatus } from "../types";
-import { isRegularChapter } from "../types";
+import type { RegularChapter, ProgressStatus } from "../types";
 import { useStudyProgress } from "../contexts/StudyProgressContext";
 import { Presentation, Download, FileText } from "lucide-react";
 import { StatusButton } from "./ui/StatusButton";

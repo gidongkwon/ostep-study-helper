@@ -56,22 +56,27 @@ export const chapters: Chapter[] = [
     resources: [
       {
         title: "Goal & Description",
+        titleKo: "목표 및 설명",
         link: "https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-xv6",
       },
       {
         title: "How to Install & Run xv6-riscv",
+        titleKo: "xv6-riscv 설치 및 실행 방법",
         link: "https://github.com/snu-csl/os-pa1",
       },
       {
         title: "Background: How System Calls Work",
+        titleKo: "배경 지식: 시스템 콜 동작 방식",
         link: "https://github.com/remzi-arpacidusseau/ostep-projects/blob/master/initial-xv6/background.md",
       },
       {
         title: "Video Tutorial: Adding a System Call to xv6",
+        titleKo: "비디오 튜토리얼: xv6에 시스템 콜 추가하기",
         link: "https://www.youtube.com/watch?v=vR6z2QGcoo8",
       },
       {
         title: "How to Adapt ostep-projects' Test Cases to xv6-riscv",
+        titleKo: "ostep-projects 테스트 케이스를 xv6-riscv에 적용하는 방법",
         link: "https://github.com/remzi-arpacidusseau/ostep-projects/commit/7d9e53fedcc97038809f27b98e7e5298fb99d563?w=1",
       },
     ],
@@ -97,6 +102,26 @@ Testing
   If you want to run provided script, you should patch your test code. See last resource."
 - Tests assume xv6 source code is in src/ directory
 - Optional -s flag to skip repeated builds`,
+    descriptionKo: `xv6에서 커널 부팅 이후 호출된 read() 시스템 콜의 총 개수를 추적하고 반환하는 새로운 시스템 콜 getreadcount()를 구현합니다.
+
+주요 구현 요구사항
+
+- 함수 시그니처: int getreadcount(void); (원하면 uint64)
+- 기능: 프로세스가 read()를 호출할 때마다 증가하는 카운터를 반환
+- 접근 방법: 기존 시스템 콜(getpid() 등)을 템플릿으로 활용
+
+개발 전략
+
+- 새로운 코드 작성보다는 기존 코드를 이해하는 데 대부분의 시간을 투자
+- 처음부터 작성하기보다는 유사한 기존 구현을 복사/수정
+
+테스팅
+
+- 테스트 스크립트: ./test-getreadcounts.sh
+- 모든 테스트 코드는 xv6-public(x86) 기반으로 작성됨.
+  제공된 스크립트를 실행하려면 테스트 코드를 패치해야 함. 마지막 자료 참조.
+- 테스트는 xv6 소스 코드가 src/ 디렉토리에 있다고 가정
+- 반복 빌드를 건너뛰는 -s 플래그 옵션`,
   },
 
   // H.2: CPU scheduling, Virtual memory
@@ -161,6 +186,7 @@ Testing
     resources: [
       {
         title: "Goal & Description",
+        titleKo: "목표 및 설명",
         link: "https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/scheduling-xv6-lottery",
       },
     ],
@@ -185,6 +211,28 @@ Key Implementation Requirements:
   - Use pstat structure for statistics collection
 4. Performance Demonstration:
   - Create graph showing 3:2:1 ticket ratio results in proportional CPU allocation
+`,
+    descriptionKo: `주요 목표:
+
+- xv6 커널을 라운드로빈 대신 복권 스케줄링을 사용하도록 수정
+- 프로세스 티켓을 기반으로 한 비례적 CPU 할당 구현
+- 티켓 관리 및 프로세스 모니터링을 위한 시스템 콜 생성
+
+주요 구현 요구사항:
+
+1. 시스템 콜:
+  - settickets(int number) - 프로세스 티켓 수 설정 (기본값: 1 티켓)
+  - getpinfo(struct pstat *) - 스케줄링 통계 반환
+2. 스케줄러 로직:
+  - 티켓 확률을 기반으로 실행할 프로세스를 무작위 선택
+  - 더 많은 티켓을 가진 프로세스가 비례적으로 더 많은 CPU 시간 획득
+  - 자식 프로세스는 부모의 티켓 수를 상속
+  - 커널에서 의사 난수 생성 구현
+3. 프로세스 추적:
+  - 프로세스 ID, 티켓 수, 누적된 CPU 틱 추적
+  - 통계 수집을 위한 pstat 구조체 사용
+4. 성능 시연:
+  - 3:2:1 티켓 비율이 비례적 CPU 할당으로 이어지는 그래프 생성
 `
   },
 
@@ -246,6 +294,7 @@ Key Implementation Requirements:
     resources: [
       {
         title: "Goal & Description",
+        titleKo: "목표 및 설명",
         link: "https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/vm-xv6-intro",
       },
     ],
@@ -268,7 +317,27 @@ Key Implementation Requirements:
 3. Process Management:
   - Inherit page protections during fork()
   - Ensure illegal memory accesses trap and terminate processes
-  - Update hardware page tables using lcr3()`
+  - Update hardware page tables using lcr3()`,
+    descriptionKo: `주요 목표:
+
+- xv6의 가상 메모리 시스템에 기본적인 보호 기능 추가
+- null 포인터 역참조 감지 구현
+- 읽기 전용 코드 보호 기능 추가
+
+주요 구현 요구사항:
+
+1. Null 포인터 보호:
+  - 메모리의 첫 번째 페이지(페이지 0)를 무효화
+  - 프로그램이 null 포인터를 역참조할 때 예외 발생
+  - 주소 공간 생성 및 초기화 수정
+2. 메모리 보호 시스템 콜:
+  - mprotect(void *addr, int len) - 메모리 영역을 읽기 전용으로 표시
+  - munprotect(void *addr, int len) - 읽기/쓰기 권한 복원
+  - 오류 케이스 처리 (정렬되지 않은 주소, 잘못된 영역, 잘못된 길이)
+3. 프로세스 관리:
+  - fork() 중 페이지 보호 상속
+  - 불법적인 메모리 접근 시 트랩 발생 및 프로세스 종료 보장
+  - lcr3()를 사용한 하드웨어 페이지 테이블 업데이트`
   },
 
   // H.4: Swapping, Virtual Memory Implementations, Threads

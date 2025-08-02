@@ -26,9 +26,10 @@ export const Route = createFileRoute("/chapters/$chapterId")({
 });
 
 function LabView({ chapter }: { chapter: Lab }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { getChapterProgress, updateChapterStatus } = useStudyProgress();
   const progress = getChapterProgress(chapter.id);
+  const isKorean = i18n.language === "ko";
 
   // Helper function to detect if a resource is a video
   const isVideoResource = (resource: LinkResource) => {
@@ -97,13 +98,13 @@ function LabView({ chapter }: { chapter: Lab }) {
       {/* Lab Content */}
       <div className="space-y-6">
         {/* Description */}
-        {chapter.description && (
+        {(chapter.description || chapter.descriptionKo) && (
           <div className="card p-6">
             <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
               {t("labs.overview", "Overview")}
             </h2>
             <pre className="text-gray-600 dark:text-gray-300">
-              {chapter.description}
+              {isKorean && chapter.descriptionKo ? chapter.descriptionKo : chapter.description}
             </pre>
           </div>
         )}
@@ -127,7 +128,7 @@ function LabView({ chapter }: { chapter: Lab }) {
                       <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                     )}
                     <span className="text-gray-700 dark:text-gray-300">
-                      {resource.title}
+                      {isKorean && resource.titleKo ? resource.titleKo : resource.title}
                     </span>
                   </div>
                   <a
@@ -146,6 +147,7 @@ function LabView({ chapter }: { chapter: Lab }) {
 
         {/* If no content available, show placeholder */}
         {!chapter.description &&
+          !chapter.descriptionKo &&
           (!chapter.resources || chapter.resources.length === 0) && (
             <div className="card p-8">
               <LabPlaceholder />

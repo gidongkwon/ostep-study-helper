@@ -6,6 +6,7 @@ export interface PdfResource {
 
 export interface LinkResource {
   title: string;
+  titleKo?: string;
   link: string;
 }
 
@@ -24,6 +25,7 @@ export interface RegularChapter extends BaseChapter {
 export interface Lab extends BaseChapter {
   isLab: true;
   description?: string;
+  descriptionKo?: string;
   resources?: LinkResource[];
 }
 
