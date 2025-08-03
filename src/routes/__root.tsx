@@ -38,7 +38,7 @@ function RootComponent() {
         </main>
       </div>
 
-      {process.env.NODE_ENV === 'development' && <TanStackRouterDevtools />}
+      {process.env.NODE_ENV === "development" && <TanStackRouterDevtools />}
     </div>
   );
 }

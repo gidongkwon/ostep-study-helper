@@ -233,7 +233,7 @@ Key Implementation Requirements:
   - 통계 수집을 위한 pstat 구조체 사용
 4. 성능 시연:
   - 3:2:1 티켓 비율이 비례적 CPU 할당으로 이어지는 그래프 생성
-`
+`,
   },
 
   // H.3: Paging, Page tables, TLB, Memory mapping
@@ -337,7 +337,7 @@ Key Implementation Requirements:
 3. 프로세스 관리:
   - fork() 중 페이지 보호 상속
   - 불법적인 메모리 접근 시 트랩 발생 및 프로세스 종료 보장
-  - lcr3()를 사용한 하드웨어 페이지 테이블 업데이트`
+  - lcr3()를 사용한 하드웨어 페이지 테이블 업데이트`,
   },
 
   // H.4: Swapping, Virtual Memory Implementations, Threads

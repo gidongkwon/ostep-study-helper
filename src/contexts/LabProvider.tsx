@@ -63,4 +63,3 @@ export function LabProvider({ children }: { children: ReactNode }) {
 
   return <LabContext.Provider value={value}>{children}</LabContext.Provider>;
 }
-

@@ -42,7 +42,6 @@ export function Sidebar() {
 
   const location = useLocation();
 
-
   const renderChapter = (chapter: Chapter) => {
     const chapterProgress = progress[chapter.id];
     const isSelected = location.pathname === `/chapters/${chapter.id}`;
@@ -162,7 +161,6 @@ export function Sidebar() {
   return (
     <aside className="w-full sm:w-80 h-full lg:border-r lg:border-gray-200/50 lg:dark:border-gray-700/50 flex flex-col backdrop-blur-sm mt-9 lg:mt-0">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-
         {/* Dashboard Button */}
         <div className="card animate-slide-in hover-lift">
           <Link
@@ -259,7 +257,6 @@ export function Sidebar() {
             );
           })}
         </div>
-
       </div>
     </aside>
   );

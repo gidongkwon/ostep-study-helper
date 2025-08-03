@@ -106,10 +106,14 @@ function LabView({ chapter }: { chapter: Lab }) {
             <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
               {t("labs.overview", "Overview")}
             </h2>
-            <div 
+            <div
               className="prose prose-gray dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ 
-                __html: md.render(isKorean && chapter.descriptionKo ? chapter.descriptionKo : chapter.description || '') 
+              dangerouslySetInnerHTML={{
+                __html: md.render(
+                  isKorean && chapter.descriptionKo
+                    ? chapter.descriptionKo
+                    : chapter.description || "",
+                ),
               }}
             />
           </div>
@@ -134,7 +138,9 @@ function LabView({ chapter }: { chapter: Lab }) {
                       <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                     )}
                     <span className="text-gray-700 dark:text-gray-300">
-                      {isKorean && resource.titleKo ? resource.titleKo : resource.title}
+                      {isKorean && resource.titleKo
+                        ? resource.titleKo
+                        : resource.title}
                     </span>
                   </div>
                   <a

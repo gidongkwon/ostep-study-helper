@@ -39,25 +39,25 @@ pnpm preview
 ### Data Flow
 
 - **StorageService**: Manages localStorage operations for progress tracking and theme preferences -
-**useStudyProgress hook**: Provides state management for chapter progress, notes, and statistics - **useTheme
-hook**: Handles dark/light theme switching
+  **useStudyProgress hook**: Provides state management for chapter progress, notes, and statistics - **useTheme
+  hook**: Handles dark/light theme switching
 
 ### Key Components
 
 - **App.tsx**: Main layout with sidebar, header, and view routing (dashboard/chapters) - **ChapterView**:
-Individual chapter display with progress tracking and notes editing - **WeeklyView**: Shows chapters organized
-by weekly curriculum schedule - **Sidebar**: Chapter navigation organized by sections
+  Individual chapter display with progress tracking and notes editing - **WeeklyView**: Shows chapters organized
+  by weekly curriculum schedule - **Sidebar**: Chapter navigation organized by sections
 
 ### Data Structure
 
 - **Chapter**: Contains id, title, PDF links (English/Korean), section, and order - **ChapterProgress**: Tracks
-status (not-started/in-progress/completed), notes, and last updated timestamp - **StudyData**: Contains progress
-records and theme preference, persisted to localStorage
+  status (not-started/in-progress/completed), notes, and last updated timestamp - **StudyData**: Contains progress
+  records and theme preference, persisted to localStorage
 
 ## Notes
 
 - The app supports bilingual PDF links for each chapter (English and Korean) - Progress is automatically saved
-to localStorage on any status change
+  to localStorage on any status change
 
 Always implement the test, then implement only enough code to make that test pass.
 
