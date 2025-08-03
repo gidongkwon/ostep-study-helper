@@ -1,5 +1,5 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 import { ErrorBoundary } from "../components/ErrorBoundary";
@@ -38,7 +38,7 @@ function RootComponent() {
         </main>
       </div>
 
-      <TanStackRouterDevtools />
+      {process.env.NODE_ENV === 'development' && <TanStackRouterDevtools />}
     </div>
   );
 }

@@ -9,11 +9,13 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "deploy": "pnpm build && wrangler deploy"
+    "deploy": "pnpm build && wrangler deploy",
+    "test": "vitest"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
     "@tanstack/react-router": "^1.130.12",
+    "@tanstack/react-router-devtools": "^1.130.13",
     "clsx": "^2.1.1",
     "i18next": "^25.3.2",
     "i18next-browser-languagedetector": "^8.2.0",
@@ -33,8 +35,9 @@
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.11",
-    "@tanstack/router-devtools": "^1.130.12",
     "@tanstack/router-vite-plugin": "^1.130.12",
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.8",
@@ -46,6 +49,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "jsdom": "^26.1.0",
     "playwright": "^1.54.2",
     "postcss": "^8.5.6",
     "prettier": "3.6.2",
@@ -54,6 +58,7 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4",
+    "vitest": "^3.2.4",
     "wrangler": "^4.27.0"
   }
 }
