@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTheme } from "../theme/useTheme";
 import { useStudyProgress } from "../progress/StudyProgressContext";
-import { ExportImport } from "../persistence/ExportImport";
 import { LanguageSwitcher } from "../i18n/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import {
@@ -13,22 +12,22 @@ import {
   Download,
   Upload,
 } from "lucide-react";
-import { IconButton } from "../../components/ui/IconButton";
-import { ProgressBar } from "../progress/ProgressBar";
+import { Button } from "../../components/ui/button";
+import { Progress } from "../../components/ui/progress";
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../components/ui/sheet";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../../components/ui/dropdown-menu";
+import { Badge } from "../../components/ui/badge";
 
 interface HeaderProps {
   onToggleSidebar?: () => void;
 }
 
 export function Header({ onToggleSidebar }: HeaderProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { stats, exportProgress, importProgress } = useStudyProgress();
   const { t, i18n } = useTranslation();
@@ -45,7 +44,6 @@ export function Header({ onToggleSidebar }: HeaderProps) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    setMobileMenuOpen(false); // Close menu after export
   };
 
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +57,6 @@ export function Header({ onToggleSidebar }: HeaderProps) {
         const success = importProgress(content);
         if (success) {
           alert("Progress imported successfully!");
-          setMobileMenuOpen(false); // Close menu
           window.location.reload(); // Reload to update UI
         } else {
           alert("Failed to import progress. Please check the file format.");
@@ -77,17 +74,20 @@ export function Header({ onToggleSidebar }: HeaderProps) {
   };
 
   return (
-    <header className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm border-b border-gray-200/20 dark:border-gray-700/20 sticky top-0 z-50">
+    <header className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50 sticky top-0 z-50 transition-all-smooth">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-18 py-3">
+        <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4">
             <div className="lg:hidden">
-              <IconButton
-                icon={<Menu className="w-5 h-5" />}
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={onToggleSidebar}
-                ariaLabel="Toggle sidebar"
-                variant="secondary"
-              />
+                className="h-10 w-10"
+              >
+                <Menu className="w-5 h-5" />
+                <span className="sr-only">Toggle sidebar</span>
+              </Button>
             </div>
             <div className="flex items-center space-x-3">
               <div className="hidden lg:block">
@@ -105,163 +105,151 @@ export function Header({ onToggleSidebar }: HeaderProps) {
 
           <div className="flex items-center space-x-2 sm:space-x-6">
             {/* Mobile progress indicator */}
-            <div className="sm:hidden flex items-center space-x-2 flex-col">
-              <div className="text-xs font-semibold text-gray-900 dark:text-white">
+            <div className="sm:hidden flex items-center space-x-3">
+              <Badge variant="outline" className="text-xs">
                 {stats.completed}/{stats.total}
-              </div>
-              <ProgressBar
-                percentage={stats.percentage}
-                size="sm"
-                animated={true}
-                showLabel={false}
-                className="min-w-[3rem]"
+              </Badge>
+              <Progress 
+                value={stats.percentage} 
+                className="w-12 h-2"
               />
             </div>
 
             {/* Desktop progress section */}
-            <div className="hidden md:flex items-center space-x-4">
-              <div className="text-right">
-                <div className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-                  {t("header.overallProgress")}
-                </div>
-                <div className="flex items-center space-x-3 mt-1">
-                  <ProgressBar
-                    percentage={stats.percentage}
-                    size="sm"
-                    animated={true}
-                    className="min-w-[6rem]"
-                  />
+            <div className="hidden md:flex items-center space-x-6">
+              <div className="flex items-center space-x-3">
+                <div className="text-right">
+                  <div className="text-xs text-gray-600 dark:text-gray-400 font-medium uppercase tracking-wide">
+                    {t("header.overallProgress")}
+                  </div>
+                  <div className="flex items-center space-x-3 mt-1">
+                    <Progress 
+                      value={stats.percentage} 
+                      className="w-24 h-2"
+                    />
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100 min-w-[3ch]">
+                      {stats.percentage}%
+                    </span>
+                  </div>
                 </div>
               </div>
 
               <div className="text-right">
-                <div className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                <div className="text-xs text-gray-600 dark:text-gray-400 font-medium uppercase tracking-wide">
                   {t("common.chapters")}
                 </div>
-                <div className="text-sm font-semibold text-gray-900 dark:text-white mt-1">
+                <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 mt-1">
                   {stats.completed} / {stats.total}
                 </div>
               </div>
             </div>
 
-            <div className="hidden sm:block w-px h-8 bg-gray-200 dark:bg-gray-700"></div>
+            <div className="hidden sm:block w-px h-8 bg-gray-200 dark:bg-gray-800"></div>
 
-            <div className="hidden sm:block">
-              <ExportImport />
+            <div className="hidden sm:flex items-center space-x-1">
+              <Button
+                variant="ghost" 
+                size="icon"
+                onClick={handleExport}
+                className="h-9 w-9"
+                title={t("exportImport.exportProgress")}
+              >
+                <Download className="w-4 h-4" />
+                <span className="sr-only">{t("exportImport.exportProgress")}</span>
+              </Button>
+              
+              <Button
+                variant="ghost"
+                size="icon" 
+                onClick={() => fileInputRef.current?.click()}
+                className="h-9 w-9"
+                title={t("exportImport.importProgress")}
+              >
+                <Upload className="w-4 h-4" />
+                <span className="sr-only">{t("exportImport.importProgress")}</span>
+              </Button>
             </div>
 
             {/* Mobile action menu */}
             <div className="sm:hidden">
-              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <IconButton
-                    icon={<MoreVertical className="w-5 h-5" />}
-                    onClick={() => {}}
-                    ariaLabel="More options"
-                    variant="secondary"
-                    className="border border-gray-200/50 dark:border-gray-600/50 min-h-[44px] min-w-[44px]"
-                  />
-                </SheetTrigger>
-                <SheetContent side="right" className="w-64">
-                  <SheetHeader>
-                    <SheetTitle>{t("common.options")}</SheetTitle>
-                  </SheetHeader>
-                  <div className="mt-6 space-y-2">
-                    {/* Theme Toggle */}
-                    <button
-                      onClick={toggleTheme}
-                      className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        {theme === "light" ? (
-                          <Sun className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                        ) : (
-                          <Moon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                        )}
-                        <span className="text-gray-900 dark:text-white">
-                          {t("theme.toggle")}
-                        </span>
-                      </div>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {theme === "light" ? t("theme.light") : t("theme.dark")}
-                      </span>
-                    </button>
-
-                    {/* Language Toggle */}
-                    <button
-                      onClick={() => {
-                        const newLang = i18n.language === "en" ? "ko" : "en";
-                        i18n.changeLanguage(newLang);
-                      }}
-                      className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Globe className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                        <span className="text-gray-900 dark:text-white">
-                          {t("language.label")}
-                        </span>
-                      </div>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {i18n.language === "en" ? "English" : "한국어"}
-                      </span>
-                    </button>
-
-                    {/* Export Progress */}
-                    <button
-                      onClick={handleExport}
-                      className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Download className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                        <span className="text-gray-900 dark:text-white">
-                          {t("exportImport.exportProgress")}
-                        </span>
-                      </div>
-                    </button>
-
-                    {/* Import Progress */}
-                    <button
-                      onClick={() => fileInputRef.current?.click()}
-                      className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Upload className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                        <span className="text-gray-900 dark:text-white">
-                          {t("exportImport.importProgress")}
-                        </span>
-                      </div>
-                    </button>
-
-                    {/* Hidden file input */}
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept=".json"
-                      onChange={handleImport}
-                      className="hidden"
-                    />
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-10 w-10">
+                    <MoreVertical className="w-5 h-5" />
+                    <span className="sr-only">More options</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="px-2 py-1.5">
+                    <p className="text-sm font-medium">{t("common.options")}</p>
                   </div>
-                </SheetContent>
-              </Sheet>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={toggleTheme}>
+                    <div className="flex items-center gap-3">
+                      {theme === "light" ? (
+                        <Sun className="w-4 h-4" />
+                      ) : (
+                        <Moon className="w-4 h-4" />
+                      )}
+                      <span>{t("theme.toggle")}</span>
+                    </div>
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem onClick={() => {
+                    const newLang = i18n.language === "en" ? "ko" : "en";
+                    i18n.changeLanguage(newLang);
+                  }}>
+                    <div className="flex items-center gap-3">
+                      <Globe className="w-4 h-4" />
+                      <span>{t("language.label")}</span>
+                    </div>
+                  </DropdownMenuItem>
+
+                  <DropdownMenuSeparator />
+
+                  <DropdownMenuItem onClick={handleExport}>
+                    <div className="flex items-center gap-3">
+                      <Download className="w-4 h-4" />
+                      <span>{t("exportImport.exportProgress")}</span>
+                    </div>
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem onClick={() => fileInputRef.current?.click()}>
+                    <div className="flex items-center gap-3">
+                      <Upload className="w-4 h-4" />
+                      <span>{t("exportImport.importProgress")}</span>
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
+
+            {/* Hidden file input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json"
+              onChange={handleImport}
+              className="hidden"
+            />
 
             <div className="hidden sm:block">
               <LanguageSwitcher />
             </div>
 
-            <IconButton
-              icon={
-                theme === "light" ? (
-                  <Sun className="w-5 h-5" />
-                ) : (
-                  <Moon className="w-5 h-5" />
-                )
-              }
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={toggleTheme}
-              ariaLabel="Toggle theme"
-              variant="secondary"
-              className="border border-gray-200/50 dark:border-gray-600/50 min-h-[44px] min-w-[44px] hidden sm:block"
-            />
+              className="h-10 w-10 hidden sm:block"
+            >
+              {theme === "light" ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+              <span className="sr-only">Toggle theme</span>
+            </Button>
           </div>
         </div>
       </div>

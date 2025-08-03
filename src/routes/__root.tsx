@@ -6,6 +6,7 @@ import { ErrorBoundary } from "../components/ErrorBoundary";
 import { NotFound } from "../components/NotFound";
 import { useState } from "react";
 import { Sheet, SheetContent } from "../components/ui/sheet";
+import { Toaster } from "../components/ui/sonner";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -39,6 +40,7 @@ function RootComponent() {
       </div>
 
       {process.env.NODE_ENV === "development" && <TanStackRouterDevtools />}
+      <Toaster />
     </div>
   );
 }
