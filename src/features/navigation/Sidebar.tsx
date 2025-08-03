@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { getChaptersBySection } from "../chapters/curriculum";
 import { useStudyProgress } from "../progress/StudyProgressContext";
@@ -15,9 +15,7 @@ import {
   Lock,
   Folder,
   Beaker,
-  Check,
 } from "lucide-react";
-import { StatusIndicator } from "../chapters/StatusIndicator";
 import { useColorMapper, type SectionColor } from "../theme/useColorMapper";
 import { useSectionProgress } from "../progress/useSectionProgress";
 
@@ -51,63 +49,41 @@ export function Sidebar() {
         key={chapter.id}
         to="/chapters/$chapterId"
         params={{ chapterId: chapter.id }}
-        className={`block w-full text-left p-2 min-h-[44px] rounded-xl transition-all duration-200 group focus-ring animate-scale-in ${
+        className={`group flex items-center px-1 py-0.5 rounded-sm transition-all duration-200 focus-ring-primary ${
           isLab(chapter)
             ? chapterProgress?.status === "completed"
-              ? "bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700"
-              : "border-2 border-dashed border-amber-300 dark:border-amber-600 hover:border-amber-400 dark:hover:border-amber-500"
-            : "border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
+              ? "text-green-700 dark:text-green-400"
+              : "text-amber-700 dark:text-amber-400"
+            : ""
         } ${
           isSelected
-            ? "bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border-blue-200 dark:border-blue-700 shadow-sm"
-            : "hover:bg-gray-50 dark:hover:bg-gray-700/50"
+            ? "bg-primary-100 dark:bg-primary-900/30 text-primary-900 dark:text-primary-100"
+            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50"
         }`}
       >
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-1.5 w-full">
           {isLab(chapter) ? (
-            <div className="relative">
-              <Beaker
-                className={`w-5 h-5 ${
-                  chapterProgress?.status === "completed"
-                    ? "text-green-600 dark:text-green-400"
-                    : chapterProgress?.status === "in-progress"
-                      ? "text-yellow-600 dark:text-yellow-400"
-                      : isSelected
-                        ? "text-blue-600 dark:text-blue-400"
-                        : "text-gray-500 dark:text-gray-400"
-                }`}
-              />
+            <div className="relative flex-shrink-0">
+              <Beaker className="w-3 h-3" />
               {chapterProgress?.status === "completed" && (
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center">
-                  <Check className="w-2 h-2 text-white" strokeWidth={3} />
-                </div>
+                <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-500 rounded-full" />
               )}
               {chapterProgress?.status === "in-progress" && (
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white dark:border-gray-800" />
+                <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-yellow-500 rounded-full" />
               )}
             </div>
           ) : (
-            <StatusIndicator
-              status={
-                chapterProgress?.status as
-                  | "completed"
-                  | "in-progress"
-                  | "not-started"
-                  | undefined
-              }
-              variant="badge"
-              size="sm"
-            />
+            <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+              chapterProgress?.status === "completed"
+                ? "bg-green-500"
+                : chapterProgress?.status === "in-progress"
+                  ? "bg-yellow-500"
+                  : "bg-gray-300 dark:bg-gray-600"
+            }`} />
           )}
-          <p
-            className={`text-sm font-medium truncate ${
-              isSelected
-                ? "text-blue-900 dark:text-blue-100"
-                : "text-gray-900 dark:text-gray-100 group-hover:text-gray-900 dark:group-hover:text-white"
-            }`}
-          >
+          <span className="text-base font-medium truncate">
             {chapter.title}
-          </p>
+          </span>
         </div>
       </Link>
     );
@@ -159,97 +135,73 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="w-full sm:w-80 h-full lg:border-r lg:border-gray-200/50 lg:dark:border-gray-700/50 flex flex-col backdrop-blur-sm mt-9 lg:mt-0">
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+    <aside className="w-full sm:w-72 h-full lg:border-r lg:border-gray-200/50 lg:dark:border-gray-800/50 flex flex-col backdrop-blur-sm mt-9 lg:mt-0">
+      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-1">
         {/* Dashboard Button */}
-        <div className="card animate-slide-in hover-lift">
-          <Link
-            to="/"
-            className={`block w-full p-4 min-h-[44px] text-left transition-colors rounded-xl focus-ring ${
-              location.pathname === "/"
-                ? "bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border border-blue-200 dark:border-blue-700 shadow-sm"
-                : "hover:bg-gray-50 dark:hover:bg-gray-700/50"
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="p-1.5 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-600 dark:text-blue-400">
-                  <BarChart3 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3
-                    className={`font-semibold ${
-                      location.pathname === "/"
-                        ? "text-blue-900 dark:text-blue-100"
-                        : "text-gray-900 dark:text-white"
-                    }`}
-                  >
-                    {t("sidebar.dashboard")}
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    {t("sidebar.overallProgressOverview")}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
+        <Link
+          to="/"
+          className={`group flex items-center px-2 py-1.5 rounded-md transition-all-smooth hover:bg-gray-100 dark:hover:bg-gray-800/50 focus-ring-primary ${
+            location.pathname === "/"
+              ? "bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300"
+              : "text-gray-700 dark:text-gray-300"
+          }`}
+        >
+          <div className={`w-5 h-5 rounded-sm flex items-center justify-center mr-2 ${
+            location.pathname === "/"
+              ? "bg-primary-500 text-white"
+              : "bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400"
+          }`}>
+            <BarChart3 className="w-3 h-3" />
+          </div>
+          <span className="text-lg font-medium">{t("sidebar.dashboard")}</span>
+        </Link>
 
-        <div className="space-y-3">
+        <div className="space-y-0.5">
           {sections.map((section) => {
             const isCollapsed = collapsedSections.has(section.id);
             const progress = getSectionProgress(section.chapters);
-            console.log(section);
 
             return (
-              <div
-                key={section.id}
-                className="card animate-slide-in hover-lift"
-              >
+              <div key={section.id} className="group">
+                {/* Section Header */}
                 <button
                   onClick={() => toggleSection(section.id)}
-                  className="w-full p-4 min-h-[44px] text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl focus-ring"
+                  className="w-full flex items-center justify-between px-2 py-1 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all-smooth focus-ring-primary"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div
-                        className={`p-1.5 rounded-lg ${getIconBgClasses(section.color)}`}
-                      >
-                        {section.icon}
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">
-                          {section.title}
-                        </h3>
-                        <p className="text-xs text-muted-foreground">
-                          {t("sidebar.sectionProgress", {
-                            completed: progress.completed,
-                            total: progress.total,
-                          })}
-                        </p>
-                      </div>
+                  <div className="flex items-center space-x-2">
+                    <div className={`w-4 h-4 rounded-sm flex items-center justify-center ${getIconBgClasses(section.color)}`}>
+                      {React.cloneElement(section.icon, { className: "w-2.5 h-2.5" })}
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                        {progress.percentage}%
-                      </div>
-                      <ChevronRight
-                        className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isCollapsed ? "" : "rotate-90"}`}
-                      />
-                    </div>
+                    <span className="text-lg font-medium text-gray-900 dark:text-white">
+                      {section.title}
+                    </span>
+                    <span className="text-base text-gray-500 dark:text-gray-400">
+                      {progress.completed}/{progress.total}
+                    </span>
                   </div>
-                  <div className="mt-3">
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
-                      <div
-                        className={`h-1.5 rounded-full transition-all duration-300 ${getColorClasses(section.color)}`}
-                        style={{ width: `${progress.percentage}%` }}
-                      />
-                    </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-base font-mono text-gray-500 dark:text-gray-400 w-10 text-right">
+                      {progress.percentage}%
+                    </span>
+                    <ChevronRight
+                      className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${isCollapsed ? "" : "rotate-90"}`}
+                    />
                   </div>
                 </button>
 
+                {/* Ultra-thin Progress Bar */}
+                <div className="mx-2 mt-0.5">
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 h-0.5 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full transition-all duration-300 ${getColorClasses(section.color)}`}
+                      style={{ width: `${progress.percentage}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Chapter List */}
                 {!isCollapsed && (
-                  <div className="px-2 pb-2 space-y-2">
+                  <div className="ml-6 mt-1 space-y-0.5 border-l border-gray-200 dark:border-gray-700 pl-2">
                     {section.chapters.map(renderChapter)}
                   </div>
                 )}
