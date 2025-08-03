@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { type SectionColor } from "../../hooks/useColorMapper";
-import { type SectionProgress } from "../../hooks/useSectionProgress";
-import { WaveBackground } from "./WaveBackground";
+import { type SectionColor } from "../theme/useColorMapper";
+import { type SectionProgress } from "./useSectionProgress";
+import { WaveBackground } from "../theme/WaveBackground";
 import { CircularProgress } from "./CircularProgress";
 import { ProgressLegend } from "./ProgressLegend";
 

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { getChaptersBySection } from "../data/curriculum";
-import { useStudyProgress } from "../contexts/StudyProgressContext";
+import { getChaptersBySection } from "../chapters/curriculum";
+import { useStudyProgress } from "../progress/StudyProgressContext";
 import { useTranslation } from "react-i18next";
-import type { Chapter } from "../types";
-import { isLab } from "../types";
+import type { Chapter } from "../../types";
+import { isLab } from "../../types";
 import {
   BarChart3,
   ChevronRight,
@@ -17,9 +17,9 @@ import {
   Beaker,
   Check,
 } from "lucide-react";
-import { StatusIndicator } from "./ui/StatusIndicator";
-import { useColorMapper, type SectionColor } from "../hooks/useColorMapper";
-import { useSectionProgress } from "../hooks/useSectionProgress";
+import { StatusIndicator } from "../chapters/StatusIndicator";
+import { useColorMapper, type SectionColor } from "../theme/useColorMapper";
+import { useSectionProgress } from "../progress/useSectionProgress";
 
 export function Sidebar() {
   const { progress } = useStudyProgress();

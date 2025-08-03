@@ -1,5 +1,5 @@
-import type { Chapter } from "../types";
-import { isLab } from "../types";
+import type { Chapter } from "../../types";
+import { isLab } from "../../types";
 
 export const chapters: Chapter[] = [
   // H.1: Course overview, Introduction to OS, Architectural support, Processes

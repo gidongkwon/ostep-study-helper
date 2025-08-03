@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { StorageService } from "../services/storage";
+import { StorageService } from "../persistence/storage";
 
 export function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(

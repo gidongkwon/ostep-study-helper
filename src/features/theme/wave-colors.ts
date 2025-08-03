@@ -1,4 +1,4 @@
-import { type SectionColor } from "../../hooks/useColorMapper";
+import { type SectionColor } from "./useColorMapper";
 
 export interface WaveColorScheme {
   primary: string;

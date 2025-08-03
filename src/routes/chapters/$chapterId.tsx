@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ChapterView } from "../../components/ChapterView";
-import { getChapterById } from "../../data/curriculum";
+import { ChapterView } from "../../features/chapters/ChapterView";
+import { getChapterById } from "../../features/chapters/curriculum";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { BookOpen, Beaker, Play } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useStudyProgress } from "../../contexts/StudyProgressContext";
+import { useStudyProgress } from "../../features/progress/StudyProgressContext";
 import type {
   Lab,
   RegularChapter,
@@ -12,12 +12,12 @@ import type {
   LinkResource,
 } from "../../types";
 import { isLab } from "../../types";
-import { StatusButton } from "../../components/ui/StatusButton";
+import { StatusButton } from "../../features/chapters/StatusButton";
 import { EmptyState } from "../../components/ui/EmptyState";
 import { PageContainer } from "../../components/ui/PageContainer";
-import { LabPlaceholder } from "../../components/ui/LabPlaceholder";
-import { SectionHeader } from "../../components/ui/SectionHeader";
-import { StatusDisplay } from "../../components/ui/StatusDisplay";
+import { LabPlaceholder } from "../../features/lab/LabPlaceholder";
+import { SectionHeader } from "../../features/chapters/SectionHeader";
+import { StatusDisplay } from "../../features/chapters/StatusDisplay";
 import { getStatusButtonConfig } from "../../utils/statusButtonConfig";
 import markdownit from "markdown-it";
 

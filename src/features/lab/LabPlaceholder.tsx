@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Target } from "lucide-react";
-import { IconCard } from "./IconCard";
+import { IconCard } from "../../components/ui/IconCard";
 
 export function LabPlaceholder() {
   const { t } = useTranslation();

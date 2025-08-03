@@ -1,5 +1,5 @@
-import { type SectionColor } from "../../hooks/useColorMapper";
-import { getChaptersBySection } from "../../data/curriculum";
+import { type SectionColor } from "../theme/useColorMapper";
+import { getChaptersBySection } from "../chapters/curriculum";
 import type { Chapter } from "../../types";
 
 export interface ProgressSection {
@@ -54,7 +54,7 @@ export function createProgressSections(t: (key: string) => string): ProgressSect
     title: config.id.startsWith("lab") 
       ? `H.${config.id.slice(3)}: ${t(config.titleKey)}`
       : t(config.titleKey),
-    chapters: getChaptersBySection(config.id),
+    chapters: getChaptersBySection(config.id as Chapter["section"]),
     color: config.color,
   }));
 }

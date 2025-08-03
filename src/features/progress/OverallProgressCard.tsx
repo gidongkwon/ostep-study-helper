@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Zap } from "lucide-react";
-import { GradientCard } from "./GradientCard";
+import { GradientCard } from "../../components/ui/GradientCard";
 import { CircularProgress } from "./CircularProgress";
 
 export interface OverallStatsData {

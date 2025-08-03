@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useColorMapper, type SectionColor } from "../../hooks/useColorMapper";
+import { useColorMapper, type SectionColor } from "../theme/useColorMapper";
 
 interface ProgressLegendProps {
   completed: number;

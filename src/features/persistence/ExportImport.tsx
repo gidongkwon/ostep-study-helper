@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useStudyProgress } from "../contexts/StudyProgressContext";
+import { useStudyProgress } from "../progress/StudyProgressContext";
 import { useTranslation } from "react-i18next";
 
 export function ExportImport() {

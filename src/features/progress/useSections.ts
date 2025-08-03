@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { createProgressSections, type ProgressSection } from "../components/ui/progress-sections";
-import { useSectionProgress, type SectionProgress } from "./useSectionProgress";
+import { createProgressSections, type ProgressSection } from "../progress/progress-sections";
+import { useSectionProgress, type SectionProgress } from "../progress/useSectionProgress";
 
 export interface SectionWithProgress extends ProgressSection {
   sectionStats: SectionProgress;

@@ -2,9 +2,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import "./index.css";
-import "./i18n";
-import { StudyProgressProvider } from "./contexts/StudyProgressProvider";
-import { LabProvider } from "./contexts/LabProvider";
+import "./features/i18n";
+import { StudyProgressProvider } from "./features/progress/StudyProgressProvider";
+import { LabProvider } from "./features/lab/LabProvider";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";

@@ -1,7 +1,7 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { Header } from "../components/Header";
-import { Sidebar } from "../components/Sidebar";
+import { Header } from "../features/navigation/Header";
+import { Sidebar } from "../features/navigation/Sidebar";
 import { ErrorBoundary } from "../components/ErrorBoundary";
 import { NotFound } from "../components/NotFound";
 import { useState } from "react";

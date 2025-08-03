@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useTheme } from "../hooks/useTheme";
-import { useStudyProgress } from "../contexts/StudyProgressContext";
-import { ExportImport } from "./ExportImport";
-import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTheme } from "../theme/useTheme";
+import { useStudyProgress } from "../progress/StudyProgressContext";
+import { ExportImport } from "../persistence/ExportImport";
+import { LanguageSwitcher } from "../i18n/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import {
   Menu,
@@ -13,15 +13,15 @@ import {
   Download,
   Upload,
 } from "lucide-react";
-import { IconButton } from "./ui/IconButton";
-import { ProgressBar } from "./ui/ProgressBar";
+import { IconButton } from "../../components/ui/IconButton";
+import { ProgressBar } from "../progress/ProgressBar";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
+} from "../../components/ui/sheet";
 
 interface HeaderProps {
   onToggleSidebar?: () => void;

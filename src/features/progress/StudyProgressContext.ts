@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { ChapterProgress, ProgressStatus } from "../types";
+import type { ChapterProgress, ProgressStatus } from "../../types";
 
 export interface StudyProgressContextType {
   progress: Record<string, ChapterProgress>;

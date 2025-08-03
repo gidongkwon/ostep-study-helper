@@ -1,10 +1,10 @@
 import React from "react";
-import { useStudyProgress } from "../contexts/StudyProgressContext";
+import { useStudyProgress } from "./StudyProgressContext";
 import { useTranslation } from "react-i18next";
-import { StatsGrid } from "./ui/StatsGrid";
-import { OverallProgressCard } from "./ui/OverallProgressCard";
-import { SectionProgressCard } from "./ui/SectionProgressCard";
-import { useSections } from "../hooks/useSections";
+import { StatsGrid } from "./StatsGrid";
+import { OverallProgressCard } from "./OverallProgressCard";
+import { SectionProgressCard } from "./SectionProgressCard";
+import { useSections } from "./useSections";
 
 export const ProgressChart = React.memo(function ProgressChart() {
   const { stats, progress } = useStudyProgress();

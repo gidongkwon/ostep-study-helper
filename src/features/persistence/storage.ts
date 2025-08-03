@@ -1,5 +1,5 @@
-import type { StudyData, ChapterProgress, ProgressStatus } from "../types";
-import { chapters } from "../data/curriculum";
+import type { StudyData, ChapterProgress, ProgressStatus } from "../../types";
+import { chapters } from "../chapters/curriculum";
 
 const STORAGE_KEY = "ostep-study-data";
 

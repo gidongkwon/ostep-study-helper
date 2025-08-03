@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { type SectionColor } from "../../hooks/useColorMapper";
+import { type SectionColor } from "./useColorMapper";
 import { WAVE_COLORS } from "./wave-colors";
 
 interface WaveBackgroundProps {

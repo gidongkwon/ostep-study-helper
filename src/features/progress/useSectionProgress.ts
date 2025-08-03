@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { Chapter } from "../types";
+import type { Chapter } from "../../types";
 
 export interface SectionProgress {
   completed: number;

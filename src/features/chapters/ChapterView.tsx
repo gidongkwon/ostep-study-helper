@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
-import type { RegularChapter, ProgressStatus } from "../types";
-import { useStudyProgress } from "../contexts/StudyProgressContext";
+import type { RegularChapter, ProgressStatus } from "../../types";
+import { useStudyProgress } from "../progress/StudyProgressContext";
 import { Presentation, Download, FileText } from "lucide-react";
-import { StatusButton } from "./ui/StatusButton";
-import { IconCard } from "./ui/IconCard";
-import { EmptyState } from "./ui/EmptyState";
-import { PageContainer } from "./ui/PageContainer";
-import { SectionHeader } from "./ui/SectionHeader";
-import { StatusDisplay } from "./ui/StatusDisplay";
-import { getStatusButtonConfig } from "../utils/statusButtonConfig";
+import { StatusButton } from "./StatusButton";
+import { IconCard } from "../../components/ui/IconCard";
+import { EmptyState } from "../../components/ui/EmptyState";
+import { PageContainer } from "../../components/ui/PageContainer";
+import { SectionHeader } from "./SectionHeader";
+import { StatusDisplay } from "./StatusDisplay";
+import { getStatusButtonConfig } from "../../utils/statusButtonConfig";
 
 interface ChapterViewProps {
   chapter: RegularChapter;

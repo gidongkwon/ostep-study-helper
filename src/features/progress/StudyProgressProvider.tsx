@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import type { ReactNode } from "react";
-import { StorageService } from "../services/storage";
-import type { ChapterProgress, ProgressStatus } from "../types";
+import { StorageService } from "../persistence/storage";
+import type { ChapterProgress, ProgressStatus } from "../../types";
 import { StudyProgressContext } from "./StudyProgressContext";
 
 interface StudyProgressProviderProps {
