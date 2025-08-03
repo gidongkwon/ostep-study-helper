@@ -8,6 +8,7 @@ import { ProgressLegend } from "./ui/ProgressLegend";
 import { CircularProgress } from "./ui/CircularProgress";
 import { type SectionColor } from "../hooks/useColorMapper";
 import { useSectionProgress } from "../hooks/useSectionProgress";
+import { WaveBackground } from "./ui/WaveBackground";
 
 export function ProgressChart() {
   const { stats, progress } = useStudyProgress();
@@ -147,32 +148,36 @@ export function ProgressChart() {
             return (
               <div
                 key={section.id}
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-6 flex flex-col items-center text-center shadow-sm"
+                className="relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl  flex flex-col items-center text-center shadow-sm overflow-hidden"
               >
-                <div className="mb-4">
-                  <CircularProgress
-                    percentage={completionRate}
-                    size="lg"
-                    color={section.color}
-                    showLabel={true}
+                <WaveBackground color={section.color} percentage={completionRate} />
+                
+                <div className="relative z-10 w-full bg-white/10 p-4 sm:p-6">
+                  <div className="mb-4">
+                    <CircularProgress
+                      percentage={completionRate}
+                      size="lg"
+                      color={section.color}
+                      showLabel={true}
+                    />
+                  </div>
+
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    {section.title}
+                  </h4>
+
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    {sectionStats.completed}/{sectionStats.total} chapters
+                  </div>
+
+                  <ProgressLegend
+                    completed={sectionStats.completed}
+                    inProgress={sectionStats.inProgress}
+                    notStarted={sectionStats.notStarted}
+                    sectionColor={section.color}
+                    size="sm"
                   />
                 </div>
-
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  {section.title}
-                </h4>
-
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  {sectionStats.completed}/{sectionStats.total} chapters
-                </div>
-
-                <ProgressLegend
-                  completed={sectionStats.completed}
-                  inProgress={sectionStats.inProgress}
-                  notStarted={sectionStats.notStarted}
-                  sectionColor={section.color}
-                  size="sm"
-                />
               </div>
             );
           })}
