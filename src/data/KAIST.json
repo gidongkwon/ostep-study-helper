@@ -40,22 +40,27 @@
       "videoLinksWithDurations": [
         {
           "url": "https://www.youtube.com/watch?v=IJ9vYSilvf0&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=4",
+          "name": "LDE",
           "duration": "12:39"
         },
         {
           "url": "https://www.youtube.com/watch?v=R_GGlxUs_e0&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=5",
+          "name": "System Call",
           "duration": "6:08"
         },
         {
           "url": "https://www.youtube.com/watch?v=PEUB6xMv40w&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=3",
+          "name": "Trap",
           "duration": "6:42"
         },
         {
           "url": "https://www.youtube.com/watch?v=3BPhS7oztpM&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=2",
+          "name": "Gain Control (Timer Interrupt)",
           "duration": "6:57"
         },
         {
           "url": "https://www.youtube.com/watch?v=4JKNwudqfOU&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=1",
+          "name": "Context Switch",
           "duration": "6:27"
         }
       ]

@@ -122,11 +122,12 @@ export function ChapterView({ chapter }: ChapterViewProps) {
 
         {/* Other aligned resources */}
         {alignedResources.map((alignedResource, index) => (
-          <div key={index} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* SNU Side */}
             <div className="space-y-4">
               {alignedResource.snuPdf ? (
-                <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+                <>
                   <div className="flex items-center gap-2 mb-3">
                     <h4 className="font-semibold text-gray-900 dark:text-white">
                       {alignedResource.snuPdf.title}
@@ -153,7 +154,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                       />
                     )}
                   </div>
-                </div>
+                </>
               ) : (
                 <div className="h-full flex items-center justify-center p-8">
                   <div className="text-center text-gray-400 dark:text-gray-600">
@@ -167,7 +168,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
             {/* KAIST Side */}
             <div className="space-y-4">
               {alignedResource.kaistResource ? (
-                <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+                <>
                   <div className="flex items-center gap-2 mb-3">
                     <h4 className="font-semibold text-gray-900 dark:text-white">
                       {alignedResource.kaistResource.name}
@@ -195,7 +196,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                       />
                     ))}
                   </div>
-                </div>
+                </>
               ) : (
                 <div className="h-full flex items-center justify-center p-8">
                   <div className="text-center text-gray-400 dark:text-gray-600">
@@ -204,6 +205,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                   </div>
                 </div>
               )}
+            </div>
             </div>
           </div>
         ))}
