@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import type { RegularChapter, ProgressStatus } from "../../types";
 import { useStudyProgress } from "../progress/StudyProgressContext";
-import { Presentation, Download, FileText, Video, ExternalLink } from "lucide-react";
+import { Presentation, FileText, Video, ExternalLink } from "lucide-react";
 import { StatusButton } from "./StatusButton";
 import { IconCard } from "../../components/ui/IconCard";
 import { EmptyState } from "../../components/ui/EmptyState";
@@ -136,19 +136,19 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                   <div className="space-y-2">
                     <IconCard
                       href={alignedResource.snuPdf.englishPdf}
-                      icon={<Download className="w-4 h-4 text-white" />}
-                      title={t("chapterView.englishPdf")}
-                      description={t("chapterView.originalContent")}
+                      icon={<FileText className="w-4 h-4 text-white" />}
+                      title="English PDF"
+                      description="OSTEP textbook chapter"
                       color="blue"
                       className="p-2"
                     />
                     {alignedResource.snuPdf.koreanPdf && (
                       <IconCard
                         href={alignedResource.snuPdf.koreanPdf}
-                        icon={<Download className="w-4 h-4 text-white" />}
-                        title={t("chapterView.koreanPdf")}
-                        description={t("chapterView.translatedContent")}
-                        color="green"
+                        icon={<FileText className="w-4 h-4 text-white" />}
+                        title="Korean PDF"
+                        description="OSTEP textbook chapter (Korean)"
+                        color="blue"
                         className="p-2"
                       />
                     )}
@@ -157,7 +157,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
               ) : (
                 <div className="h-full flex items-center justify-center p-8">
                   <div className="text-center text-gray-400 dark:text-gray-600">
-                    <FileText className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                    <ExternalLink className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-sm">No SNU material</p>
                   </div>
                 </div>
@@ -183,13 +183,13 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                       color="orange"
                       className="p-2"
                     />
-                    {alignedResource.kaistResource.videoLinks.map((videoLink, videoIndex) => (
+                    {(alignedResource.kaistResource.videoLinksWithDurations || []).map((videoData: { url: string; duration: string; name?: string }, videoIndex: number) => (
                       <IconCard
                         key={videoIndex}
-                        href={videoLink}
+                        href={videoData.url}
                         icon={<Video className="w-4 h-4 text-white" />}
-                        title={`${t("chapterView.videoLecture", "Video Lecture")}${alignedResource.kaistResource!.videoLinks.length > 1 ? ` ${videoIndex + 1}` : ''}`}
-                        description="KAIST video content"
+                        title={videoData.name || `${t("chapterView.videoLecture", "Video Lecture")}${(alignedResource.kaistResource?.videoLinksWithDurations || []).length > 1 ? ` ${videoIndex + 1}` : ''}`}
+                        description={`KAIST video content • ${videoData.duration}`}
                         color="red"
                         className="p-2"
                       />

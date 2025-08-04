@@ -13,7 +13,7 @@ export interface LinkResource {
 export interface KAISTResource {
   name: string;
   pptUrl: string;
-  videoLinks: string[];
+  videoLinksWithDurations?: { url: string; duration: string; name?: string }[];
   mappedToChapter: string | null;
 }
 
