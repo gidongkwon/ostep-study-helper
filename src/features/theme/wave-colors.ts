@@ -10,43 +10,43 @@ export type WaveColorMap = Record<SectionColor | "yellow" | "gray", WaveColorSch
 
 export const WAVE_COLORS: WaveColorMap = {
   blue: {
-    primary: "#4579e2",
-    secondary: "#3461c1",
-    tertiary: "#2d55aa",
+    primary: "#60a5fa",
+    secondary: "#3b82f6",
+    tertiary: "#2563eb",
   },
   purple: {
-    primary: "#8b5cf6",
-    secondary: "#7c3aed",
-    tertiary: "#6d28d9",
+    primary: "#a78bfa",
+    secondary: "#8b5cf6",
+    tertiary: "#7c3aed",
   },
   green: {
-    primary: "#10b981",
-    secondary: "#059669",
-    tertiary: "#047857",
+    primary: "#34d399",
+    secondary: "#10b981",
+    tertiary: "#059669",
   },
   orange: {
-    primary: "#f97316",
-    secondary: "#ea580c",
-    tertiary: "#dc2626",
-  },
-  red: {
-    primary: "#ef4444",
-    secondary: "#dc2626",
-    tertiary: "#b91c1c",
-  },
-  indigo: {
-    primary: "#6366f1",
-    secondary: "#4f46e5",
-    tertiary: "#4338ca",
-  },
-  yellow: {
     primary: "#fbbf24",
     secondary: "#f59e0b",
     tertiary: "#d97706",
   },
-  gray: {
-    primary: "#9ca3af",
-    secondary: "#6b7280",
-    tertiary: "#4b5563",
+  red: {
+    primary: "#f87171",
+    secondary: "#ef4444",
+    tertiary: "#dc2626",
   },
-};
+  indigo: {
+    primary: "#818cf8",
+    secondary: "#6366f1",
+    tertiary: "#4f46e5",
+  },
+  yellow: {
+    primary: "#fde047",
+    secondary: "#facc15",
+    tertiary: "#eab308",
+  },
+  gray: {
+    primary: "#d1d5db",
+    secondary: "#9ca3af",
+    tertiary: "#6b7280",
+  },
+};;

@@ -46,21 +46,21 @@ export const WaveBackground = React.memo(function WaveBackground({
             x="50"
             y="1"
             fill={colors.secondary}
-            className="opacity-15 dark:opacity-10"
+            className="opacity-30 dark:opacity-25"
           />
           <use
             xlinkHref={`#${wavePathId}`}
             x="50"
             y="2"
             fill={colors.tertiary}
-            className="opacity-10 dark:opacity-5"
+            className="opacity-20 dark:opacity-15"
           />
           <use
             xlinkHref={`#${wavePathId}`}
             x="50"
             y="0"
             fill={colors.primary}
-            className="opacity-10 dark:opacity-5"
+            className="opacity-25 dark:opacity-20"
           />
         </g>
       </svg>
