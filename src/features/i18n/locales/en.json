@@ -10,7 +10,9 @@
     "lastUpdated": "Last Updated",
     "chapters": "Chapters",
     "progress": "Progress",
-    "options": "Options"
+    "options": "Options",
+    "chaptersCount": "chapters",
+    "progressComplete": "complete"
   },
   "dashboard": {
     "title": "Study Progress Overview",
@@ -87,13 +89,20 @@
     "lectureMaterials": "Lecture Materials",
     "lectureSlides": "Lecture Slides",
     "lectureSlidesDesc": "Professor's lecture slides and presentations",
+    "snuLectureSlides": "SNU lecture slides",
+    "kaistLectureSlides": "KAIST lecture slides",
+    "kaistVideoContent": "KAIST video content",
     "textbookResources": "Textbook Resources",
     "englishPdf": "English PDF",
     "koreanPdf": "Korean PDF",
+    "ostepTextbookChapter": "OSTEP textbook chapter",
+    "ostepTextbookChapterKorean": "OSTEP textbook chapter (Korean)",
     "originalContent": "Original OSTEP content",
     "translatedContent": "Korean translated version",
     "noReadingMaterials": "No additional reading materials available for this chapter.",
     "noOstepChapters": "No OSTEP chapters found for this section.",
+    "noSnuMaterial": "No SNU material",
+    "noKaistMaterial": "No KAIST material",
     "noKoreanPdf": "Korean PDF",
     "koreanNotAvailable": "Korean translation not available",
     "personalNotes": "Personal Notes",
@@ -122,7 +131,12 @@
     "fileError": "Error importing file. Please check the file format."
   },
   "accessibility": {
-    "close": "Close"
+    "close": "Close",
+    "toggleLanguage": "Toggle language",
+    "sectionProgress": "{{title}} section, {{completed}} of {{total}} chapters completed, {{percentage}}% progress",
+    "progressStatus": "{{title}} progress: {{completionRate}}% complete",
+    "progressDetails": "Progress: {{progressText}}",
+    "completionStatus": "{{title}} completion: {{completionRate}}%"
   },
   "notFound": {
     "title": "Page not found",
@@ -157,5 +171,10 @@
       "name": "Lab 5: Concurrency and Storage",
       "description": "Synchronization primitives and storage devices"
     }
+  },
+  "errors": {
+    "title": "Oops! Something went wrong",
+    "description": "An unexpected error occurred. Please try refreshing the page.",
+    "refreshButton": "Refresh Page"
   }
 }

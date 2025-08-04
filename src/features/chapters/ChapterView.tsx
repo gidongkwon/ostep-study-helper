@@ -106,7 +106,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                   href={chapter.lectureSlide}
                   icon={<Presentation className="w-4 h-4 text-white" />}
                   title={t("chapterView.lectureSlides")}
-                  description="SNU lecture slides"
+                  description={t("chapterView.snuLectureSlides")}
                   color="purple"
                   className="p-2"
                 />
@@ -138,8 +138,8 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                     <IconCard
                       href={alignedResource.snuPdf.englishPdf}
                       icon={<FileText className="w-4 h-4 text-white" />}
-                      title="English PDF"
-                      description="OSTEP textbook chapter"
+                      title={t("chapterView.englishPdf")}
+                      description={t("chapterView.ostepTextbookChapter")}
                       color="blue"
                       className="p-2"
                     />
@@ -147,8 +147,8 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                       <IconCard
                         href={alignedResource.snuPdf.koreanPdf}
                         icon={<FileText className="w-4 h-4 text-white" />}
-                        title="Korean PDF"
-                        description="OSTEP textbook chapter (Korean)"
+                        title={t("chapterView.koreanPdf")}
+                        description={t("chapterView.ostepTextbookChapterKorean")}
                         color="blue"
                         className="p-2"
                       />
@@ -159,7 +159,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                 <div className="h-full flex items-center justify-center p-8">
                   <div className="text-center text-gray-400 dark:text-gray-600">
                     <ExternalLink className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-sm">No SNU material</p>
+                    <p className="text-sm">{t("chapterView.noSnuMaterial")}</p>
                   </div>
                 </div>
               )}
@@ -180,7 +180,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                       href={alignedResource.kaistResource.pptUrl}
                       icon={<Presentation className="w-4 h-4 text-white" />}
                       title={t("chapterView.powerPointSlides", "PowerPoint Slides")}
-                      description="KAIST lecture slides"
+                      description={t("chapterView.kaistLectureSlides")}
                       color="orange"
                       className="p-2"
                     />
@@ -190,7 +190,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                         href={videoData.url}
                         icon={<Video className="w-4 h-4 text-white" />}
                         title={videoData.name || `${t("chapterView.videoLecture", "Video Lecture")}${(alignedResource.kaistResource?.videoLinksWithDurations || []).length > 1 ? ` ${videoIndex + 1}` : ''}`}
-                        description={`KAIST video content • ${videoData.duration}`}
+                        description={`${t("chapterView.kaistVideoContent")} • ${videoData.duration}`}
                         color="red"
                         className="p-2"
                       />
@@ -201,7 +201,7 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                 <div className="h-full flex items-center justify-center p-8">
                   <div className="text-center text-gray-400 dark:text-gray-600">
                     <ExternalLink className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-sm">No KAIST material</p>
+                    <p className="text-sm">{t("chapterView.noKaistMaterial")}</p>
                   </div>
                 </div>
               )}

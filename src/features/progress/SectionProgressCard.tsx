@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { type SectionColor } from "../theme/useColorMapper";
 import { type SectionProgress } from "./useSectionProgress";
 import { WaveBackground } from "../theme/WaveBackground";
@@ -18,14 +19,16 @@ export const SectionProgressCard = React.memo(function SectionProgressCard({
   sectionStats,
   className = "",
 }: SectionProgressCardProps) {
+  const { t } = useTranslation();
+  
   const completionRate = useMemo(
     () => Math.round((sectionStats.completed / sectionStats.total) * 100),
     [sectionStats.completed, sectionStats.total],
   );
 
   const progressText = useMemo(
-    () => `${sectionStats.completed}/${sectionStats.total} chapters`,
-    [sectionStats.completed, sectionStats.total],
+    () => `${sectionStats.completed}/${sectionStats.total} ${t('common.chaptersCount')}`,
+    [sectionStats.completed, sectionStats.total, t],
   );
 
   return (
@@ -38,7 +41,7 @@ export const SectionProgressCard = React.memo(function SectionProgressCard({
         ${className}
       `}
       role="region"
-      aria-label={`${title} progress: ${completionRate}% complete`}
+      aria-label={t("accessibility.progressStatus", { title, completionRate })}
     >
       <WaveBackground color={color} percentage={completionRate} />
 
@@ -49,7 +52,7 @@ export const SectionProgressCard = React.memo(function SectionProgressCard({
 
         <div
           className="text-sm text-gray-600 dark:text-gray-400 mb-3"
-          aria-label={`Progress: ${progressText}`}
+          aria-label={t("accessibility.progressDetails", { progressText })}
         >
           {progressText}
         </div>
@@ -60,7 +63,7 @@ export const SectionProgressCard = React.memo(function SectionProgressCard({
             size="lg"
             color={color}
             showLabel={true}
-            aria-label={`${title} completion: ${completionRate}%`}
+            aria-label={t("accessibility.completionStatus", { title, completionRate })}
           />
           <ProgressLegend
             completed={sectionStats.completed}

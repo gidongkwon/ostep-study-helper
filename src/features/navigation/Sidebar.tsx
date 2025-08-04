@@ -179,7 +179,7 @@ export function Sidebar() {
                   className="sidebar-section-button w-full flex items-center justify-between px-3 py-3 text-left rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
                   aria-expanded={!isCollapsed}
                   aria-controls={`section-${section.id}`}
-                  aria-label={`${section.title} section, ${progress.completed} of ${progress.total} chapters completed, ${progress.percentage}% progress`}
+                  aria-label={t("accessibility.sectionProgress", { title: section.title, completed: progress.completed, total: progress.total, percentage: progress.percentage })}
                 >
                   <div className="flex items-center space-x-3">
                     <div className={`w-6 h-6 rounded-md flex items-center justify-center ${getIconBgClasses(section.color)}`}>
