@@ -43,7 +43,7 @@ export const SectionProgressCard = React.memo(function SectionProgressCard({
       role="region"
       aria-label={t("accessibility.progressStatus", { title, completionRate })}
     >
-      <WaveBackground color={color} percentage={completionRate} />
+      <WaveBackground color={color} percentage={completionRate} className="hidden" />
 
       <div className="relative z-10 w-fit p-2 sm:p-4 flex flex-col h-full">
         <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
