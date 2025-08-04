@@ -10,6 +10,13 @@ export interface LinkResource {
   link: string;
 }
 
+export interface KAISTResource {
+  name: string;
+  pptUrl: string;
+  videoLinks: string[];
+  mappedToChapter: string | null;
+}
+
 interface BaseChapter {
   id: string;
   title: string;

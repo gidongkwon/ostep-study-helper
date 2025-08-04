@@ -34,6 +34,8 @@ export function IconCard({
     red: "from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 border-red-200 dark:border-red-700/50",
     indigo:
       "from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 border-indigo-200 dark:border-indigo-700/50",
+    orange:
+      "from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 border-orange-200 dark:border-orange-700/50",
   };
 
   const iconColorClasses = {
@@ -43,6 +45,7 @@ export function IconCard({
     yellow: "bg-yellow-600",
     red: "bg-red-600",
     indigo: "bg-indigo-600",
+    orange: "bg-orange-600",
   };
 
   const textColorClasses = {
@@ -56,9 +59,11 @@ export function IconCard({
     red: "text-red-800 dark:text-red-200 group-hover:text-red-900 dark:group-hover:text-red-100",
     indigo:
       "text-indigo-800 dark:text-indigo-200 group-hover:text-indigo-900 dark:group-hover:text-indigo-100",
+    orange:
+      "text-orange-800 dark:text-orange-200 group-hover:text-orange-900 dark:group-hover:text-orange-100",
   };
 
-  const baseClasses = `group block p-6 bg-gradient-to-br ${colorClasses[color as keyof typeof colorClasses]} rounded-xl border ${
+  const baseClasses = `group block p-4 bg-gradient-to-br ${colorClasses[color as keyof typeof colorClasses]} rounded-xl border ${
     hoverable
       ? "hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
       : ""
@@ -66,9 +71,9 @@ export function IconCard({
 
   const content = (
     <>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-3">
         <div
-          className={`w-12 h-12 ${iconColorClasses[color as keyof typeof iconColorClasses]} rounded-xl flex items-center justify-center shadow-lg ${
+          className={`w-10 h-10 ${iconColorClasses[color as keyof typeof iconColorClasses]} rounded-lg flex items-center justify-center shadow-lg ${
             hoverable ? "group-hover:shadow-xl transition-all duration-200" : ""
           }`}
         >
@@ -76,7 +81,7 @@ export function IconCard({
         </div>
         <div className="flex-1">
           <h3
-            className={`font-semibold ${textColorClasses[color as keyof typeof textColorClasses]} text-lg`}
+            className={`font-semibold ${textColorClasses[color as keyof typeof textColorClasses]} text-base`}
           >
             {title}
           </h3>
@@ -93,7 +98,9 @@ export function IconCard({
                         ? "text-yellow-600 dark:text-yellow-300"
                         : color === "red"
                           ? "text-red-600 dark:text-red-300"
-                          : "text-indigo-600 dark:text-indigo-300"
+                          : color === "orange"
+                            ? "text-orange-600 dark:text-orange-300"
+                            : "text-indigo-600 dark:text-indigo-300"
               }`}
             >
               {description}

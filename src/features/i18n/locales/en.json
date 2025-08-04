@@ -18,7 +18,17 @@
     "progressBySection": "Progress by Section",
     "keepUpTheWork": "Keep up the great work!",
     "completedDescription": "You've completed {{completed}} out of {{total}} chapters.",
-    "percentageDescription": "That's {{percentage}}% of your OS learning journey!"
+    "percentageDescription": "That's {{percentage}}% of your OS learning journey!",
+    "encouragement": {
+      "justStarting": "Ready to begin your OS journey?",
+      "greatStart": "Great start! Keep the momentum going!",
+      "buildingMomentum": "You're building great momentum!",
+      "halfwayThere": "Fantastic! You're halfway there!",
+      "strongProgress": "Strong progress! Keep pushing forward!",
+      "almostThere": "You're almost there! Don't give up!",
+      "finalStretch": "Final stretch! You've got this!",
+      "completed": "Amazing! You've mastered OSTEP!"
+    }
   },
   "sidebar": {
     "dashboard": "Dashboard",
@@ -87,6 +97,8 @@
     "noKoreanPdf": "Korean PDF",
     "koreanNotAvailable": "Korean translation not available",
     "personalNotes": "Personal Notes",
+    "powerPointSlides": "PowerPoint Slides",
+    "videoLecture": "Video Lecture",
     "editNotes": "Edit Notes",
     "notesPlaceholder": "Add your thoughts, questions, and key insights from this chapter...",
     "saveNotes": "Save Notes",
@@ -124,6 +136,26 @@
     "exercises": "Exercises",
     "objectivesPlaceholder": "Lab objectives will be displayed here when content is added.",
     "exercisesPlaceholder": "Lab exercises will be displayed here when content is added.",
-    "comingSoon": "Full lab content with interactive exercises, code examples, and resources will be available in a future update."
+    "comingSoon": "Full lab content with interactive exercises, code examples, and resources will be available in a future update.",
+    "lab1": {
+      "name": "Lab 1: Introduction to OS",
+      "description": "Getting started with operating systems concepts"
+    },
+    "lab2": {
+      "name": "Lab 2: CPU Scheduling",
+      "description": "Understanding CPU scheduling and virtual memory"
+    },
+    "lab3": {
+      "name": "Lab 3: Paging and Memory",
+      "description": "Deep dive into paging, page tables, and TLB"
+    },
+    "lab4": {
+      "name": "Lab 4: Advanced Memory",
+      "description": "Swapping, VM implementations, and threads"
+    },
+    "lab5": {
+      "name": "Lab 5: Concurrency and Storage",
+      "description": "Synchronization primitives and storage devices"
+    }
   }
 }

@@ -138,3 +138,7 @@ Always write one test at a time, make it run, then improve structure. Always run
 ## Development Tools and Techniques
 
 - Use Playwright MCP to take website screenshots.
+
+## Development Workflow Tips
+
+- Before running "pnpm run dev", ALWAYS check whether dev process already running.

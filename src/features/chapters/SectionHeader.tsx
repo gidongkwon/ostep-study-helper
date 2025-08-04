@@ -1,9 +1,8 @@
 import { type ReactNode } from "react";
-import { SectionBadge } from "./SectionBadge";
 
 interface SectionHeaderProps {
   title: string;
-  section?: string;
+  statusBadge?: ReactNode;
   icon?: ReactNode;
   children?: ReactNode;
   className?: string;
@@ -11,16 +10,16 @@ interface SectionHeaderProps {
 
 export function SectionHeader({
   title,
-  section,
+  statusBadge,
   icon,
   children,
   className = "",
 }: SectionHeaderProps) {
   return (
     <div className={`flex-1 ${className}`}>
-      {section && (
+      {statusBadge && (
         <div className="flex items-center space-x-3 mb-2">
-          <SectionBadge text={section.toUpperCase()} />
+          {statusBadge}
         </div>
       )}
       <div className="flex items-center space-x-3 mb-4">

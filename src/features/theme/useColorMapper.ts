@@ -29,19 +29,19 @@ export function useColorMapper() {
   const getIconBgClasses = (color: SectionColor): string => {
     switch (color) {
       case "blue":
-        return "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400";
+        return "bg-blue-500 dark:bg-blue-600 text-white";
       case "purple":
-        return "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400";
+        return "bg-purple-500 dark:bg-purple-600 text-white";
       case "green":
-        return "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400";
+        return "bg-green-500 dark:bg-green-600 text-white";
       case "orange":
-        return "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400";
+        return "bg-orange-500 dark:bg-orange-600 text-white";
       case "red":
-        return "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400";
+        return "bg-red-500 dark:bg-red-600 text-white";
       case "indigo":
-        return "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400";
+        return "bg-indigo-500 dark:bg-indigo-600 text-white";
       default:
-        return "bg-gray-100 dark:bg-gray-900/30 text-gray-600 dark:text-gray-400";
+        return "bg-gray-500 dark:bg-gray-600 text-white";
     }
   };
 

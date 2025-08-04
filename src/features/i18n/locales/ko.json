@@ -18,7 +18,17 @@
     "progressBySection": "섹션별 진행률",
     "keepUpTheWork": "계속해서 잘하고 있어요!",
     "completedDescription": "총 {{total}}개 챕터 중 {{completed}}개를 완료했습니다.",
-    "percentageDescription": "운영체제 학습 여정의 {{percentage}}%를 달성했어요!"
+    "percentageDescription": "운영체제 학습 여정의 {{percentage}}%를 달성했어요!",
+    "encouragement": {
+      "justStarting": "운영체제 여정을 시작할 준비가 되셨나요?",
+      "greatStart": "훌륭한 시작이에요! 계속 해보세요!",
+      "buildingMomentum": "좋은 흐름을 만들어가고 있어요!",
+      "halfwayThere": "정말 대단해요! 절반을 달성했어요!",
+      "strongProgress": "강력한 진전이에요! 계속 앞으로!",
+      "almostThere": "거의 다 왔어요! 포기하지 마세요!",
+      "finalStretch": "마지막 단계예요! 할 수 있어요!",
+      "completed": "놀라워요! OSTEP을 마스터했어요!"
+    }
   },
   "sidebar": {
     "dashboard": "대시보드",
@@ -87,6 +97,8 @@
     "noKoreanPdf": "한국어 PDF",
     "koreanNotAvailable": "한국어 번역본이 없습니다",
     "personalNotes": "개인 노트",
+    "powerPointSlides": "파워포인트 슬라이드",
+    "videoLecture": "동영상 강의",
     "editNotes": "노트 편집",
     "notesPlaceholder": "이 챕터에서 얻은 생각, 질문, 주요 통찰을 추가하세요...",
     "saveNotes": "노트 저장",
@@ -124,6 +136,26 @@
     "exercises": "실습",
     "objectivesPlaceholder": "콘텐츠가 추가되면 랩 목표가 여기에 표시됩니다.",
     "exercisesPlaceholder": "콘텐츠가 추가되면 랩 실습이 여기에 표시됩니다.",
-    "comingSoon": "인터랙티브 실습, 코드 예제, 리소스를 포함한 전체 랩 콘텐츠는 향후 업데이트에서 제공될 예정입니다."
+    "comingSoon": "인터랙티브 실습, 코드 예제, 리소스를 포함한 전체 랩 콘텐츠는 향후 업데이트에서 제공될 예정입니다.",
+    "lab1": {
+      "name": "랩 1: 운영체제 소개",
+      "description": "운영체제 개념 시작하기"
+    },
+    "lab2": {
+      "name": "랩 2: CPU 스케줄링",
+      "description": "CPU 스케줄링과 가상 메모리 이해하기"
+    },
+    "lab3": {
+      "name": "랩 3: 페이징과 메모리",
+      "description": "페이징, 페이지 테이블, TLB 심화 학습"
+    },
+    "lab4": {
+      "name": "랩 4: 고급 메모리",
+      "description": "스와핑, VM 구현, 스레드"
+    },
+    "lab5": {
+      "name": "랩 5: 동시성과 저장장치",
+      "description": "동기화 기법과 저장 장치"
+    }
   }
 }

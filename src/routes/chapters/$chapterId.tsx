@@ -19,6 +19,7 @@ import { LabPlaceholder } from "../../features/lab/LabPlaceholder";
 import { SectionHeader } from "../../features/chapters/SectionHeader";
 import { StatusDisplay } from "../../features/chapters/StatusDisplay";
 import { getStatusButtonConfig } from "../../utils/statusButtonConfig";
+import { triggerCompletionConfetti } from "../../utils/confetti";
 import markdownit from "markdown-it";
 
 export const Route = createFileRoute("/chapters/$chapterId")({
@@ -45,7 +46,15 @@ function LabView({ chapter }: { chapter: Lab }) {
   };
 
   const handleStatusChange = (status: ProgressStatus) => {
+    const previousStatus = progress?.status || "not-started";
     updateChapterStatus(chapter.id, status);
+    
+    // Trigger confetti when marking as completed (and it wasn't completed before)
+    if (status === "completed" && previousStatus !== "completed") {
+      setTimeout(() => {
+        triggerCompletionConfetti();
+      }, 100); // Small delay to let the UI update first
+    }
   };
 
   const statusButtons = getStatusButtonConfig(t);
@@ -59,24 +68,21 @@ function LabView({ chapter }: { chapter: Lab }) {
         <div className="flex items-start justify-between mb-6">
           <SectionHeader
             title={chapter.title}
-            section={chapter.section}
+            statusBadge={
+              <StatusDisplay
+                status={currentStatus}
+                label={
+                  statusButtons.find((btn) => btn.status === currentStatus)
+                    ?.label || ""
+                }
+                icon={
+                  statusButtons.find((btn) => btn.status === currentStatus)
+                    ?.icon || <></>
+                }
+              />
+            }
             icon={
               <Beaker className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-            }
-          />
-        </div>
-
-        {/* Progress Tracking */}
-        <div className="flex items-center justify-between mb-4">
-          <StatusDisplay
-            status={currentStatus}
-            label={
-              statusButtons.find((btn) => btn.status === currentStatus)
-                ?.label || ""
-            }
-            icon={
-              statusButtons.find((btn) => btn.status === currentStatus)
-                ?.icon || <></>
             }
           />
         </div>

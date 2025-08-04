@@ -56,13 +56,13 @@ export function Header({ onToggleSidebar }: HeaderProps) {
         const content = e.target?.result as string;
         const success = importProgress(content);
         if (success) {
-          alert("Progress imported successfully!");
+          alert(t("exportImport.importSuccess", "Progress imported successfully!"));
           window.location.reload(); // Reload to update UI
         } else {
-          alert("Failed to import progress. Please check the file format.");
+          alert(t("exportImport.importError", "Failed to import progress. Please check the file format."));
         }
       } catch {
-        alert("Error importing file. Please check the file format.");
+        alert(t("exportImport.fileError", "Error importing file. Please check the file format."));
       }
     };
     reader.readAsText(file);
@@ -244,9 +244,9 @@ export function Header({ onToggleSidebar }: HeaderProps) {
               className="h-10 w-10 hidden sm:block"
             >
               {theme === "light" ? (
-                <Sun className="w-5 h-5" />
+                <Sun className="size-5" />
               ) : (
-                <Moon className="w-5 h-5" />
+                <Moon className="size-5" />
               )}
               <span className="sr-only">Toggle theme</span>
             </Button>

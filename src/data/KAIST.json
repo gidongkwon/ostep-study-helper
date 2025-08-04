@@ -1,0 +1,224 @@
+{
+  "kaistResources": [
+    {
+      "name": "Introduction",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/02_Introduction.pptx",
+      "videoLinks": ["https://youtu.be/l5EmMAKiDlg"],
+      "mappedToChapter": "intro-os"
+    },
+    {
+      "name": "The Abstraction: The Process",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/04_Processes.pptx",
+      "videoLinks": ["https://youtu.be/TSHA_MXagk4"],
+      "mappedToChapter": "processes"
+    },
+    {
+      "name": "Interlude: Process API",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/05_ProcessAPI.pptx",
+      "videoLinks": ["https://youtu.be/gnh1qEze2XY"],
+      "mappedToChapter": "processes"
+    },
+    {
+      "name": "Mechanism: Limited Direct Execution",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/06_DirectExecution.pptx",
+      "videoLinks": [
+        "https://www.youtube.com/watch?v=IJ9vYSilvf0&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=4",
+        "https://www.youtube.com/watch?v=R_GGlxUs_e0&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=5",
+        "https://www.youtube.com/watch?v=PEUB6xMv40w&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=3",
+        "https://www.youtube.com/watch?v=3BPhS7oztpM&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=2",
+        "https://www.youtube.com/watch?v=4JKNwudqfOU&list=PLmQBKYly8OsUSryQuxKuZTny9whkWYlqj&index=1"
+      ],
+      "mappedToChapter": "arch-support"
+    },
+    {
+      "name": "Scheduling: Introduction",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/07_CPUScheduling.pptx",
+      "videoLinks": ["https://youtu.be/KZiZmPNZdFY"],
+      "mappedToChapter": "cpu-scheduling"
+    },
+    {
+      "name": "Scheduling: The Multi-Level Feedback Queue",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/08_MultiLevelFeedback.pptx",
+      "videoLinks": ["https://youtu.be/57r9OCN1EfA"],
+      "mappedToChapter": "cpu-scheduling"
+    },
+    {
+      "name": "Scheduling: Proportional Share",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/09_LotteryScheduling.pptx",
+      "videoLinks": [
+        "https://www.youtube.com/watch?v=1gS6JbKiY4w&t=76s",
+        "https://www.youtube.com/watch?v=9G9gNSQuLbY",
+        "https://www.youtube.com/watch?v=-5WAEhctoLc&t=1s"
+      ],
+      "mappedToChapter": "cpu-scheduling"
+    },
+    {
+      "name": "Multiprocessor Scheduling (Advanced)",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/10_MultiCPUScheduling.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=YxdNL01QTHw&t=1s"],
+      "mappedToChapter": null
+    },
+    {
+      "name": "The Abstraction: Address Space",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/13_AddressSpaces.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=l--6Q9VdYF4"],
+      "mappedToChapter": "virtual-memory"
+    },
+    {
+      "name": "Memory API",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/14_MemoryAPI.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=0gyi4wasigw"],
+      "mappedToChapter": "virtual-memory"
+    },
+    {
+      "name": "Address Translation",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/15_BaseAndBound.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=CIeqlir47BI&t=1s"],
+      "mappedToChapter": "virtual-memory"
+    },
+    {
+      "name": "Segmentation",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/16_Segmentation.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=k-CA2WxCknE&t=1s"],
+      "mappedToChapter": "virtual-memory"
+    },
+    {
+      "name": "Free-Space Management",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/17._FreeSpace_Management.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=Xs0e1xxWoLY"],
+      "mappedToChapter": null
+    },
+    {
+      "name": "Paging: Introduction",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/18._Paging_Introduction.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=cJaVwkDWc_E"],
+      "mappedToChapter": "paging"
+    },
+    {
+      "name": "Translation Lookaside Buffers",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/19._Translation_Lookaside_Buffer.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=O6l8HZejk1c"],
+      "mappedToChapter": "tlb"
+    },
+    {
+      "name": "Advanced Page Tables",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/20._Advanced_Page_Tables.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=HXLqpGsQdfs"],
+      "mappedToChapter": "page-tables"
+    },
+    {
+      "name": "Swapping: Mechanisms",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/21._Swapping_Mechanisms.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=pB_a_rMXiV8"],
+      "mappedToChapter": "swapping"
+    },
+    {
+      "name": "Swapping: Policies",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/22._Swapping_Policies.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=HR9uCfXyjwk"],
+      "mappedToChapter": "swapping"
+    },
+    {
+      "name": "Concurrency: An Introduction",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/26._Concurrency_An_Introduction.pptx",
+      "videoLinks": ["https://youtu.be/bT3NqutYoVs"],
+      "mappedToChapter": "threads"
+    },
+    {
+      "name": "Interlude: Thread API",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/27._Interlude_Thread_API.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=XqoHohojzL4&t=1s"],
+      "mappedToChapter": "threads"
+    },
+    {
+      "name": "Locks",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/28._Locks_v2.pptx",
+      "videoLinks": ["https://youtu.be/itAN_5oPXs0"],
+      "mappedToChapter": "locks"
+    },
+    {
+      "name": "Lock-based Concurrent Data Structures",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/29._Lockbased_Concurrent_Data_Structures.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=0HvW0ouRfBg&t=2s"],
+      "mappedToChapter": "locks"
+    },
+    {
+      "name": "Condition Variables",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/30._Condition_Variables.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=K3tVhkI07NM"],
+      "mappedToChapter": "condition-variables"
+    },
+    {
+      "name": "Semaphore",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/31._Semaphore.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=01IBoYmf51c&t=1s"],
+      "mappedToChapter": "semaphores"
+    },
+    {
+      "name": "Common Concurrency Problems",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/32._Common_Concurrency_Problems.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=Bzo33sImxm4"],
+      "mappedToChapter": null
+    },
+    {
+      "name": "Event-based Concurrency (Advanced)",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/33_Event-basedConcurrencyAdvanced.pptx",
+      "videoLinks": [],
+      "mappedToChapter": null
+    },
+    {
+      "name": "I/O Devices",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/36._IO_Devices.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=SKNWlK8JyOM"],
+      "mappedToChapter": "storage-devices"
+    },
+    {
+      "name": "Hard Disk Drives",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/37._Hard_Disk_Drives.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=uZR69A_NwjQ&t=3s"],
+      "mappedToChapter": "storage-devices"
+    },
+    {
+      "name": "RAID",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/38._RAID.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=JCarxkvbbtE&t=1s"],
+      "mappedToChapter": null
+    },
+    {
+      "name": "File and Directories",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/39._File_and_Directories.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=urywpXlNAy4"],
+      "mappedToChapter": "file-systems"
+    },
+    {
+      "name": "File System Implementation",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/40._Filesystem_Implementation.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=P5fSNEUeJSA"],
+      "mappedToChapter": "file-system-implementation"
+    },
+    {
+      "name": "Locality and The Fast File System",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/41._Locality_and_The_Fast_File_System.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=VLtH22e0T_Y"],
+      "mappedToChapter": "fast-file-system"
+    },
+    {
+      "name": "Crash Consistency: FSCK and Journaling",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/42._Crash_Consistency_FSCK_and_Journaling.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=lBDRTp94HBI"],
+      "mappedToChapter": "file-system-consistency"
+    },
+    {
+      "name": "Log-Structured File Systems",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/43._Logstructured_File_Systems.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=qcIF8yPb6eI"],
+      "mappedToChapter": null
+    },
+    {
+      "name": "Flash-based SSDs",
+      "pptUrl": "https://oslab.kaist.ac.kr/wp-content/uploads/2020/06/44._Flashbased_SSDs.pptx",
+      "videoLinks": ["https://www.youtube.com/watch?v=hkULOpAxk6s"],
+      "mappedToChapter": "ssds"
+    }
+  ]
+}

@@ -102,7 +102,7 @@
   }
 
   body {
-    @apply bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100;
+    @apply bg-background text-foreground;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     font-size: var(--font-size-base);
     line-height: 1.6;
@@ -113,16 +113,15 @@
 
 @layer components {
   .card {
-    @apply bg-white dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50;
+    @apply bg-card border border-border;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
     transition: var(--transition-default);
   }
 
   .card:hover {
-    @apply border-gray-200 dark:border-gray-700;
+    @apply border-border/80;
     box-shadow: var(--shadow-card-hover);
-    transform: translateY(-2px);
   }
 
   .card-elevated {
@@ -130,13 +129,13 @@
   }
 
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium px-4 py-2;
+    @apply bg-primary hover:opacity-90 text-primary-foreground font-medium px-4 py-2;
     border-radius: var(--radius-md);
     transition: var(--transition-default);
   }
 
   .btn-secondary {
-    @apply bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium px-4 py-2 border border-gray-200 dark:border-gray-700;
+    @apply bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium px-4 py-2 border border-border;
     border-radius: var(--radius-md);
     transition: var(--transition-default);
   }
@@ -151,20 +150,20 @@
   }
 
   .section-title {
-    @apply text-xl font-semibold text-gray-900 dark:text-white mb-6 tracking-tight;
+    @apply text-xl font-semibold text-foreground mb-6 tracking-tight;
   }
 
   .text-muted {
-    @apply text-gray-600 dark:text-gray-400;
+    @apply text-muted-foreground;
   }
 
   .divider {
-    @apply border-t border-gray-200 dark:border-gray-800;
+    @apply border-t border-border;
   }
 
   /* Modern Focus Styles */
   .focus-ring-primary {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background;
   }
 
   /* Animations */
@@ -270,16 +269,34 @@
     .wave-parallax > use {
       animation: none;
     }
+    
+    /* Reduce sidebar animations for accessibility */
+    .sidebar-section-button,
+    .sidebar-chapter-link,
+    .sidebar-dashboard-link {
+      transition: none !important;
+      animation: none !important;
+    }
+    
+    .sidebar-section-button:hover,
+    .sidebar-chapter-link:hover,
+    .sidebar-dashboard-link:hover {
+      transform: none !important;
+      scale: 1 !important;
+    }
+    
+    .animate-pulse {
+      animation: none !important;
+    }
   }
 
   /* Hover effects */
   .hover-lift {
     transition: var(--transition-default);
-    transition-property: transform, box-shadow;
+    transition-property: box-shadow;
   }
 
   .hover-lift:hover {
-    transform: translateY(-4px);
     box-shadow: var(--shadow-card-hover);
   }
 
@@ -290,7 +307,7 @@
 
   /* Focus styles for better accessibility */
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background;
   }
 }
 
@@ -340,7 +357,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.647 0.162 232.5);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -370,11 +387,11 @@
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: transparent;
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
+  --primary: oklch(0.647 0.162 232.5);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -405,9 +422,6 @@
   * {
     word-break: keep-all;
     @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
   pre {
     white-space: pre-wrap;

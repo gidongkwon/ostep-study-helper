@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Zap } from "lucide-react";
 import { GradientCard } from "../../components/ui/GradientCard";
 import { CircularProgress } from "./CircularProgress";
+import { getProgressMessageKey } from "../../utils/progressMessages";
 
 export interface OverallStatsData {
   completed: number;
@@ -48,7 +49,7 @@ export const OverallProgressCard = React.memo(function OverallProgressCard({
 
         <div className="flex-1">
           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-            {t("dashboard.keepUpTheWork")}
+            {t(getProgressMessageKey(stats.percentage))}
           </h4>
           <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5">
             {t("dashboard.completedDescription", {
