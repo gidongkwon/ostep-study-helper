@@ -12,28 +12,30 @@ export function getAllKAISTResources(): KAISTResource[] {
 }
 
 export interface AlignedResource {
-  snuPdf?: PdfResource;
+  ostepPdf?: PdfResource;
+  snuLectureSlide?: string;
   kaistResource?: KAISTResource;
   topicName: string;
 }
 
 export function getAlignedResourcesForChapter(
-  snuPdfs: PdfResource[],
+  ostepPdfs: PdfResource[],
+  lectureSlide: string | undefined,
   chapterId: string
 ): AlignedResource[] {
   const kaistResources = getKAISTResourcesForChapter(chapterId);
   const aligned: AlignedResource[] = [];
 
-  // Create a map of SNU PDFs by their titles (normalized)
-  const snuPdfMap = new Map<string, PdfResource>();
-  snuPdfs.forEach(pdf => {
+  // Create a map of OSTEP PDFs by their titles (normalized)
+  const ostepPdfMap = new Map<string, PdfResource>();
+  ostepPdfs.forEach(pdf => {
     const normalizedTitle = pdf.title.toLowerCase()
       .replace(/[:\-\s]/g, '')
       .replace('the', '')
       .replace('abstraction', '')
       .replace('introduction', '')
       .replace('interlude', '');
-    snuPdfMap.set(normalizedTitle, pdf);
+    ostepPdfMap.set(normalizedTitle, pdf);
   });
 
   // Create a map of KAIST resources by normalized names
@@ -48,8 +50,11 @@ export function getAlignedResourcesForChapter(
     kaistResourceMap.set(normalizedName, resource);
   });
 
-  // First, align SNU PDFs with matching KAIST resources
-  snuPdfs.forEach(pdf => {
+  // No separate lecture slides row - they will be included with the first OSTEP PDF
+
+  // Align OSTEP PDFs with matching KAIST resources
+  let isFirstPdf = true;
+  ostepPdfs.forEach(pdf => {
     const normalizedTitle = pdf.title.toLowerCase()
       .replace(/[:\-\s]/g, '')
       .replace('the', '')
@@ -92,13 +97,15 @@ export function getAlignedResourcesForChapter(
     }
 
     aligned.push({
-      snuPdf: pdf,
+      ostepPdf: pdf,
+      snuLectureSlide: isFirstPdf ? lectureSlide : undefined,
       kaistResource: matchingKaist,
       topicName: pdf.title
     });
+    isFirstPdf = false;
   });
 
-  // Add remaining KAIST resources that didn't match any SNU PDF
+  // Add remaining KAIST resources that didn't match any OSTEP PDF
   kaistResourceMap.forEach(kaistResource => {
     aligned.push({
       kaistResource,
