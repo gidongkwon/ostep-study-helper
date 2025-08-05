@@ -142,6 +142,11 @@ Testing
         koreanPdf:
           "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/08-cpu-sched-mlfq.pdf",
       },
+      {
+        title: "Scheduling: Proportional Share",
+        englishPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-lottery.pdf",
+        koreanPdf: "https://pages.cs.wisc.edu/~remzi/OSTEP/Korean/09-cpu-sched-lottery.pdf",
+      }
     ],
     section: "lab2",
   },
