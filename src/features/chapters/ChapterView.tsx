@@ -125,8 +125,8 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                           description={t("chapterView.ostepTextbookChapter")}
                           color="green"
                           className="p-2"
-                          materialId={`${chapter.id}-ostep-en`}
-                          isRead={progress?.materialsRead?.[`${chapter.id}-ostep-en`]}
+                          materialId={`${chapter.id}-${index}-ostep-en`}
+                          isRead={progress?.materialsRead?.[`${chapter.id}-${index}-ostep-en`]}
                           onReadToggle={handleMaterialReadToggle}
                         />
                         {alignedResource.ostepPdf.koreanPdf && (
@@ -137,8 +137,8 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                             description={t("chapterView.ostepTextbookChapterKorean")}
                             color="green"
                             className="p-2"
-                            materialId={`${chapter.id}-ostep-ko`}
-                            isRead={progress?.materialsRead?.[`${chapter.id}-ostep-ko`]}
+                            materialId={`${chapter.id}-${index}-ostep-ko`}
+                            isRead={progress?.materialsRead?.[`${chapter.id}-${index}-ostep-ko`]}
                             onReadToggle={handleMaterialReadToggle}
                           />
                         )}
@@ -172,8 +172,8 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                           description={t("chapterView.kaistLectureSlides")}
                           color="orange"
                           className="p-2"
-                          materialId={`${chapter.id}-kaist-ppt`}
-                          isRead={progress?.materialsRead?.[`${chapter.id}-kaist-ppt`]}
+                          materialId={`${chapter.id}-${index}-kaist-ppt`}
+                          isRead={progress?.materialsRead?.[`${chapter.id}-${index}-kaist-ppt`]}
                           onReadToggle={handleMaterialReadToggle}
                         />
                         {(alignedResource.kaistResource.videoLinksWithDurations || []).map((videoData: { url: string; duration: string; name?: string }, videoIndex: number) => (
@@ -185,8 +185,8 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                             description={`${t("chapterView.kaistVideoContent")} • ${videoData.duration}`}
                             color="red"
                             className="p-2"
-                            materialId={`${chapter.id}-kaist-video-${videoIndex}`}
-                            isRead={progress?.materialsRead?.[`${chapter.id}-kaist-video-${videoIndex}`]}
+                            materialId={`${chapter.id}-${index}-kaist-video-${videoIndex}`}
+                            isRead={progress?.materialsRead?.[`${chapter.id}-${index}-kaist-video-${videoIndex}`]}
                             onReadToggle={handleMaterialReadToggle}
                           />
                         ))}
@@ -220,8 +220,8 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                           description={t("chapterView.snuLectureSlides")}
                           color="purple"
                           className="p-2"
-                          materialId={`${chapter.id}-snu-slides`}
-                          isRead={progress?.materialsRead?.[`${chapter.id}-snu-slides`]}
+                          materialId={`${chapter.id}-${index}-snu-slides`}
+                          isRead={progress?.materialsRead?.[`${chapter.id}-${index}-snu-slides`]}
                           onReadToggle={handleMaterialReadToggle}
                         />
                       </div>
