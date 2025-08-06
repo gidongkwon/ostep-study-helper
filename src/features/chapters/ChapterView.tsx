@@ -3,7 +3,8 @@ import type { RegularChapter, ProgressStatus } from "../../types";
 import { useStudyProgress } from "../progress/StudyProgressContext";
 import { Presentation, FileText, Video, ExternalLink } from "lucide-react";
 import { StatusButton } from "./StatusButton";
-import { IconCard } from "../../components/ui/IconCard";
+
+import { MaterialCard } from "../../components/ui/MaterialCard";
 import { EmptyState } from "../../components/ui/EmptyState";
 import { PageContainer } from "../../components/ui/PageContainer";
 import { SectionHeader } from "./SectionHeader";
@@ -18,7 +19,7 @@ interface ChapterViewProps {
 
 export function ChapterView({ chapter }: ChapterViewProps) {
   const { t } = useTranslation();
-  const { getChapterProgress, updateChapterStatus } = useStudyProgress();
+  const { getChapterProgress, updateChapterStatus, updateMaterialRead } = useStudyProgress();
   const progress = getChapterProgress(chapter.id);
   const alignedResources = getAlignedResourcesForChapter(chapter.pdfs, chapter.lectureSlide, chapter.id);
 
@@ -32,6 +33,10 @@ export function ChapterView({ chapter }: ChapterViewProps) {
         triggerCompletionConfetti();
       }, 100); // Small delay to let the UI update first
     }
+  };
+
+  const handleMaterialReadToggle = (materialId: string, read: boolean) => {
+    updateMaterialRead(chapter.id, materialId, read);
   };
 
   const statusButtons = getStatusButtonConfig(t);
@@ -59,6 +64,8 @@ export function ChapterView({ chapter }: ChapterViewProps) {
             className="flex-1"
           />
         </div>
+
+
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {statusButtons.map(({ status, label, color, icon }) => {
@@ -111,22 +118,28 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                         <span className="lg:hidden bg-green-600 text-white px-2 py-0.5 rounded-full text-xs font-medium">OSTEP</span>
                       </div>
                       <div className="space-y-2">
-                        <IconCard
+                        <MaterialCard
                           href={alignedResource.ostepPdf.englishPdf}
                           icon={<FileText className="w-4 h-4 text-white" />}
                           title={t("chapterView.englishPdf")}
                           description={t("chapterView.ostepTextbookChapter")}
                           color="green"
                           className="p-2"
+                          materialId={`${chapter.id}-ostep-en`}
+                          isRead={progress?.materialsRead?.[`${chapter.id}-ostep-en`]}
+                          onReadToggle={handleMaterialReadToggle}
                         />
                         {alignedResource.ostepPdf.koreanPdf && (
-                          <IconCard
+                          <MaterialCard
                             href={alignedResource.ostepPdf.koreanPdf}
                             icon={<FileText className="w-4 h-4 text-white" />}
                             title={t("chapterView.koreanPdf")}
                             description={t("chapterView.ostepTextbookChapterKorean")}
                             color="green"
                             className="p-2"
+                            materialId={`${chapter.id}-ostep-ko`}
+                            isRead={progress?.materialsRead?.[`${chapter.id}-ostep-ko`]}
+                            onReadToggle={handleMaterialReadToggle}
                           />
                         )}
                       </div>
@@ -152,16 +165,19 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                         <span className="lg:hidden bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">KAIST</span>
                       </div>
                       <div className="space-y-2">
-                        <IconCard
+                        <MaterialCard
                           href={alignedResource.kaistResource.pptUrl}
                           icon={<Presentation className="w-4 h-4 text-white" />}
                           title={t("chapterView.powerPointSlides", "PowerPoint Slides")}
                           description={t("chapterView.kaistLectureSlides")}
                           color="orange"
                           className="p-2"
+                          materialId={`${chapter.id}-kaist-ppt`}
+                          isRead={progress?.materialsRead?.[`${chapter.id}-kaist-ppt`]}
+                          onReadToggle={handleMaterialReadToggle}
                         />
                         {(alignedResource.kaistResource.videoLinksWithDurations || []).map((videoData: { url: string; duration: string; name?: string }, videoIndex: number) => (
-                          <IconCard
+                          <MaterialCard
                             key={videoIndex}
                             href={videoData.url}
                             icon={<Video className="w-4 h-4 text-white" />}
@@ -169,6 +185,9 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                             description={`${t("chapterView.kaistVideoContent")} • ${videoData.duration}`}
                             color="red"
                             className="p-2"
+                            materialId={`${chapter.id}-kaist-video-${videoIndex}`}
+                            isRead={progress?.materialsRead?.[`${chapter.id}-kaist-video-${videoIndex}`]}
+                            onReadToggle={handleMaterialReadToggle}
                           />
                         ))}
                       </div>
@@ -194,13 +213,16 @@ export function ChapterView({ chapter }: ChapterViewProps) {
                         <span className="lg:hidden bg-blue-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">SNU</span>
                       </div>
                       <div className="space-y-2">
-                        <IconCard
+                        <MaterialCard
                           href={alignedResource.snuLectureSlide}
                           icon={<Presentation className="w-4 h-4 text-white" />}
                           title={t("chapterView.lectureSlides")}
                           description={t("chapterView.snuLectureSlides")}
                           color="purple"
                           className="p-2"
+                          materialId={`${chapter.id}-snu-slides`}
+                          isRead={progress?.materialsRead?.[`${chapter.id}-snu-slides`]}
+                          onReadToggle={handleMaterialReadToggle}
                         />
                       </div>
                     </>

@@ -1,0 +1,142 @@
+import { type JSX } from "react";
+import { CheckSquare, Square } from "lucide-react";
+
+interface MaterialCardProps {
+  icon: JSX.Element;
+  title: string;
+  description?: string;
+  color?: string;
+  href?: string;
+  className?: string;
+  materialId: string;
+  isRead?: boolean;
+  onReadToggle: (materialId: string, read: boolean) => void;
+}
+
+export function MaterialCard({
+  icon,
+  title,
+  description,
+  color = "blue",
+  href,
+  className = "",
+  materialId,
+  isRead = false,
+  onReadToggle,
+}: MaterialCardProps) {
+  const colorClasses = {
+    blue: "from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-700/50",
+    green:
+      "from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-700/50",
+    purple:
+      "from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-700/50",
+    yellow:
+      "from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 border-yellow-200 dark:border-yellow-700/50",
+    red: "from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 border-red-200 dark:border-red-700/50",
+    indigo:
+      "from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 border-indigo-200 dark:border-indigo-700/50",
+    orange:
+      "from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 border-orange-200 dark:border-orange-700/50",
+  };
+
+  const iconColorClasses = {
+    blue: "bg-blue-600",
+    green: "bg-green-600",
+    purple: "bg-purple-600",
+    yellow: "bg-yellow-600",
+    red: "bg-red-600",
+    indigo: "bg-indigo-600",
+    orange: "bg-orange-600",
+  };
+
+  const textColorClasses = {
+    blue: "text-blue-800 dark:text-blue-200 group-hover:text-blue-900 dark:group-hover:text-blue-100",
+    green:
+      "text-green-800 dark:text-green-200 group-hover:text-green-900 dark:group-hover:text-green-100",
+    purple:
+      "text-purple-800 dark:text-purple-200 group-hover:text-purple-900 dark:group-hover:text-purple-100",
+    yellow:
+      "text-yellow-800 dark:text-yellow-200 group-hover:text-yellow-900 dark:group-hover:text-yellow-100",
+    red: "text-red-800 dark:text-red-200 group-hover:text-red-900 dark:group-hover:text-red-100",
+    indigo:
+      "text-indigo-800 dark:text-indigo-200 group-hover:text-indigo-900 dark:group-hover:text-indigo-100",
+    orange:
+      "text-orange-800 dark:text-orange-200 group-hover:text-orange-900 dark:group-hover:text-orange-100",
+  };
+
+  const baseClasses = `group block p-4 bg-gradient-to-br ${colorClasses[color as keyof typeof colorClasses]} rounded-xl border hover:shadow-lg transition-all duration-200 hover:scale-[1.02] ${className}`;
+
+  const handleCheckboxClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onReadToggle(materialId, !isRead);
+  };
+
+  const content = (
+    <>
+      <div className="flex items-center space-x-3">
+        <div
+          className={`w-10 h-10 ${iconColorClasses[color as keyof typeof iconColorClasses]} rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-200`}
+        >
+          {icon}
+        </div>
+        <div className="flex-1">
+          <h3
+            className={`font-semibold ${textColorClasses[color as keyof typeof textColorClasses]} text-base`}
+          >
+            {title}
+          </h3>
+          {description && (
+            <p
+              className={`text-xs mt-0.5 ${
+                color === "blue"
+                  ? "text-blue-600 dark:text-blue-300"
+                  : color === "green"
+                    ? "text-green-600 dark:text-green-300"
+                    : color === "purple"
+                      ? "text-purple-600 dark:text-purple-300"
+                      : color === "yellow"
+                        ? "text-yellow-600 dark:text-yellow-300"
+                        : color === "red"
+                          ? "text-red-600 dark:text-red-300"
+                          : color === "orange"
+                            ? "text-orange-600 dark:text-orange-300"
+                            : "text-indigo-600 dark:text-indigo-300"
+              }`}
+            >
+              {description}
+            </p>
+          )}
+        </div>
+        <button
+          onClick={handleCheckboxClick}
+          className="ml-2 p-1 hover:bg-white/20 rounded transition-colors"
+          aria-label={isRead ? "Mark as unread" : "Mark as read"}
+        >
+          {isRead ? (
+            <CheckSquare className="w-5 h-5 text-green-600 dark:text-green-500" />
+          ) : (
+            <Square className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+          )}
+        </button>
+      </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={baseClasses}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className={baseClasses.replace("group block", "block")}>{content}</div>
+  );
+}

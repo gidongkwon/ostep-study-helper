@@ -41,6 +41,14 @@ export function StudyProgressProvider({
     setProgress(data.progress);
   }, []);
 
+  const updateMaterialRead = useCallback((chapterId: string, materialId: string, read: boolean) => {
+    StorageService.updateMaterialRead(chapterId, materialId, read);
+
+    // Update local state
+    const data = StorageService.getData();
+    setProgress(data.progress);
+  }, []);
+
   const getChapterProgress = useCallback(
     (chapterId: string): ChapterProgress | null => {
       return progress[chapterId] || null;
@@ -68,6 +76,7 @@ export function StudyProgressProvider({
     stats,
     updateChapterStatus,
     updateChapterNotes,
+    updateMaterialRead,
     getChapterProgress,
     exportProgress,
     importProgress,

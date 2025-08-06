@@ -54,6 +54,7 @@ export interface ChapterProgress {
   status: ProgressStatus;
   notes: string;
   lastUpdated: string;
+  materialsRead?: Record<string, boolean>;
 }
 
 export interface StudyData {

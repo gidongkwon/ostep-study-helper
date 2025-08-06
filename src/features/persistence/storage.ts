@@ -48,6 +48,7 @@ export class StorageService {
       chapterId,
       status,
       notes: notes !== undefined ? notes : existingProgress?.notes || "",
+      materialsRead: existingProgress?.materialsRead,
       lastUpdated: new Date().toISOString(),
     };
 
@@ -66,6 +67,29 @@ export class StorageService {
         chapterId,
         status: "not-started",
         notes,
+        lastUpdated: new Date().toISOString(),
+      };
+    }
+
+    this.saveData(data);
+  }
+
+  static updateMaterialRead(chapterId: string, materialId: string, read: boolean): void {
+    const data = this.getData();
+    const existingProgress = data.progress[chapterId];
+
+    if (existingProgress) {
+      if (!existingProgress.materialsRead) {
+        existingProgress.materialsRead = {};
+      }
+      existingProgress.materialsRead[materialId] = read;
+      existingProgress.lastUpdated = new Date().toISOString();
+    } else {
+      data.progress[chapterId] = {
+        chapterId,
+        status: "not-started",
+        notes: "",
+        materialsRead: { [materialId]: read },
         lastUpdated: new Date().toISOString(),
       };
     }

@@ -12,6 +12,7 @@ export interface StudyProgressContextType {
   };
   updateChapterStatus: (chapterId: string, status: ProgressStatus) => void;
   updateChapterNotes: (chapterId: string, notes: string) => void;
+  updateMaterialRead: (chapterId: string, materialId: string, read: boolean) => void;
   getChapterProgress: (chapterId: string) => ChapterProgress | null;
   exportProgress: () => string;
   importProgress: (jsonString: string) => boolean;
